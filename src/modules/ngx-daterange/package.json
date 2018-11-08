@@ -1,0 +1,52 @@
+{
+  "name": "ngx-daterange",
+  "version": "1.0.0",
+  "description": "Date-Range Selector for Angular",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alsoicode/ngx-daterange.git"
+  },
+  "keywords": [
+    "angular",
+    "date",
+    "daterange"
+  ],
+  "author": "Brandon Taylor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alsoicode/ngx-daterange/issues"
+  },
+  "homepage": "https://github.com/alsoicode/ngx-daterange#readme",
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
+  "peerDependencies": {
+    "@angular/core": "~5.0.0",
+    "@types/jquery": "^3.3.22",
+    "bootstrap": "4.1.3",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.5"
+  },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "src/public_api.ts"
+    },
+    "dest": "../../../ngx-daterange/dist",
+    "src": "./src",
+    "whitelistedNonPeerDependencies": [
+      "moment",
+      "moment-range"
+    ]
+  },
+  "dependencies": {
+    "moment": "^2.22.2",
+    "moment-range": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/moment": "^2.13.0",
+    "@types/moment-range": "^3.1.0",
+    "@types/node": "^10.12.3"
+  }
+}
