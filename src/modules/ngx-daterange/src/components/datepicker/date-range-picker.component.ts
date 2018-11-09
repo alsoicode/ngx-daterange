@@ -1,9 +1,3 @@
-declare global {
-  interface Window {
-    Node: any;
-  }
-}
-
 import { Component, ElementRef, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { defaultDateRangePickerOptions, defaultDateRanges, defaultDateFormat, defaultTimeFormat } from '../constants';
@@ -28,11 +22,13 @@ export class DateRangePickerComponent implements OnInit {
   @Input()
   class: string;
 
+  @Input()
+  range = '';
+
   @Output()
   rangeSelected = new EventEmitter<IDateRange>();
 
-  showCalendars: boolean;
-  range = '';
+  showCalendars = false;
   enableApplyButton = false;
   areOldDatesStored = false;
   fromDate: moment_.Moment;
@@ -48,54 +44,18 @@ export class DateRangePickerComponent implements OnInit {
   format: string;
   defaultRanges: IDefinedDateRange[];
 
-  // handle outside/inside click to show rangepicker
-  @HostListener('document:mousedown', ['$event'])
-  @HostListener('document:mouseup', ['$event'])
-  handleOutsideClick(event) {
-    if (!this.options.disabled) {
-      let currentTarget: any = event.target;
-      const host: any = this.elem.nativeElement;
-
-      if (host.compareDocumentPosition) {
-        if (host.compareDocumentPosition(currentTarget) && window.Node.DOCUMENT_POSITION_CONTAINED_BY) {
-          this.storeOldDates();
-
-          return this.toggleCalendars(true);
-        }
-      }
-      else if (host.contains) {
-        if (host.contains(currentTarget)) {
-          this.storeOldDates();
-
-          return this.toggleCalendars(true);
-        }
-      }
-      else {
-        do {
-          if (currentTarget === host) {
-            this.storeOldDates();
-
-            return this.toggleCalendars(true);
-          }
-          currentTarget = currentTarget.parentNode;
-        }
-        while (currentTarget);
-      }
-      if (this.showCalendars) {
-        if (!this.isAutoApply()) {
-          this.restoreOldDates();
-        }
-
-        this.toggleCalendars(false);
-      }
+  @HostListener('document:click', ['$event'])
+  handleClick(event: Event) {
+    if (this.elementRef.nativeElement.contains(event.target)) {
+      this.toggleCalendars(true);
     }
   }
 
   constructor(
-    private elem: ElementRef
+    private elementRef: ElementRef
   ) {}
 
-  toggleCalendars(value) {
+  toggleCalendars(value: boolean): void {
     this.showCalendars = value;
 
     if (!value) {
@@ -470,15 +430,17 @@ export class DateRangePickerComponent implements OnInit {
     this.emitRangeSelected();
   }
 
-  cancel(): void {
-    this.restoreOldDates();
+  cancel(event: Event): void {
     this.toggleCalendars(false);
+    this.restoreOldDates();
+    event.stopImmediatePropagation();
   }
 
   clear(): void {
     this.fromDate = null;
     this.toDate = null;
     this.enableApplyButton = false;
+    this.setRange();
     this.emitRangeSelected();
   }
 

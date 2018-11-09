@@ -2,8 +2,9 @@
   <div #content>
     <ng-content></ng-content>
   </div>
-  <input *ngIf="content.childNodes.length === 0" class="{{ class }} dateRangePicker-input" type="text" [ngModel]="range"
+  <input *ngIf="content.childNodes.length === 0" class="{{ class }} dateRangePicker-input" type="text" [(ngModel)]="range"
     [disabled]="options.disabled" [ngClass]="{'hidden': options.alwaysOpen}">
+
   <div class="daterangepicker col-md-12 text-center flush {{ getPositionClass() }}" [ngClass]="{'hidden': !(showCalendars || options.alwaysOpen), 'singledatepicker': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
     <div class="col-md-12 flush text-center">
       <div class="flush-bottom text-center flush-left nudge-half--right" [ngClass]="{'col-md-6': !options.singleCalendar,'col-md-12': options.singleCalendar}">
@@ -32,7 +33,7 @@
     </div>
     <div class="text-center ranges">
       <button *ngIf="!isAutoApply()" class="btn btn-success btn-sm" [disabled]="!enableApplyButton" (click)="apply()">Apply</button>
-      <button class="btn btn-default" (click)="cancel()">Cancel</button>
+      <button class="btn btn-default" (click)="cancel($event)">Cancel</button>
       <button *ngIf="this.range" class="btn btn-default ml-3" (click)="clear()">Clear</button>
       <div class="flush text-center" *ngIf="options.preDefinedRanges && !options.singleCalendar">
         <button *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange(range)">{{ range.name }}</button>
