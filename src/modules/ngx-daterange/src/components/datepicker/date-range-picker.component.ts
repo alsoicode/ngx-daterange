@@ -79,7 +79,6 @@ export class DateRangePickerComponent implements OnInit {
       }
 
       this.parentFormGroup.addControl(this.controlName, control);
-      console.log(this.parentFormGroup);
     }
   }
 
