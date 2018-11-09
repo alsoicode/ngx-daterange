@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DateRangePickerComponent } from './components/datepicker/date-range-picker.component';
@@ -20,6 +20,7 @@ const declarations = [
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class NgxDateRangeModule {}

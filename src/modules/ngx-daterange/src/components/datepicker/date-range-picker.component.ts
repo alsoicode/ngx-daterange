@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup, ValidatorFn, FormControl } from '@angular/forms';
 
 import { defaultDateRangePickerOptions, defaultDateRanges, defaultDateFormat, defaultTimeFormat } from '../constants';
 import { IDateRange, IDateRangePickerOptions, IDefinedDateRange, IChangedData } from '../../interfaces';
@@ -20,6 +21,12 @@ export class DateRangePickerComponent implements OnInit {
 
   @Input()
   class: string;
+
+  @Input()
+  controlName: string = 'dateRange';
+
+  @Input()
+  parentFormGroup: FormGroup = null;
 
   @Output()
   rangeSelected = new EventEmitter<IDateRange>();
@@ -52,6 +59,30 @@ export class DateRangePickerComponent implements OnInit {
     private elementRef: ElementRef
   ) {}
 
+  ngOnInit(): void {
+    // get default options provided by user
+    this.setFormat();
+    this.validateMinMaxDates();
+    this.setFromDate(this.options.startDate);
+    this.setToDate(this.options.endDate);
+    this.defaultRanges = this.validatePredefinedRanges(this.options.preDefinedRanges || defaultDateRanges.ranges);
+
+    // update calendar grid
+    this.updateCalendar();
+
+    // add form control to parent form group
+    if (this.parentFormGroup) {
+      const control = new FormControl('', this.options.validators);
+
+      if (this.options.disabled) {
+        control.disable();
+      }
+
+      this.parentFormGroup.addControl(this.controlName, control);
+      console.log(this.parentFormGroup);
+    }
+  }
+
   toggleCalendars(value: boolean): void {
     this.showCalendars = value;
 
@@ -76,18 +107,6 @@ export class DateRangePickerComponent implements OnInit {
     this.toYear = tDate.get('year');
 
     this.setRange();
-  }
-
-  ngOnInit(): void {
-    // get default options provided by user
-    this.setFormat();
-    this.validateMinMaxDates();
-    this.setFromDate(this.options.startDate);
-    this.setToDate(this.options.endDate);
-    this.defaultRanges = this.validatePredefinedRanges(this.options.preDefinedRanges || defaultDateRanges.ranges);
-
-    // update calendar grid
-    this.updateCalendar();
   }
 
   getPositionClass(): string {
@@ -353,6 +372,14 @@ export class DateRangePickerComponent implements OnInit {
     }
     else {
       this.range = '';
+    }
+
+    if (this.parentFormGroup) {
+      const control = this.parentFormGroup.get(this.controlName);
+
+      if (control) {
+        control.setValue(this.range);
+      }
     }
   }
 

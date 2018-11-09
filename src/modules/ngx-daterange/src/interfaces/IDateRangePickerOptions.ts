@@ -1,3 +1,4 @@
+import { ValidatorFn } from '@angular/forms';
 import * as momentNs from 'moment';
 
 import { IDefinedDateRange } from './IDefinedDateRange';
@@ -20,4 +21,5 @@ export interface IDateRangePickerOptions {
   timePickerOptions?: ITimePickerOptions;
   disableBeforeStart: boolean;
   alwaysOpen: boolean;
+  validators?: ValidatorFn | ValidatorFn[];
 }
