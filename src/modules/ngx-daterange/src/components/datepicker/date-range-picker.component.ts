@@ -21,9 +21,6 @@ export class DateRangePickerComponent implements OnInit {
   @Input()
   class: string;
 
-  @Input()
-  range = '';
-
   @Output()
   rangeSelected = new EventEmitter<IDateRange>();
 
@@ -41,6 +38,7 @@ export class DateRangePickerComponent implements OnInit {
   fromYear: number;
   toYear: number;
   format: string;
+  range = '';
   defaultRanges: IDefinedDateRange[];
 
   @HostListener('document:click', ['$event'])
