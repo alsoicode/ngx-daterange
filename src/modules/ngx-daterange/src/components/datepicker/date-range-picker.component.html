@@ -31,9 +31,9 @@
       </div>
     </div>
     <div class="text-center ranges">
-      <button [class.hidden]="isAutoApply()" class="btn btn-success btn-sm" [disabled]="!enableApplyButton" (click)="apply()">Apply</button>
-      <button [class.hidden]="isAutoApply()" class="btn btn-default btn-sm" (click)="cancel()">Cancel</button>
-      <button [disabled]="!this.range" class="btn btn-default btn-link" (click)="clear()">Clear</button>
+      <button *ngIf="!isAutoApply()" class="btn btn-success btn-sm" [disabled]="!enableApplyButton" (click)="apply()">Apply</button>
+      <button class="btn btn-default" (click)="cancel()">Cancel</button>
+      <button *ngIf="this.range" class="btn btn-default ml-3" (click)="clear()">Clear</button>
       <div class="flush text-center" *ngIf="options.preDefinedRanges && !options.singleCalendar">
         <button *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange(range)">{{ range.name }}</button>
       </div>

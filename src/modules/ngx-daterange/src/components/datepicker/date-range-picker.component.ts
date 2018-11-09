@@ -478,7 +478,6 @@ export class DateRangePickerComponent implements OnInit {
   clear(): void {
     this.fromDate = null;
     this.toDate = null;
-    this.apply();
     this.enableApplyButton = false;
     this.emitRangeSelected();
   }
