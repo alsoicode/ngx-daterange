@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, ValidatorFn, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { defaultDateRangePickerOptions, defaultDateRanges, defaultDateFormat, defaultTimeFormat } from '../constants';
 import { IDateRange, IDateRangePickerOptions, IDefinedDateRange, IChangedData } from '../../interfaces';
@@ -10,7 +10,7 @@ import * as momentNs from 'moment'; const moment = momentNs;
   encapsulation: ViewEncapsulation.None,
   selector: 'date-range-picker',
   styleUrls: [
-    './date-range-picker.component.css',
+    './date-range-picker.component.scss',
   ],
   templateUrl: './date-range-picker.component.html',
 })

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, ViewEncapsulation } from '@angular/core';
 
 import * as momentNs from 'moment'; const moment = momentNs;
 
@@ -8,8 +8,9 @@ import { IChangedData, IDateRange, ITimePickerOptions } from '../../interfaces';
 const { range } = extendMoment(moment);
 
 @Component({
-    selector: 'calendar',
-    templateUrl: './calendar.component.html'
+  encapsulation: ViewEncapsulation.None,
+  selector: 'calendar',
+  templateUrl: './calendar.component.html'
 })
 export class CalendarComponent implements OnChanges {
     @Input()

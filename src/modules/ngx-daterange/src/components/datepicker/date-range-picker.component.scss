@@ -1,6 +1,10 @@
 .daterangepicker-wrapper {
   position: relative;
   border: none;
+
+  @media screen and (min-width: 550px) {
+    min-width: 550px;
+  }
 }
 
 .daterangepicker {
