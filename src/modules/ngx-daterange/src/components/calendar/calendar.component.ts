@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 import * as moment_ from 'moment';
-import { extendMoment } from 'moment-range';
+import { extendMoment, DateRange } from 'moment-range';
+import { IChangedData, IDateRange, ITimePickerOptions } from '../../interfaces';
 
 const moment = moment_;
 const { range } = extendMoment(moment);
@@ -18,10 +19,10 @@ export class CalendarComponent implements OnChanges {
     year: number;
 
     @Input()
-    selectedFromDate: string;
+    selectedFromDate: moment_.Moment;
 
     @Input()
-    selectedToDate: string;
+    selectedToDate: moment_.Moment;
 
     @Input()
     isLeft: boolean;
@@ -30,10 +31,10 @@ export class CalendarComponent implements OnChanges {
     format: string;
 
     @Input()
-    minDate: string;
+    minDate: moment_.Moment;
 
     @Input()
-    maxDate: string;
+    maxDate: moment_.Moment;
 
     @Input()
     inactiveBeforeStart: boolean;
@@ -42,21 +43,21 @@ export class CalendarComponent implements OnChanges {
     disableBeforeStart: boolean;
 
     @Input()
-    timePicker: any;
+    timePickerOptions: ITimePickerOptions = null;
 
     @Input()
     singleCalendar = false;
 
     @Output()
-    dateChanged = new EventEmitter();
+    dateChanged = new EventEmitter<IChangedData>();
 
     @Output()
-    monthChanged = new EventEmitter();
+    monthChanged = new EventEmitter<IChangedData>();
 
     @Output()
-    yearChanged = new EventEmitter();
+    yearChanged = new EventEmitter<IChangedData>();
 
-    weekList: any;
+    weekList: IDateRange[];
 
     get monthText() {
       return moment.monthsShort()[this.month];
@@ -66,7 +67,7 @@ export class CalendarComponent implements OnChanges {
       this.createCalendarGridData();
     }
 
-    getWeekNumbers(monthRange: any): number[] {
+    getWeekNumbers(monthRange: DateRange): number[] {
       const weekNumbers = [];
 
       Array.from(monthRange.by('weeks')).forEach((week: moment_.Moment, index: number) => {
@@ -78,7 +79,7 @@ export class CalendarComponent implements OnChanges {
       return weekNumbers;
     }
 
-    getWeeksRange(weeks: number[]): any[] {
+    getWeeksRange(weeks: number[]): DateRange[] {
       const weeksRange = [];
 
       for (let i = 0; i < weeks.length; i++) {
@@ -113,11 +114,11 @@ export class CalendarComponent implements OnChanges {
         const daysList = [];
 
         Array.from(week.by('days')).forEach((day: moment_.Moment) => {
-          if (day.isSame(moment(this.minDate, this.format), 'date')) {
-            day = moment(this.minDate, this.format);
+          if (day.isSame(this.minDate, 'date')) {
+            day = this.minDate;
           }
-          else if (day.isSame(moment(this.maxDate, this.format), 'date')) {
-            day = moment(this.maxDate, this.format);
+          else if (day.isSame(this.maxDate, 'date')) {
+            day = this.maxDate;
           };
 
           daysList.push(day);
@@ -130,7 +131,7 @@ export class CalendarComponent implements OnChanges {
   }
 
     isDisabled(day: moment_.Moment): boolean {
-      return (day.isBefore(moment(this.minDate, this.format)) || day.isAfter(moment(this.maxDate, this.format))) || (day.isBefore(moment(this.selectedFromDate, this.format)) && this.disableBeforeStart && !this.isLeft);
+      return (day.isBefore(this.minDate) || day.isAfter(this.maxDate)) || (day.isBefore(this.selectedFromDate) && this.disableBeforeStart && !this.isLeft);
     }
 
     isDateAvailable(day: moment_.Moment): boolean {
@@ -155,23 +156,23 @@ export class CalendarComponent implements OnChanges {
       }
     }
 
-    dateSelected(day): void {
+    dateSelected(data: IChangedData): void {
       this.dateChanged.emit({
-        day: day,
+        day: data.day,
         isLeft: this.isLeft
       });
     }
 
-    monthSelected(value): void {
+    monthSelected(data: IChangedData): void {
       this.monthChanged.emit({
-        value: value,
+        value: data.value,
         isLeft: this.isLeft
       });
     }
 
-    yearSelected(value): void {
+    yearSelected(data: IChangedData): void {
       this.yearChanged.emit({
-        value: value,
+        value: data.value,
         isLeft: this.isLeft
       });
     }

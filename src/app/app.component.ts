@@ -24,5 +24,6 @@ export class AppComponent {
     disabled: false,
     noDefaultRangeSelected: true,
     disableBeforeStart: true,
+    timePickerOptions: null,
   }
 }

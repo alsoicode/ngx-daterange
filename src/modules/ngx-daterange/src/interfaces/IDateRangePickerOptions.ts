@@ -17,7 +17,7 @@ export interface IDateRangePickerOptions {
   noDefaultRangeSelected: boolean;
   position: string;
   disabled: boolean;
-  timePicker?: ITimePickerOptions;
+  timePickerOptions?: ITimePickerOptions;
   disableBeforeStart: boolean;
   alwaysOpen: boolean;
 }

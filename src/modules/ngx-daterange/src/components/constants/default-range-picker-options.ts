@@ -14,10 +14,9 @@ export const defaultDateRangePickerOptions: IDateRangePickerOptions = {
   singleCalendar: false,
   preDefinedRanges: [],
   noDefaultRangeSelected: false,
-  showRanges: false,
   position: 'left',
   disabled: false,
-  timePicker: null,
+  timePickerOptions: null,
   disableBeforeStart: false,
   alwaysOpen: false,
 };

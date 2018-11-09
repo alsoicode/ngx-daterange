@@ -220,7 +220,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   getValidateFromDate(value) {
-    if (!this.options.timePicker) {
+    if (!this.options.timePickerOptions) {
       if (this.options.minDate && this.options.maxDate && value.isSameOrAfter(this.options.minDate, 'date') && value.isSameOrBefore(this.options.maxDate, 'date')) {
         return value;
       }
@@ -272,7 +272,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   getValidateToDate(value: moment_.Moment): moment_.Moment {
-    const granularity = this.options.timePicker ? null : 'date';
+    const granularity = this.options.timePickerOptions ? null : 'date';
 
     if (this.options.maxDate && value.isSameOrAfter(this.fromDate, granularity), value.isSameOrBefore(this.options.maxDate, granularity)) {
       return value;
@@ -291,7 +291,7 @@ export class DateRangePickerComponent implements OnInit {
     const isLeft = data.isLeft;
 
     if (isLeft) {
-      if (!this.options.timePicker) {
+      if (!this.options.timePickerOptions) {
         value.set({
           hour: 0,
           minute: 0,
@@ -301,7 +301,7 @@ export class DateRangePickerComponent implements OnInit {
 
       this.fromDate = value;
 
-      if (!this.options.timePicker) {
+      if (!this.options.timePickerOptions) {
         if (value.isAfter(this.toDate, 'date')) {
           this.toDate = this.fromDate.clone();
         }
@@ -313,7 +313,7 @@ export class DateRangePickerComponent implements OnInit {
       }
     }
     else {
-      if (!this.options.timePicker) {
+      if (!this.options.timePickerOptions) {
         value.set({
           hour: 23,
           minute: 59,
@@ -323,7 +323,7 @@ export class DateRangePickerComponent implements OnInit {
 
       this.toDate = value;
 
-      if (!this.options.timePicker) {
+      if (!this.options.timePickerOptions) {
         if (value.isBefore(this.fromDate, 'date')) {
           this.fromDate = this.toDate.clone();
         }
@@ -509,7 +509,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   isAutoApply(): boolean {
-    if (this.options.timePicker) {
+    if (this.options.timePickerOptions) {
       return false;
     }
     else if (this.options.singleCalendar) {
