@@ -156,24 +156,30 @@ export class CalendarComponent implements OnChanges {
       }
     }
 
-    dateSelected(data: IChangedData): void {
+    dateSelected(event: Event, data: IChangedData): void {
       this.dateChanged.emit({
         day: data.day,
         isLeft: this.isLeft
       });
+
+      event.stopPropagation();
     }
 
-    monthSelected(data: IChangedData): void {
+    monthSelected(event: Event, data: IChangedData): void {
       this.monthChanged.emit({
         value: data.value,
         isLeft: this.isLeft
       });
+
+      event.stopPropagation();
     }
 
-    yearSelected(data: IChangedData): void {
+    yearSelected(event: Event, data: IChangedData): void {
       this.yearChanged.emit({
         value: data.value,
         isLeft: this.isLeft
       });
+
+      event.stopPropagation();
     }
 }

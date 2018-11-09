@@ -32,11 +32,11 @@
       </div>
     </div>
     <div class="text-center ranges">
-      <button *ngIf="!isAutoApply()" class="btn btn-success btn-sm" [disabled]="!enableApplyButton" (click)="apply()">Apply</button>
-      <button class="btn btn-default" (click)="cancel($event)">Cancel</button>
-      <button *ngIf="this.range" class="btn btn-default ml-3" (click)="clear()">Clear</button>
+      <button type="button" *ngIf="!isAutoApply()" class="btn btn-success btn-sm" [disabled]="!enableApplyButton" (click)="apply()">Apply</button>
+      <button type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button>
+      <button type="button" *ngIf="this.range" class="btn btn-default ml-3" (click)="clear($event)">Clear</button>
       <div class="flush text-center" *ngIf="options.preDefinedRanges && !options.singleCalendar">
-        <button *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange(range)">{{ range.name }}</button>
+        <button type="button" *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange(range)">{{ range.name }}</button>
       </div>
     </div>
   </div>

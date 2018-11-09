@@ -432,15 +432,18 @@ export class DateRangePickerComponent implements OnInit {
   cancel(event: Event): void {
     this.toggleCalendars(false);
     this.restoreOldDates();
-    event.stopImmediatePropagation();
+
+    event.stopPropagation();
   }
 
-  clear(): void {
+  clear(event: Event): void {
     this.fromDate = null;
     this.toDate = null;
     this.enableApplyButton = false;
     this.setRange();
     this.emitRangeSelected();
+
+    event.stopPropagation();
   }
 
   applyPredefinedRange(data: IDefinedDateRange): void {
