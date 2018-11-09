@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChange, SimpleChanges, OnInit } from "@angular/core";
-import * as moment_ from 'moment';
-const moment = moment_;
+import * as momentNs from 'moment'; const moment = momentNs;
 
 import { ITimePickerOptions } from '../../interfaces';
 
@@ -14,16 +13,16 @@ export class TimePickerComponent implements OnInit, OnChanges {
   options: ITimePickerOptions;
 
   @Input()
-  selectedFromDate: moment_.Moment;
+  selectedFromDate: momentNs.Moment;
 
   @Input()
-  selectedToDate: moment_.Moment;
+  selectedToDate: momentNs.Moment;
 
   @Input()
-  minDate: moment_.Moment;
+  minDate: momentNs.Moment;
 
   @Input()
-  maxDate: moment_.Moment;
+  maxDate: momentNs.Moment;
 
   @Input()
   format: string;
@@ -32,7 +31,7 @@ export class TimePickerComponent implements OnInit, OnChanges {
   isLeft: boolean;
 
   @Output()
-  timeChanged = new EventEmitter<moment_.Moment>();
+  timeChanged = new EventEmitter<momentNs.Moment>();
 
   ngOnInit(): void {
     if (!this.options.minuteInterval || this.options.minuteInterval % 60 === 0) {
@@ -49,19 +48,19 @@ export class TimePickerComponent implements OnInit, OnChanges {
     const minDateChange: SimpleChange = changes['minDate'];
 
     if (selectedFromDateChange) {
-      this.selectedFromDate = moment_(selectedFromDateChange.currentValue, this.format);
+      this.selectedFromDate = moment(selectedFromDateChange.currentValue, this.format);
     }
 
     if (selectedToDateChange) {
-      this.selectedToDate = moment_(selectedToDateChange.currentValue, this.format);
+      this.selectedToDate = moment(selectedToDateChange.currentValue, this.format);
     }
 
     if (maxDateChange) {
-      this.maxDate = moment_(maxDateChange.currentValue, this.format);
+      this.maxDate = moment(maxDateChange.currentValue, this.format);
     }
 
     if (minDateChange) {
-      this.minDate = moment_(minDateChange.currentValue, this.format);
+      this.minDate = moment(minDateChange.currentValue, this.format);
     }
   }
 
@@ -119,9 +118,9 @@ export class TimePickerComponent implements OnInit, OnChanges {
     this.triggerTimeChanged();
   }
 
-  isValidToAdd(unit: moment_.unitOfTime.All, value: number): boolean {
+  isValidToAdd(unit: momentNs.unitOfTime.All, value: number): boolean {
     const interval = unit === 'hour' ? 24 : 60;
-    const unitPlural: moment_.unitOfTime.All = unit === 'minute' ? 'minutes' : 'hour';
+    const unitPlural: momentNs.unitOfTime.All = unit === 'minute' ? 'minutes' : 'hour';
 
     let possibleNewValue;
     let possibleSelectedDate;

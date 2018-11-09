@@ -1,13 +1,13 @@
-import * as moment from 'moment';
+import * as momentNs from 'moment';
 
 import { IDefinedDateRange } from './IDefinedDateRange';
 import { ITimePickerOptions } from './ITimePickerOptions';
 
 export interface IDateRangePickerOptions {
-  startDate: moment.Moment;
-  endDate: moment.Moment;
-  minDate: moment.Moment;
-  maxDate: moment.Moment;
+  startDate: momentNs.Moment;
+  endDate: momentNs.Moment;
+  minDate: momentNs.Moment;
+  maxDate: momentNs.Moment;
   format: string;
   displayFormat: string;
   inactiveBeforeStart: boolean;

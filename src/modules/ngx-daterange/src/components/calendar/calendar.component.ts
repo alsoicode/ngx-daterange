@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
-import * as moment_ from 'moment';
+import * as momentNs from 'moment'; const moment = momentNs;
+
 import { extendMoment, DateRange } from 'moment-range';
 import { IChangedData, IDateRange, ITimePickerOptions } from '../../interfaces';
 
-const moment = moment_;
 const { range } = extendMoment(moment);
 
 @Component({
@@ -19,10 +19,10 @@ export class CalendarComponent implements OnChanges {
     year: number;
 
     @Input()
-    selectedFromDate: moment_.Moment;
+    selectedFromDate: momentNs.Moment;
 
     @Input()
-    selectedToDate: moment_.Moment;
+    selectedToDate: momentNs.Moment;
 
     @Input()
     isLeft: boolean;
@@ -31,10 +31,10 @@ export class CalendarComponent implements OnChanges {
     format: string;
 
     @Input()
-    minDate: moment_.Moment;
+    minDate: momentNs.Moment;
 
     @Input()
-    maxDate: moment_.Moment;
+    maxDate: momentNs.Moment;
 
     @Input()
     inactiveBeforeStart: boolean;
@@ -70,7 +70,7 @@ export class CalendarComponent implements OnChanges {
     getWeekNumbers(monthRange: DateRange): number[] {
       const weekNumbers = [];
 
-      Array.from(monthRange.by('weeks')).forEach((week: moment_.Moment, index: number) => {
+      Array.from(monthRange.by('weeks')).forEach((week: momentNs.Moment, index: number) => {
         if (index < 6) {
           weekNumbers.push(week.week());
         }
@@ -113,7 +113,7 @@ export class CalendarComponent implements OnChanges {
       weeksRange.map(week => {
         const daysList = [];
 
-        Array.from(week.by('days')).forEach((day: moment_.Moment) => {
+        Array.from(week.by('days')).forEach((day: momentNs.Moment) => {
           if (day.isSame(this.minDate, 'date')) {
             day = this.minDate;
           }
@@ -130,11 +130,11 @@ export class CalendarComponent implements OnChanges {
       this.weekList = weekList;
   }
 
-    isDisabled(day: moment_.Moment): boolean {
+    isDisabled(day: momentNs.Moment): boolean {
       return (day.isBefore(this.minDate) || day.isAfter(this.maxDate)) || (day.isBefore(this.selectedFromDate) && this.disableBeforeStart && !this.isLeft);
     }
 
-    isDateAvailable(day: moment_.Moment): boolean {
+    isDateAvailable(day: momentNs.Moment): boolean {
       if (day.get('month') !== this.month) {
         return false;
       }
@@ -146,7 +146,7 @@ export class CalendarComponent implements OnChanges {
       return true;
     }
 
-    isSelectedDate(day: moment_.Moment): boolean {
+    isSelectedDate(day: momentNs.Moment): boolean {
       if (day.get('month') === this.month && day.isSame(this.selectedFromDate, 'date')) {
         return true;
       }

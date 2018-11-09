@@ -1,45 +1,43 @@
-import * as moment_ from 'moment';
-const moment = moment_;
+import * as momentNs from 'moment';
+const moment = momentNs;
 
 import { IDefaultDateRanges } from '../../interfaces';
-
-const m = moment();
 
 export const defaultDateRanges: IDefaultDateRanges = {
   ranges: [
     {
       name: 'Today',
       value: {
-        start: m,
-        end: m
+        start: moment(),
+        end: moment()
       }
     },
     {
       name: 'Yesterday',
       value: {
-        start: m.subtract(1, 'days'),
-        end: m.subtract(1, 'days')
+        start: moment().subtract(1, 'days'),
+        end: moment().subtract(1, 'days')
       }
     },
     {
       name: 'last 7 days',
       value: {
-        start: m.subtract(6, 'days'),
-        end: m
+        start: moment().subtract(6, 'days'),
+        end: moment()
       }
     },
     {
       name: 'This month',
       value: {
-        start: m.startOf('month'),
-        end: m.endOf('month')
+        start: moment().startOf('month'),
+        end: moment().endOf('month')
       }
     },
     {
       name: 'Last Month',
       value: {
-        start: m.subtract(1, 'month').startOf('month'),
-        end: m.subtract(1, 'month').endOf('month')
+        start: moment().subtract(1, 'month').startOf('month'),
+        end: moment().subtract(1, 'month').endOf('month')
       }
     }
   ]

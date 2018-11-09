@@ -3,8 +3,7 @@ import { Component, ElementRef, Input, Output, EventEmitter, HostListener, OnIni
 import { defaultDateRangePickerOptions, defaultDateRanges, defaultDateFormat, defaultTimeFormat } from '../constants';
 import { IDateRange, IDateRangePickerOptions, IDefinedDateRange, IChangedData } from '../../interfaces';
 
-import * as moment_ from 'moment';
-const moment = moment_;
+import * as momentNs from 'moment'; const moment = momentNs;
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -31,12 +30,12 @@ export class DateRangePickerComponent implements OnInit {
   showCalendars = false;
   enableApplyButton = false;
   areOldDatesStored = false;
-  fromDate: moment_.Moment;
-  toDate: moment_.Moment;
-  tempFromDate: moment_.Moment;
-  tempToDate: moment_.Moment;
-  oldFromDate: moment_.Moment;
-  oldToDate: moment_.Moment;
+  fromDate: momentNs.Moment;
+  toDate: momentNs.Moment;
+  tempFromDate: momentNs.Moment;
+  tempToDate: momentNs.Moment;
+  oldFromDate: momentNs.Moment;
+  oldToDate: momentNs.Moment;
   fromMonth: number;
   toMonth: number;
   fromYear: number;
@@ -140,16 +139,16 @@ export class DateRangePickerComponent implements OnInit {
         }
       }
 
-      if (this.options.minDate && (this.options.minDate as moment_.Moment).format(defaultTimeFormat) === '00:00') {
-        (this.options.minDate as moment_.Moment).set({
+      if (this.options.minDate && (this.options.minDate as momentNs.Moment).format(defaultTimeFormat) === '00:00') {
+        (this.options.minDate as momentNs.Moment).set({
           hour: 0,
           minutes: 0,
           seconds: 0
         });
       }
 
-      if (this.options.maxDate && (this.options.maxDate as moment_.Moment).format(defaultTimeFormat) === '00:00') {
-        (this.options.maxDate as moment_.Moment).set({
+      if (this.options.maxDate && (this.options.maxDate as momentNs.Moment).format(defaultTimeFormat) === '00:00') {
+        (this.options.maxDate as momentNs.Moment).set({
           hour: 23,
           minutes: 59,
           seconds: 59
@@ -188,7 +187,7 @@ export class DateRangePickerComponent implements OnInit {
         return value;
       }
       else if (this.options.minDate) {
-        return (this.options.minDate as moment_.Moment).clone();
+        return (this.options.minDate as momentNs.Moment).clone();
       }
       else {
         return moment();
@@ -202,7 +201,7 @@ export class DateRangePickerComponent implements OnInit {
         return value;
       }
       else if (this.options.minDate) {
-        return (this.options.minDate as moment_.Moment).clone();
+        return (this.options.minDate as momentNs.Moment).clone();
       }
       else {
         return moment();
@@ -210,7 +209,7 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  setToDate(value: moment_.Moment): void {
+  setToDate(value: momentNs.Moment): void {
     if (this.options.noDefaultRangeSelected && !value) {
       this.toDate = null;
       this.tempToDate = this.getActualToDate(value);
@@ -220,7 +219,7 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  getActualToDate(value: moment_.Moment): moment_.Moment {
+  getActualToDate(value: momentNs.Moment): momentNs.Moment {
     let temp;
 
     if (temp = this.getValidateMoment(value)) {
@@ -231,14 +230,14 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  getValidateToDate(value: moment_.Moment): moment_.Moment {
+  getValidateToDate(value: momentNs.Moment): momentNs.Moment {
     const granularity = this.options.timePickerOptions ? null : 'date';
 
     if (this.options.maxDate && value.isSameOrAfter(this.fromDate, granularity), value.isSameOrBefore(this.options.maxDate, granularity)) {
       return value;
     }
     else if (this.options.maxDate) {
-      return (this.options.maxDate as moment_.Moment).clone();
+      return (this.options.maxDate as momentNs.Moment).clone();
     }
     else {
       return moment();
@@ -331,11 +330,11 @@ export class DateRangePickerComponent implements OnInit {
     this.rangeSelected.emit(data);
   }
 
-  getMoment(value): moment_.Moment {
+  getMoment(value): momentNs.Moment {
     return moment(value, this.format);
   }
 
-  getValidateMoment(value): moment_.Moment | null {
+  getValidateMoment(value): momentNs.Moment | null {
     let momentValue = null;
 
     if (moment(value, this.format, true).isValid()) {

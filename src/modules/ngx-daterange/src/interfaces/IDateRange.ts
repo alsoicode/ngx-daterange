@@ -1,6 +1,6 @@
-import * as moment from 'moment';
+import * as momentNs from 'moment';
 
 export interface IDateRange {
-  start: moment.Moment;
-  end?: moment.Moment;
+  start: momentNs.Moment;
+  end?: momentNs.Moment;
 }
