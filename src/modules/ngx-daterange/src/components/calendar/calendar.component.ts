@@ -49,6 +49,9 @@ export class CalendarComponent implements OnChanges {
     @Input()
     singleCalendar = false;
 
+    @Input()
+    icons: string;
+
     @Output()
     dateChanged = new EventEmitter<IChangedData>();
 
@@ -70,12 +73,18 @@ export class CalendarComponent implements OnChanges {
 
     getWeekNumbers(monthRange: DateRange): number[] {
       const weekNumbers = [];
+      const weeks = Array.from(monthRange.by('weeks'));
 
-      Array.from(monthRange.by('weeks')).forEach((week: momentNs.Moment, index: number) => {
-        if (index < 6) {
+      for (let i = 0; i < weeks.length; i++) {
+        const week = weeks[i];
+
+        if (i < 5) {
           weekNumbers.push(week.week());
         }
-      });
+        else {
+          break;
+        }
+      }
 
       return weekNumbers;
     }
@@ -136,25 +145,29 @@ export class CalendarComponent implements OnChanges {
     }
 
     isDateAvailable(day: momentNs.Moment): boolean {
-      if (day.get('month') !== this.month) {
-        return false;
+      if (this.isLeft) {
+        return day.isSameOrBefore(this.selectedToDate, 'date') && !day.isSameOrBefore(this.minDate, 'date');
       }
 
-      if (this.inactiveBeforeStart && day.isBefore(this.selectedFromDate, 'date')) {
-        return false;
-      }
-
-      return true;
+      return day.isSameOrAfter(this.selectedFromDate, 'date') && !day.isSameOrAfter(this.maxDate, 'date');
     }
 
     isSelectedDate(day: momentNs.Moment): boolean {
-      if (day.get('month') === this.month && day.isSame(this.selectedFromDate, 'date')) {
-        return true;
+      const date = this.isLeft ? this.selectedFromDate : this.selectedToDate;
+
+      return day.get('month') === this.month && day.isSame(date, 'date');
+    }
+
+    isDateInRange(day: momentNs.Moment): boolean {
+      if (this.isLeft) {
+        return day.get('month') === this.month && day.isAfter(this.selectedFromDate, 'date');
       }
 
-      if (day.get('month') === this.month && day.isSameOrAfter(this.selectedFromDate, 'date') && day.isSameOrBefore(this.selectedToDate, 'date')) {
-        return true;
-      }
+      return day.get('month') === this.month && day.isBefore(this.selectedToDate, 'date');
+   }
+
+    isDifferentMonth(day: momentNs.Moment): boolean {
+      return day.get('month') !== this.month;
     }
 
     dateSelected(event: Event, data: IChangedData): void {

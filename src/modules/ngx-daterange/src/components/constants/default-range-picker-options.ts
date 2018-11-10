@@ -18,5 +18,6 @@ export const defaultDateRangePickerOptions: IDateRangePickerOptions = {
   disabled: false,
   timePickerOptions: null,
   disableBeforeStart: false,
-  alwaysOpen: false
+  alwaysOpen: false,
+  icons: 'default',
 };

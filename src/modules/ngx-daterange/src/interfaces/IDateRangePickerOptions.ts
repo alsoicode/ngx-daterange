@@ -22,4 +22,5 @@ export interface IDateRangePickerOptions {
   disableBeforeStart: boolean;
   alwaysOpen: boolean;
   validators?: ValidatorFn | ValidatorFn[];
+  icons: 'default' | 'material';
 }

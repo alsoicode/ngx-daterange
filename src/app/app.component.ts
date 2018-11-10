@@ -27,7 +27,8 @@ export class AppComponent implements OnInit {
     noDefaultRangeSelected: true,
     disableBeforeStart: true,
     timePickerOptions: null,
-    validators: [Validators.required]
+    validators: [Validators.required],
+    icons: 'material',
   }
 
   secondFieldOptions: IDateRangePickerOptions = {
@@ -45,7 +46,8 @@ export class AppComponent implements OnInit {
     disabled: false,
     noDefaultRangeSelected: true,
     disableBeforeStart: true,
-    timePickerOptions: null
+    timePickerOptions: null,
+    icons: 'material',
   }
 
   form: FormGroup = null;
