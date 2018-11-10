@@ -6,6 +6,8 @@ import { IDateRange, IDateRangePickerOptions, IDefinedDateRange, IChangedData } 
 
 import * as momentNs from 'moment'; const moment = momentNs;
 
+let instanceCount = 0;
+
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'date-range-picker',
@@ -37,6 +39,8 @@ export class DateRangePickerComponent implements OnInit {
   @Output()
   rangeSelected = new EventEmitter<IDateRange>();
 
+  private instanceId: string;
+
   showCalendars = false;
   enableApplyButton = false;
   fromMonth: number;
@@ -56,7 +60,9 @@ export class DateRangePickerComponent implements OnInit {
 
   constructor(
     private elementRef: ElementRef
-  ) {}
+  ) {
+    this.instanceId = `dateRangePicker-${ instanceCount++ }`;
+  }
 
   ngOnInit(): void {
     // get default options provided by user

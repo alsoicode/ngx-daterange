@@ -2,73 +2,76 @@
   <div #content>
     <ng-content></ng-content>
   </div>
-  <input *ngIf="content.childNodes.length === 0" class="{{ class }} dateRangePicker-input" type="text"
-   [ngClass]="{'hidden': options.alwaysOpen}" [formControlName]="controlName">
+  <div class="form-group" *ngIf="content.childNodes.length === 0">
+    <label [attr.for]="instanceId">Date Range</label>
+    <input [attr.id]="instanceId" class="{{ class }} dateRangePicker-input form-control" type="text" [ngClass]="{'hidden': options.alwaysOpen}" [formControlName]="controlName">
 
-  <div class="daterangepicker {{ getPositionClass() }} {{ checkChrome() }}" [ngClass]="{'invisible': !(showCalendars || options.alwaysOpen), 'singledatepicker': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
+    <div class="daterangepicker {{ getPositionClass() }} {{ checkChrome() }}" [ngClass]="{'invisible': !(showCalendars || options.alwaysOpen), 'singledatepicker': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
 
-          <div class="row form-inputs" *ngIf="!options.singleCalendar">
+            <div class="row form-inputs" *ngIf="!options.singleCalendar">
 
-            <div class="col">
-              <div class="" *ngIf="options.icons !== 'default'">
-                <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material'}">
-                  <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
-                  <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
-                  <span *ngIf="fromDate">From:&nbsp;</span>
-                  <input class="form-control" [ngModel]="fromDate | formatMomentDate: format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
-                </div>
-              </div>
-
-              <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
-            </div>
-
-            <div class="col">
-              <div class="" *ngIf="options.icons !== 'default'">
+              <div class="col">
+                <div class="" *ngIf="options.icons !== 'default'">
                   <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material'}">
                     <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
                     <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
-                    <span *ngIf="toDate">To:&nbsp;</span>
-                    <input class="form-control" [ngModel]="toDate | formatMomentDate: format" (blur)="formatToDate($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
+                    <span *ngIf="fromDate">From:&nbsp;</span>
+                    <input class="form-control" [ngModel]="fromDate | formatMomentDate: format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
                   </div>
                 </div>
 
-              <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: format" (blur)="formatToDate($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
+                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
+              </div>
+
+              <div class="col">
+                <div class="" *ngIf="options.icons !== 'default'">
+                    <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material'}">
+                      <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
+                      <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
+                      <span *ngIf="toDate">To:&nbsp;</span>
+                      <input class="form-control" [ngModel]="toDate | formatMomentDate: format" (blur)="formatToDate($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
+                    </div>
+                  </div>
+
+                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: format" (blur)="formatToDate($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
+              </div>
+
             </div>
 
-          </div>
+            <div class="row row-calendars">
+              <div class="col">
+                <calendar class="calendar" [isLeft]="true" [month]="fromMonth" [year]="fromYear" (monthChanged)=monthChanged($event)
+                  (yearChanged)="yearChanged($event)" (dateChanged)="dateChanged($event)" [format]="format" [selectedFromDate]="fromDate"
+                  [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [inactiveBeforeStart]="options.inactiveBeforeStart" [disableBeforeStart]="options.disableBeforeStart" [timePickerOptions]="options.timePickerOptions" [singleCalendar]="options.singleCalendar" [icons]="options.icons"></calendar>
+              </div>
 
-          <div class="row row-calendars">
-            <div class="col">
-              <calendar class="calendar" [isLeft]="true" [month]="fromMonth" [year]="fromYear" (monthChanged)=monthChanged($event)
-                (yearChanged)="yearChanged($event)" (dateChanged)="dateChanged($event)" [format]="format" [selectedFromDate]="fromDate"
-                [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [inactiveBeforeStart]="options.inactiveBeforeStart" [disableBeforeStart]="options.disableBeforeStart" [timePickerOptions]="options.timePickerOptions" [singleCalendar]="options.singleCalendar" [icons]="options.icons"></calendar>
-            </div>
-
-            <div class="col" *ngIf="!options.singleCalendar">
-              <calendar class="calendar" [month]="toMonth" [year]="toYear" [format]="format" (dateChanged)="dateChanged($event)" (monthChanged)="monthChanged($event)" (yearChanged)=yearChanged($event) [selectedFromDate]="fromDate" [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [inactiveBeforeStart]="options.inactiveBeforeStart" [disableBeforeStart]="options.disableBeforeStart" [timePickerOptions]="options.timePickerOptions" [icons]="options.icons"></calendar>
+              <div class="col" *ngIf="!options.singleCalendar">
+                <calendar class="calendar" [month]="toMonth" [year]="toYear" [format]="format" (dateChanged)="dateChanged($event)" (monthChanged)="monthChanged($event)" (yearChanged)=yearChanged($event) [selectedFromDate]="fromDate" [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [inactiveBeforeStart]="options.inactiveBeforeStart" [disableBeforeStart]="options.disableBeforeStart" [timePickerOptions]="options.timePickerOptions" [icons]="options.icons"></calendar>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row text-center ranges" *ngIf="!options.singleCalendar">
-        <div class="col">
-          <button type="button" *ngIf="!isAutoApply()" class="btn btn-success btn-sm" [disabled]="!enableApplyButton" (click)="apply()">Apply</button>
-          <button type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button>
-          <button type="button" *ngIf="this.range" class="btn btn-default ml-3" (click)="clear($event)">Clear</button>
+        <div class="row text-center ranges" *ngIf="!options.singleCalendar">
+          <div class="col">
+            <button type="button" *ngIf="!isAutoApply()" class="btn btn-success btn-sm" [disabled]="!enableApplyButton" (click)="apply()">Apply</button>
+            <button type="button" class="btn btn-default" (click)="cancel($event)">Cancel</button>
+            <button type="button" *ngIf="this.range" class="btn btn-default ml-3" (click)="clear($event)">Clear</button>
 
-          <div class="row">
-            <div class="col">
-              <button type="button" *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange(range)">{{ range.name }}</button>
+            <div class="row">
+              <div class="col">
+                <button type="button" *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange(range)">{{ range.name }}</button>
+              </div>
             </div>
+
           </div>
-
         </div>
-      </div>
 
+      </div>
     </div>
+
   </div>
 </div>
