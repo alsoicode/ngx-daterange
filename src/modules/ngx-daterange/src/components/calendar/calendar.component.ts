@@ -10,6 +10,9 @@ const { range } = extendMoment(moment);
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'calendar',
+  styleUrls: [
+    './calendar.component.scss',
+  ],
   templateUrl: './calendar.component.html'
 })
 export class CalendarComponent implements OnChanges {

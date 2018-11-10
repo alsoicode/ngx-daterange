@@ -36,13 +36,13 @@
 
           <div class="row row-calendars">
             <div class="col">
-              <calendar [isLeft]="true" [month]="fromMonth" [year]="fromYear" (monthChanged)=monthChanged($event)
+              <calendar class="calendar" [isLeft]="true" [month]="fromMonth" [year]="fromYear" (monthChanged)=monthChanged($event)
                 (yearChanged)=yearChanged($event) (dateChanged)="dateChanged($event)" [format]="format" [selectedFromDate]="fromDate"
                 [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [inactiveBeforeStart]="options.inactiveBeforeStart" [disableBeforeStart]="options.disableBeforeStart" [timePickerOptions]="options.timePickerOptions" [singleCalendar]="options.singleCalendar" [icons]="options.icons"></calendar>
             </div>
 
             <div class="col" *ngIf="!options.singleCalendar">
-              <calendar [month]="toMonth" [year]="toYear" [format]="format" (dateChanged)="dateChanged($event)" (monthChanged)=monthChanged($event) (yearChanged)=yearChanged($event) [selectedFromDate]="fromDate" [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [inactiveBeforeStart]="options.inactiveBeforeStart" [disableBeforeStart]="options.disableBeforeStart" [timePickerOptions]="options.timePickerOptions" [icons]="options.icons"></calendar>
+              <calendar class="calendar" [month]="toMonth" [year]="toYear" [format]="format" (dateChanged)="dateChanged($event)" (monthChanged)=monthChanged($event) (yearChanged)=yearChanged($event) [selectedFromDate]="fromDate" [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [inactiveBeforeStart]="options.inactiveBeforeStart" [disableBeforeStart]="options.disableBeforeStart" [timePickerOptions]="options.timePickerOptions" [icons]="options.icons"></calendar>
             </div>
           </div>
         </div>

@@ -126,127 +126,26 @@
       border-left: solid 2px #C6D1D6;
     }
   }
-
-  .calendar-pagination {
-    font-size: 1rem;
-    margin: 0.5rem -15px 0 -15px;
-
-    .btn {
-      &.btn-previous-year {
-        padding-right: 3px;
-      }
-
-      &.btn-previous-month {
-        padding-left: 0;
-      }
-
-      &.btn-next-month {
-        padding-right: 0;
-      }
-
-      &.btn-next-year {
-        padding-left: 3px;
-      }
-    }
-
-    .month-year {
-      font-weight: 600;
-    }
-  }
-
-  .row-calendars {
-    .week-days {
-      text-transform: uppercase;
-    }
-
-    .row-days {
-      .col {
-        padding: 0 10px;
-      }
-    }
-
-    .table {
-      th, td {
-        border-bottom: 0 none;
-        border-top: 0 none;
-        color: #333;
-        font-size: 12px;
-        height: 36px;
-        line-height: 1;
-        padding: 0;
-        vertical-align: middle;
-      }
-
-      th {
-        font-weight: 400;
-      }
-
-      td {
-        cursor: pointer;
-        font-weight: 900;
-        min-width: 30px;
-
-        &:not(.disabled):not(.selected) {
-          &:hover {
-            background-color: #eee;
-            border-radius: 5px;
-            color: #333;
-          }
-        }
-      }
-
-      .selected {
-        background-color: #003D79;
-        border-radius: 5px;
-        color: #fff;
-
-        &:hover {
-          background-color: #003D79;
-        }
-      }
-
-      .in-selected-range {
-        background-color: lighten($color: #003D79, $amount: 70);
-        border-radius: 0;
-      }
-
-      .disabled {
-        background-color: transparent;
-        color: #666;
-        cursor: not-allowed;
-        font-weight: 400;
-      }
-
-      .different-month {
-        color: #888;
-        font-weight: 500;
-
-        &.disabled {
-          color: #ccc;
-        }
-      }
-    }
-  }
 }
 
-@media (max-width: 550px) {
-  .ranges > div {
-    display: none;
-  }
-}
+// @media (max-width: 550px) {
+//   .ranges > div {
+//     display: none;
+//   }
+// }
 
-.daterangepicker .time-picker span {
-  padding-left: 4px;
-  padding-right: 4px;
-}
+// .daterangepicker .time-picker span {
+//   padding-left: 4px;
+//   padding-right: 4px;
+// }
 
-.daterangepicker .time-picker .time-breadcrumb {
-  position: relative;
-  top: 22px;
-  font-weight: bolder;
-  font-size: 0.8em;
-}
+// .daterangepicker .time-picker .time-breadcrumb {
+//   position: relative;
+//   top: 22px;
+//   font-weight: bolder;
+//   font-size: 0.8em;
+// }
 
-.daterangepicker .table > thead > tr > th {
-  vertical-align: middle;
-}
+// .daterangepicker .table > thead > tr > th {
+//   vertical-align: middle;
+// }
