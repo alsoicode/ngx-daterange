@@ -5,7 +5,7 @@
   <input *ngIf="content.childNodes.length === 0" class="{{ class }} dateRangePicker-input" type="text"
    [ngClass]="{'hidden': options.alwaysOpen}" [formControlName]="controlName">
 
-  <div class="daterangepicker text-center {{ getPositionClass() }}" [ngClass]="{'hidden': !(showCalendars || options.alwaysOpen), 'singledatepicker': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
+  <div class="daterangepicker text-center {{ getPositionClass() }}" [ngClass]="{'invisible': !(showCalendars || options.alwaysOpen), 'singledatepicker': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
     <div class="container-fluid">
       <div class="row">
         <div class="col text-center">

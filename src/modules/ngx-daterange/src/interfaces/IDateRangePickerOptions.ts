@@ -16,7 +16,7 @@ export interface IDateRangePickerOptions {
   singleCalendar: boolean;
   preDefinedRanges?: IDefinedDateRange[];
   noDefaultRangeSelected: boolean;
-  position: string;
+  position: 'left' | 'right' | 'center';
   disabled: boolean;
   timePickerOptions?: ITimePickerOptions;
   disableBeforeStart: boolean;
