@@ -15,6 +15,7 @@
               <div *ngIf="options.icons !== 'default'">
                 <div [ngClass]="{'d-flex align-items-center input-with-icon': true, 'material': options.icons === 'material'}">
                   <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
+                  <span *ngIf="fromDate">From:&nbsp;</span>
                   <input class="form-control" [ngModel]="fromDate | formatMomentDate: format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
                 </div>
               </div>
@@ -26,6 +27,7 @@
               <div *ngIf="options.icons !== 'default'">
                   <div [ngClass]="{'d-flex align-items-center input-with-icon': true, 'material': options.icons === 'material'}">
                     <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
+                    <span *ngIf="toDate">To:&nbsp;</span>
                     <input class="form-control" [ngModel]="toDate | formatMomentDate: format" (blur)="formatToDate($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
                   </div>
                 </div>
