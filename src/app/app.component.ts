@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     disableBeforeStart: true,
     timePickerOptions: null,
     validators: [Validators.required],
-    icons: 'font-awesome',
+    icons: 'material',
   }
 
   secondFieldOptions: IDateRangePickerOptions = {
@@ -51,6 +51,9 @@ export class AppComponent implements OnInit {
   }
 
   form: FormGroup = null;
+
+  // fromDate = moment().startOf('week');
+  // toDate = moment().endOf('week');
 
   constructor (
     private formBuilder: FormBuilder,

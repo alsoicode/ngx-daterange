@@ -28,21 +28,20 @@ export class DateRangePickerComponent implements OnInit {
   @Input()
   parentFormGroup: FormGroup = null;
 
+  @Input()
+  fromDate: momentNs.Moment;
+
+  @Input()
+  toDate: momentNs.Moment;
+
   @Output()
   rangeSelected = new EventEmitter<IDateRange>();
 
   showCalendars = false;
   enableApplyButton = false;
-  areOldDatesStored = false;
-  fromDate: momentNs.Moment;
-  toDate: momentNs.Moment;
-  tempFromDate: momentNs.Moment;
-  tempToDate: momentNs.Moment;
-  oldFromDate: momentNs.Moment;
-  oldToDate: momentNs.Moment;
   fromMonth: number;
-  toMonth: number;
   fromYear: number;
+  toMonth: number;
   toYear: number;
   format: string;
   range = '';
@@ -51,7 +50,7 @@ export class DateRangePickerComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   handleClick(event: Event) {
     if (this.elementRef.nativeElement.contains(event.target)) {
-      this.toggleCalendars(true);
+      this.toggleCalendarVisibility(true);
     }
   }
 
@@ -63,8 +62,8 @@ export class DateRangePickerComponent implements OnInit {
     // get default options provided by user
     this.setFormat();
     this.validateMinMaxDates();
-    this.setFromDate(this.options.startDate);
-    this.setToDate(this.options.endDate);
+    this.setFromDate(this.fromDate || this.options.startDate);
+    this.setToDate(this.toDate || this.options.endDate);
     this.defaultRanges = this.validatePredefinedRanges(this.options.preDefinedRanges || defaultDateRanges.ranges);
 
     // update calendar grid
@@ -79,6 +78,8 @@ export class DateRangePickerComponent implements OnInit {
       }
 
       this.parentFormGroup.addControl(this.controlName, control);
+
+      this.setRange();
     }
   }
 
@@ -86,28 +87,21 @@ export class DateRangePickerComponent implements OnInit {
     return window['chrome'] ? 'is-chrome' : '';
   }
 
-  toggleCalendars(value: boolean): void {
+  toggleCalendarVisibility(value?: boolean): void {
     this.showCalendars = value;
-
-    if (!value) {
-      this.areOldDatesStored = false;
-      this.updateCalendar();
-    }
   }
 
-  updateCalendar() {
+  updateCalendar(): void {
     // get month and year to show calendar
-    const fromDate = this.fromDate || this.tempFromDate;
-    const toDate = this.toDate || this.tempToDate;
 
-    let tDate = moment(fromDate, this.format);
+    const tempFromDate = this.fromDate || moment();
+    const tempToDate = this.toDate || moment();
 
-    this.fromMonth = tDate.get('month');
-    this.fromYear = tDate.get('year');
+    this.fromMonth = tempFromDate.get('month');
+    this.fromYear = tempFromDate.get('year');
 
-    tDate = moment(toDate, this.format);
-    this.toMonth = tDate.get('month');
-    this.toYear = tDate.get('year');
+    this.toMonth = tempToDate.get('month');
+    this.toYear = tempToDate.get('year');
 
     this.setRange();
   }
@@ -127,12 +121,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   setFormat() {
-    if (this.options) {
-      this.format = this.options.format || defaultDateFormat;
-    }
-    else {
-      this.format = defaultDateFormat;
-    }
+    this.format = this.options.format || defaultDateFormat;
   }
 
   validateMinMaxDates() {
@@ -177,13 +166,18 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  setFromDate(value) {
+  setFromDate(value: momentNs.Moment): void {
+    this.fromDate = this.options.noDefaultRangeSelected && !value ? null : value;
+  }
+
+  setToDate(value: momentNs.Moment): void {
+    this.toDate = this.options.noDefaultRangeSelected && !value ? null : value;
+
     if (this.options.noDefaultRangeSelected && !value) {
-      this.fromDate = null;
-      this.tempFromDate = this.getActualFromDate(value);
+      this.toDate = null;
     }
     else {
-      this.fromDate = this.getActualFromDate(value);
+      this.toDate = value;
     }
   }
 
@@ -226,16 +220,6 @@ export class DateRangePickerComponent implements OnInit {
       else {
         return moment();
       }
-    }
-  }
-
-  setToDate(value: momentNs.Moment): void {
-    if (this.options.noDefaultRangeSelected && !value) {
-      this.toDate = null;
-      this.tempToDate = this.getActualToDate(value);
-    }
-    else {
-      this.toDate = this.getActualToDate(value);
     }
   }
 
@@ -315,8 +299,8 @@ export class DateRangePickerComponent implements OnInit {
     }
 
     if (this.isAutoApply()) {
-      if (this.options.singleCalendar || !isLeft) {
-        this.toggleCalendars(false);
+      if (this.options.singleCalendar || !isLeft && this.fromDate) {
+        this.toggleCalendarVisibility(false);
         this.setRange();
         this.emitRangeSelected();
       }
@@ -365,7 +349,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   setRange(): void {
-    const displayFormat = this.options.displayFormat !== undefined ? this.options.displayFormat : this.format;
+    const displayFormat = this.options.displayFormat || defaultDateFormat;
 
     if (this.options.singleCalendar && this.fromDate) {
       this.range = this.fromDate.format(displayFormat);
@@ -376,6 +360,9 @@ export class DateRangePickerComponent implements OnInit {
     else {
       this.range = '';
     }
+
+    console.log(this.fromDate);
+    console.log(this.toDate);
 
     if (this.parentFormGroup) {
       const control = this.parentFormGroup.get(this.controlName);
@@ -438,27 +425,8 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  storeOldDates(): void {
-    if (!this.areOldDatesStored) {
-      this.oldFromDate = this.fromDate;
-      this.oldToDate = this.toDate;
-      this.areOldDatesStored = true;
-    }
-  }
-
-  restoreOldDates(): void {
-    this.fromDate = this.oldFromDate;
-    this.toDate = this.oldToDate;
-  }
-
-  apply(): void {
-    this.toggleCalendars(false);
-    this.setRange();
-    this.emitRangeSelected();
-  }
-
   cancel(event: Event): void {
-    this.toggleCalendars(false);
+    this.toggleCalendarVisibility(false);
 
     event.stopPropagation();
   }
@@ -476,7 +444,7 @@ export class DateRangePickerComponent implements OnInit {
   applyPredefinedRange(data: IDefinedDateRange): void {
     this.setFromDate(data.value.start);
     this.setToDate(data.value.end);
-    this.toggleCalendars(false);
+    this.toggleCalendarVisibility(false);
     this.emitRangeSelected();
   }
 

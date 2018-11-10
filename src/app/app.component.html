@@ -1,13 +1,13 @@
 <h1 style="margin-bottom: 4rem;">Welcome to Ngx DateRange</h1>
 <form enctype="application/x-www-form-urlencoded" role="form" *ngIf="form" [formGroup]="form">
   <fieldset>
-    <date-range-picker [options]="firstFieldOptions" [parentFormGroup]="form" [controlName]="'firstDateRange'"></date-range-picker>
+    <date-range-picker [options]="firstFieldOptions" [parentFormGroup]="form" [controlName]="'firstDateRange'" [fromDate]="fromDate" [toDate]="toDate"></date-range-picker>
     <p style="color: red;" *ngIf="form.controls.firstDateRange.touched && form.controls.firstDateRange.hasError('required')">This field is required</p>
   </fieldset>
-  <fieldset>
+  <!-- <fieldset>
     <date-range-picker [options]="secondFieldOptions" [parentFormGroup]="form" [controlName]="'secondDateRange'" #dateRangePicker style="display: inline-block; margin-top: 3rem;">
       <p>You can also use a custom template</p>
       <input class="dateRangePicker-input" type="text" name="dateRange" [value]="dateRangePicker.range" placeholder="From - To" formControlName="secondDateRange" />
     </date-range-picker>
-  </fieldset>
+  </fieldset> -->
 </form>
