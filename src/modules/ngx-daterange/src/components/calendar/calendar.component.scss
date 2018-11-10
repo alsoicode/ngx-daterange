@@ -3,21 +3,23 @@
     font-size: 16px;
     margin: 0.5rem -15px 0 -15px;
 
-    .btn {
-      &.btn-previous-year {
-        padding-right: 3px;
-      }
+    &.material {
+      .btn {
+        &.btn-previous-year {
+          padding-right: 3px;
+        }
 
-      &.btn-previous-month {
-        padding-left: 0;
-      }
+        &.btn-previous-month {
+          padding-left: 0;
+        }
 
-      &.btn-next-month {
-        padding-right: 0;
-      }
+        &.btn-next-month {
+          padding-right: 0;
+        }
 
-      &.btn-next-year {
-        padding-left: 3px;
+        &.btn-next-year {
+          padding-left: 3px;
+        }
       }
     }
 

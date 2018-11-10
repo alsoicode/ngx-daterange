@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     disableBeforeStart: true,
     timePickerOptions: null,
     validators: [Validators.required],
-    icons: 'material',
+    icons: 'font-awesome',
   }
 
   secondFieldOptions: IDateRangePickerOptions = {
