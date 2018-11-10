@@ -16,6 +16,7 @@ const { range } = extendMoment(moment);
   templateUrl: './calendar.component.html'
 })
 export class CalendarComponent implements OnChanges {
+
     @Input()
     month: number;
 
@@ -143,60 +144,60 @@ export class CalendarComponent implements OnChanges {
       this.weekList = weekList;
   }
 
-    isDisabled(day: momentNs.Moment): boolean {
-      return (day.isBefore(this.minDate) || day.isAfter(this.maxDate)) || (day.isBefore(this.selectedFromDate) && this.disableBeforeStart && !this.isLeft);
+  isDisabled(day: momentNs.Moment): boolean {
+    return (day.isBefore(this.minDate) || day.isAfter(this.maxDate)) || (day.isBefore(this.selectedFromDate) && this.disableBeforeStart && !this.isLeft);
+  }
+
+  isDateAvailable(day: momentNs.Moment): boolean {
+    if (this.isLeft) {
+      return day.isSameOrBefore(this.selectedToDate, 'date') && !day.isSameOrBefore(this.minDate, 'date');
     }
 
-    isDateAvailable(day: momentNs.Moment): boolean {
-      if (this.isLeft) {
-        return day.isSameOrBefore(this.selectedToDate, 'date') && !day.isSameOrBefore(this.minDate, 'date');
-      }
+    return day.isSameOrAfter(this.selectedFromDate, 'date') && !day.isSameOrAfter(this.maxDate, 'date');
+  }
 
-      return day.isSameOrAfter(this.selectedFromDate, 'date') && !day.isSameOrAfter(this.maxDate, 'date');
+  isSelectedDate(day: momentNs.Moment): boolean {
+    const date = this.isLeft ? this.selectedFromDate : this.selectedToDate;
+
+    return day.get('month') === this.month && day.isSame(date, 'date');
+  }
+
+  isDateInRange(day: momentNs.Moment): boolean {
+    if (this.isLeft) {
+      return day.get('month') === this.month && day.isAfter(this.selectedFromDate, 'date');
     }
 
-    isSelectedDate(day: momentNs.Moment): boolean {
-      const date = this.isLeft ? this.selectedFromDate : this.selectedToDate;
+    return day.get('month') === this.month && day.isBefore(this.selectedToDate, 'date');
+  }
 
-      return day.get('month') === this.month && day.isSame(date, 'date');
-    }
+  isDifferentMonth(day: momentNs.Moment): boolean {
+    return day.get('month') !== this.month;
+  }
 
-    isDateInRange(day: momentNs.Moment): boolean {
-      if (this.isLeft) {
-        return day.get('month') === this.month && day.isAfter(this.selectedFromDate, 'date');
-      }
+  dateSelected(event: Event, data: IChangedData): void {
+    this.dateChanged.emit({
+      day: data.day,
+      isLeft: this.isLeft
+    });
 
-      return day.get('month') === this.month && day.isBefore(this.selectedToDate, 'date');
-   }
+    event.stopPropagation();
+  }
 
-    isDifferentMonth(day: momentNs.Moment): boolean {
-      return day.get('month') !== this.month;
-    }
+  monthSelected(event: Event, data: IChangedData): void {
+    this.monthChanged.emit({
+      value: data.value,
+      isLeft: this.isLeft
+    });
 
-    dateSelected(event: Event, data: IChangedData): void {
-      this.dateChanged.emit({
-        day: data.day,
-        isLeft: this.isLeft
-      });
+    event.stopPropagation();
+  }
 
-      event.stopPropagation();
-    }
+  yearSelected(event: Event, data: IChangedData): void {
+    this.yearChanged.emit({
+      value: data.value,
+      isLeft: this.isLeft
+    });
 
-    monthSelected(event: Event, data: IChangedData): void {
-      this.monthChanged.emit({
-        value: data.value,
-        isLeft: this.isLeft
-      });
-
-      event.stopPropagation();
-    }
-
-    yearSelected(event: Event, data: IChangedData): void {
-      this.yearChanged.emit({
-        value: data.value,
-        isLeft: this.isLeft
-      });
-
-      event.stopPropagation();
-    }
+    event.stopPropagation();
+  }
 }
