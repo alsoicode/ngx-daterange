@@ -5,15 +5,16 @@
   <input *ngIf="content.childNodes.length === 0" class="{{ class }} dateRangePicker-input" type="text"
    [ngClass]="{'hidden': options.alwaysOpen}" [formControlName]="controlName">
 
-  <div class="daterangepicker text-center {{ getPositionClass() }}" [ngClass]="{'invisible': !(showCalendars || options.alwaysOpen), 'singledatepicker': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
+  <div class="daterangepicker {{ getPositionClass() }} {{ checkChrome() }}" [ngClass]="{'invisible': !(showCalendars || options.alwaysOpen), 'singledatepicker': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
     <div class="container-fluid">
       <div class="row">
-        <div class="col text-center">
+        <div class="col">
 
           <div class="row form-inputs" *ngIf="!options.singleCalendar">
-            <div class="col d-flex align-items-center">
-              <div *ngIf="options.icons !== 'default'">
-                <div [ngClass]="{'d-flex align-items-center input-with-icon': true, 'material': options.icons === 'material'}">
+
+            <div class="col">
+              <div class="" *ngIf="options.icons !== 'default'">
+                <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material'}">
                   <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
                   <span *ngIf="fromDate">From:&nbsp;</span>
                   <input class="form-control" [ngModel]="fromDate | formatMomentDate: format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
@@ -23,9 +24,9 @@
               <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
             </div>
 
-            <div class="col d-flex align-items-center">
-              <div *ngIf="options.icons !== 'default'">
-                  <div [ngClass]="{'d-flex align-items-center input-with-icon': true, 'material': options.icons === 'material'}">
+            <div class="col">
+              <div class="" *ngIf="options.icons !== 'default'">
+                  <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material'}">
                     <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
                     <span *ngIf="toDate">To:&nbsp;</span>
                     <input class="form-control" [ngModel]="toDate | formatMomentDate: format" (blur)="formatToDate($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
@@ -34,6 +35,7 @@
 
               <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: format" (blur)="formatToDate($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
             </div>
+
           </div>
 
           <div class="row row-calendars">

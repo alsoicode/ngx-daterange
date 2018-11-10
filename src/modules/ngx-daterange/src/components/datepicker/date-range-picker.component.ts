@@ -82,6 +82,10 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
+  checkChrome(): string {
+    return window['chrome'] ? 'is-chrome' : '';
+  }
+
   toggleCalendars(value: boolean): void {
     this.showCalendars = value;
 

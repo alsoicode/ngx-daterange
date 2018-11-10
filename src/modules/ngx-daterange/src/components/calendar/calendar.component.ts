@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 
 import * as momentNs from 'moment'; const moment = momentNs;
 
@@ -8,6 +8,7 @@ import { IChangedData, IDateRange, ITimePickerOptions } from '../../interfaces';
 const { range } = extendMoment(moment);
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   selector: 'calendar',
   styleUrls: [
