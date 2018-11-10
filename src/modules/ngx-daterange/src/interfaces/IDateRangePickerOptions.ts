@@ -5,22 +5,23 @@ import { IDefinedDateRange } from './IDefinedDateRange';
 import { ITimePickerOptions } from './ITimePickerOptions';
 
 export interface IDateRangePickerOptions {
-  startDate: momentNs.Moment;
+  alwaysOpen: boolean;
+  autoApply: boolean;
+  displayFormat: string;
+  disabled: boolean;
+  disableBeforeStart: boolean;
   endDate: momentNs.Moment;
+  format: string;
+  icons: 'default' | 'material' | 'font-awesome';
+  inactiveBeforeStart: boolean;
+  labelText?: string;
   minDate: momentNs.Moment;
   maxDate: momentNs.Moment;
-  format: string;
-  displayFormat: string;
-  inactiveBeforeStart: boolean;
-  autoApply: boolean;
-  singleCalendar: boolean;
-  preDefinedRanges?: IDefinedDateRange[];
   noDefaultRangeSelected: boolean;
   position: 'left' | 'right' | 'center';
-  disabled: boolean;
+  preDefinedRanges?: IDefinedDateRange[];
+  singleCalendar: boolean;
+  startDate: momentNs.Moment;
   timePickerOptions?: ITimePickerOptions;
-  disableBeforeStart: boolean;
-  alwaysOpen: boolean;
   validators?: ValidatorFn | ValidatorFn[];
-  icons: 'default' | 'material' | 'font-awesome';
 }

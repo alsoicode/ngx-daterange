@@ -20,4 +20,5 @@ export const defaultDateRangePickerOptions: IDateRangePickerOptions = {
   disableBeforeStart: false,
   alwaysOpen: false,
   icons: 'default',
+  labelText: 'Date Range',
 };

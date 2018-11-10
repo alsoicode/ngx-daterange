@@ -3,7 +3,7 @@
     <ng-content></ng-content>
   </div>
   <div class="form-group" *ngIf="content.childNodes.length === 0">
-    <label [attr.for]="instanceId">Date Range</label>
+    <label [attr.for]="instanceId">{{ labelText }}</label>
     <input [attr.id]="instanceId" class="{{ class }} dateRangePicker-input form-control" type="text" [ngClass]="{'hidden': options.alwaysOpen}" [formControlName]="controlName">
 
     <div class="daterangepicker {{ getPositionClass() }} {{ checkChrome() }}" [ngClass]="{'invisible': !(showCalendars || options.alwaysOpen), 'singledatepicker': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
