@@ -42,8 +42,8 @@ export class CalendarComponent implements OnChanges {
     @Input()
     maxDate: momentNs.Moment;
 
-    @Input()
-    disableBeforeStart: boolean;
+    // @Input()
+    // disableBeforeStart: boolean;
 
     @Input()
     timePickerOptions: ITimePickerOptions = null;
@@ -143,7 +143,7 @@ export class CalendarComponent implements OnChanges {
   }
 
   isDisabled(day: momentNs.Moment): boolean {
-    return (day.isBefore(this.minDate) || day.isAfter(this.maxDate)) || (day.isBefore(this.selectedFromDate) && this.disableBeforeStart && !this.isLeft);
+    return (day.isBefore(this.minDate) || day.isAfter(this.maxDate)) || (day.isBefore(this.selectedFromDate) && !this.isLeft);
   }
 
   isDateAvailable(day: momentNs.Moment): boolean {
