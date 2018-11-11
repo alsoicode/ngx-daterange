@@ -36,12 +36,11 @@ export class DateRangePickerComponent implements OnInit {
   @Output()
   rangeSelected = new EventEmitter<IDateRange>();
 
-  private instanceId: string;
-
   defaultRanges: IDefinedDateRange[];
   enableApplyButton = false;
   format: string;
   fromMonth: number;
+  instanceId: string;
   fromYear: number;
   toMonth: number;
   toYear: number;
@@ -163,6 +162,12 @@ export class DateRangePickerComponent implements OnInit {
         });
       }
     }
+  }
+
+  apply(): void {
+    this.toggleCalendarVisibility(false);
+    this.setRange();
+    this.emitRangeSelected();
   }
 
   setFromDate(value: momentNs.Moment): void {
