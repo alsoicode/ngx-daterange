@@ -15,7 +15,14 @@
           <date-range-picker [options]="secondFieldOptions" [parentFormGroup]="form" [controlName]="'secondDateRange'" #dateRangePicker>
             <div class="form-group">
               <label for="secondDateRange">You can also use a custom template</label>
-              <input id="secondDateRange" class="form-control" type="text" name="dateRange" [value]="dateRangePicker.range" placeholder="From - To" formControlName="secondDateRange" />
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="date-range-icon">
+                    <i class="material-icons">event</i>
+                  </span>
+                </div>
+                <input id="secondDateRange" class="form-control" type="text" name="dateRange" [value]="dateRangePicker.range" placeholder="From - To" formControlName="secondDateRange" />
+              </div>
             </div>
           </date-range-picker>
         </fieldset>
