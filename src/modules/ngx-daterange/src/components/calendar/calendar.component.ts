@@ -162,10 +162,14 @@ export class CalendarComponent implements OnChanges {
 
   isDateInRange(day: momentNs.Moment): boolean {
     if (this.isLeft) {
-      return day.get('month') === this.month && day.isAfter(this.selectedFromDate, 'date');
+      if (!this.selectedToDate) {
+        return day.get('month') === this.month && day.isSameOrAfter(this.selectedFromDate, 'date');
+      }
     }
 
-    return day.get('month') === this.month && day.isBefore(this.selectedToDate, 'date');
+    if (this.selectedFromDate) {
+      return day.get('month') === this.month && day.isSameOrBefore(this.selectedToDate, 'date') && day.isSameOrAfter(this.selectedFromDate, 'date');
+    }
   }
 
   isDifferentMonth(day: momentNs.Moment): boolean {

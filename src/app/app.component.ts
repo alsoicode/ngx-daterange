@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
     displayFormat: 'MM/DD/YYYY',
     position: 'left',
     disabled: false,
-    noDefaultRangeSelected: true,
     timePickerOptions: null,
     validators: [Validators.required],
     icons: 'material',
@@ -41,7 +40,6 @@ export class AppComponent implements OnInit {
     displayFormat: 'MM/DD/YYYY',
     position: 'left',
     disabled: false,
-    noDefaultRangeSelected: true,
     timePickerOptions: null,
     icons: 'material',
   }

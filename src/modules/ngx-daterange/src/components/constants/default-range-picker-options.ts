@@ -12,7 +12,6 @@ export const defaultDateRangePickerOptions: IDateRangePickerOptions = {
   autoApply: false,
   singleCalendar: false,
   preDefinedRanges: [],
-  noDefaultRangeSelected: false,
   position: 'left',
   disabled: false,
   timePickerOptions: null,

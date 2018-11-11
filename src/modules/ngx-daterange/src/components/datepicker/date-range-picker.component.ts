@@ -175,18 +175,11 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   setFromDate(value: momentNs.Moment): void {
-    this.fromDate = this.options.noDefaultRangeSelected && !value ? null : value;
+    this.fromDate = value ? value : null;
   }
 
   setToDate(value: momentNs.Moment): void {
-    this.toDate = this.options.noDefaultRangeSelected && !value ? null : value;
-
-    if (this.options.noDefaultRangeSelected && !value) {
-      this.toDate = null;
-    }
-    else {
-      this.toDate = value;
-    }
+    this.toDate = value ? value : null;
   }
 
   getActualFromDate(value) {

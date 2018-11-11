@@ -68,6 +68,11 @@
         color: #fff;
         font-size: 12px;
 
+        &.in-selected-range {
+          background-color: #003D79;
+          border-radius: 5px;
+        }
+
         &:hover {
           background-color: #003D79;
         }
