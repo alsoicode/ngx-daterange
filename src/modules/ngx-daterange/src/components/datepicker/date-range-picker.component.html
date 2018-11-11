@@ -2,9 +2,11 @@
   <div #content>
     <ng-content></ng-content>
   </div>
-  <div class="form-group" *ngIf="content.childNodes.length === 0">
-    <label [attr.for]="instanceId">{{ labelText }}</label>
-    <input [attr.id]="instanceId" class="{{ class }} dateRangePicker-input form-control" type="text" [ngClass]="{'hidden': options.alwaysOpen}" [formControlName]="controlName">
+  <div class="form-group">
+    <ng-container *ngIf="content.childNodes.length === 0">
+      <label [attr.for]="instanceId">{{ labelText }}</label>
+      <input [attr.id]="instanceId" class="{{ class }} form-control" type="text" [ngClass]="{'hidden': options.alwaysOpen}" [formControlName]="controlName">
+    </ng-container>
 
     <div class="dateRangePicker {{ getPositionClass() }} {{ checkChrome() }}" [ngClass]="{'invisible': !(showCalendars || options.alwaysOpen), 'dateRangePicker-single': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
       <div class="container-fluid">

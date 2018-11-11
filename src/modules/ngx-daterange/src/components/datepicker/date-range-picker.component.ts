@@ -362,9 +362,6 @@ export class DateRangePickerComponent implements OnInit {
       this.range = '';
     }
 
-    console.log(this.fromDate);
-    console.log(this.toDate);
-
     if (this.parentFormGroup) {
       const control = this.parentFormGroup.get(this.controlName);
 
