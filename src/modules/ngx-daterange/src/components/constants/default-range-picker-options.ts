@@ -15,7 +15,6 @@ export const defaultDateRangePickerOptions: IDateRangePickerOptions = {
   position: 'left',
   disabled: false,
   timePickerOptions: null,
-  alwaysOpen: false,
   icons: 'default',
   labelText: 'Date Range',
 };

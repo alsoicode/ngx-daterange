@@ -22,9 +22,6 @@ export class DateRangePickerComponent implements OnInit {
   options: IDateRangePickerOptions = defaultDateRangePickerOptions;
 
   @Input()
-  class: string;
-
-  @Input()
   controlName: string = 'dateRange';
 
   @Input()
@@ -112,20 +109,6 @@ export class DateRangePickerComponent implements OnInit {
     this.toYear = tempToDate.get('year');
 
     this.setRange();
-  }
-
-  getPositionClass(): string {
-    let positionClass = 'open-left';
-
-    if (this.options.position === 'right') {
-      positionClass = 'open-right';
-    }
-
-    if (this.options.position === 'center' && !this.options.singleCalendar) {
-      positionClass = 'open-center';
-    }
-
-    return positionClass;
   }
 
   setFormat() {

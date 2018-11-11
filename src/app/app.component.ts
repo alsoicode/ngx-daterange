@@ -12,7 +12,6 @@ import { IDateRangePickerOptions } from '../modules/ngx-daterange/src/interfaces
 })
 export class AppComponent implements OnInit {
   firstFieldOptions: IDateRangePickerOptions = {
-    alwaysOpen: false,
     startDate: null,
     endDate: null,
     format: 'MM/DD/YYYY',
@@ -29,7 +28,6 @@ export class AppComponent implements OnInit {
   }
 
   secondFieldOptions: IDateRangePickerOptions = {
-    alwaysOpen: false,
     startDate: null,
     endDate: null,
     format: 'MM/DD/YYYY',

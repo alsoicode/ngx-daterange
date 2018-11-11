@@ -5,10 +5,10 @@
   <div class="form-group">
     <ng-container *ngIf="content.childNodes.length === 0">
       <label [attr.for]="instanceId">{{ labelText }}</label>
-      <input [attr.id]="instanceId" class="{{ class }} form-control" type="text" [ngClass]="{'hidden': options.alwaysOpen}" [formControlName]="controlName">
+      <input [attr.id]="instanceId" class="form-control" type="text" [formControlName]="controlName">
     </ng-container>
 
-    <div class="dateRangePicker {{ getPositionClass() }} {{ checkChrome() }}" [ngClass]="{'invisible': !(showCalendars || options.alwaysOpen), 'dateRangePicker-single': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
+    <div [ngClass]="{'dateRangePicker': true, 'invisible': !showCalendars, 'dateRangePicker-single': options.singleCalendar, 'is-chrome': checkChrome(), 'open-left': options.position === 'left', 'open-right': options.position === 'right', 'open-center': options.position === 'center' }">
       <div class="container-fluid">
         <div class="row">
           <div class="col">

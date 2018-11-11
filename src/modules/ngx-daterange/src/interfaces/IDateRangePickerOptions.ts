@@ -5,7 +5,6 @@ import { IDefinedDateRange } from './IDefinedDateRange';
 import { ITimePickerOptions } from './ITimePickerOptions';
 
 export interface IDateRangePickerOptions {
-  alwaysOpen: boolean;
   autoApply: boolean;
   displayFormat: string;
   disabled: boolean;
