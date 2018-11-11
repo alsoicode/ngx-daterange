@@ -1,4 +1,4 @@
-<div class="daterangepicker-wrapper" [formGroup]="parentFormGroup">
+<div class="dateRangePicker-wrapper" [formGroup]="parentFormGroup">
   <div #content>
     <ng-content></ng-content>
   </div>
@@ -6,7 +6,7 @@
     <label [attr.for]="instanceId">{{ labelText }}</label>
     <input [attr.id]="instanceId" class="{{ class }} dateRangePicker-input form-control" type="text" [ngClass]="{'hidden': options.alwaysOpen}" [formControlName]="controlName">
 
-    <div class="daterangepicker {{ getPositionClass() }} {{ checkChrome() }}" [ngClass]="{'invisible': !(showCalendars || options.alwaysOpen), 'singledatepicker': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
+    <div class="dateRangePicker {{ getPositionClass() }} {{ checkChrome() }}" [ngClass]="{'invisible': !(showCalendars || options.alwaysOpen), 'dateRangePicker-single': options.singleCalendar, 'tooltip-chevron': !options.alwaysOpen, 'always-open': options.alwaysOpen}">
       <div class="container-fluid">
         <div class="row">
           <div class="col">
@@ -43,7 +43,7 @@
 
             <div class="row row-calendars">
               <div class="col">
-                <calendar class="calendar" [isLeft]="true" [month]="fromMonth" [year]="fromYear" (monthChanged)=monthChanged($event)
+                <calendar [ngClass]="{ 'calendar': true, 'calendar-single': options.singleCalendar }" [isLeft]="true" [month]="fromMonth" [year]="fromYear" (monthChanged)=monthChanged($event)
                   (yearChanged)="yearChanged($event)" (dateChanged)="dateChanged($event)" [format]="format" [selectedFromDate]="fromDate"
                   [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [disableBeforeStart]="options.disableBeforeStart" [timePickerOptions]="options.timePickerOptions" [singleCalendar]="options.singleCalendar" [icons]="options.icons"></calendar>
               </div>

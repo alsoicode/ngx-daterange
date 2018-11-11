@@ -1,4 +1,14 @@
 .calendar {
+  &.calendar-single {
+    .table {
+      td {
+        &.in-selected-range {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
   .calendar-pagination {
     font-size: 16px;
     margin: 0.5rem -15px 0 -15px;
