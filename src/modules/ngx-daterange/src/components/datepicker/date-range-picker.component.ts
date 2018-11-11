@@ -66,8 +66,8 @@ export class DateRangePickerComponent implements OnInit {
     // get default options provided by user
     this.setFormat();
     this.validateMinMaxDates();
-    this.setFromDate(this.fromDate || this.options.startDate);
-    this.setToDate(this.toDate || this.options.endDate);
+    this.setFromDate(this.fromDate);
+    this.setToDate(this.toDate);
     this.defaultRanges = this.validatePredefinedRanges(this.options.preDefinedRanges || defaultDateRanges.ranges);
     this.labelText = this.options.labelText || defaultDateRangePickerOptions.labelText;
 

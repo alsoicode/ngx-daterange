@@ -6,9 +6,8 @@ import { ITimePickerOptions } from './ITimePickerOptions';
 
 export interface IDateRangePickerOptions {
   autoApply: boolean;
-  displayFormat: string;
+  displayFormat?: string;
   disabled: boolean;
-  endDate: momentNs.Moment;
   format: string;
   icons: 'default' | 'material' | 'font-awesome';
   labelText?: string;
@@ -17,7 +16,6 @@ export interface IDateRangePickerOptions {
   position: 'left' | 'right' | 'center';
   preDefinedRanges?: IDefinedDateRange[];
   singleCalendar: boolean;
-  startDate: momentNs.Moment;
   timePickerOptions?: ITimePickerOptions;
   validators?: ValidatorFn | ValidatorFn[];
 }

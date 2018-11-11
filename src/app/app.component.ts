@@ -12,14 +12,12 @@ import { IDateRangePickerOptions } from '../modules/ngx-daterange/src/interfaces
 })
 export class AppComponent implements OnInit {
   firstFieldOptions: IDateRangePickerOptions = {
-    startDate: null,
-    endDate: null,
     format: 'MM/DD/YYYY',
     minDate: moment().subtract(2, 'years'),
     maxDate: moment(),
     autoApply: true,
     singleCalendar: false,
-    displayFormat: 'MM/DD/YYYY',
+    // displayFormat: 'MM/DD/YYYY',
     position: 'left',
     disabled: false,
     timePickerOptions: null,
@@ -28,14 +26,12 @@ export class AppComponent implements OnInit {
   }
 
   secondFieldOptions: IDateRangePickerOptions = {
-    startDate: null,
-    endDate: null,
     format: 'MM/DD/YYYY',
     minDate: moment().subtract(10, 'years'),
     maxDate: moment(),
     autoApply: true,
     singleCalendar: false,
-    displayFormat: 'MM/DD/YYYY',
+    // displayFormat: 'MM/DD/YYYY',
     position: 'left',
     disabled: false,
     timePickerOptions: null,
