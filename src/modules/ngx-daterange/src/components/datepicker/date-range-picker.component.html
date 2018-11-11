@@ -4,7 +4,7 @@
   </div>
   <div class="form-group">
     <ng-container *ngIf="content.childNodes.length === 0">
-      <label [attr.for]="instanceId">{{ labelText }}</label>
+      <label [attr.for]="instanceId">{{ options.labelText }}</label>
       <input [attr.id]="instanceId" class="form-control" type="text" [formControlName]="controlName">
     </ng-container>
 

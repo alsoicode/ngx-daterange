@@ -3,16 +3,16 @@ import { IDateRangePickerOptions } from '../../interfaces';
 import { defaultDateFormat } from '../constants/default-formats';
 
 export const defaultDateRangePickerOptions: IDateRangePickerOptions = {
-  minDate: null,
-  maxDate: null,
-  format: defaultDateFormat,
-  displayFormat: defaultDateFormat,
-  autoApply: false,
-  singleCalendar: false,
-  preDefinedRanges: [],
-  position: 'left',
+  autoApply: true,
   disabled: false,
-  timePickerOptions: null,
+  displayFormat: defaultDateFormat,
   icons: 'default',
+  format: defaultDateFormat,
   labelText: 'Date Range',
+  maxDate: null,
+  minDate: null,
+  position: 'left',
+  preDefinedRanges: [],
+  singleCalendar: false,
+  timePickerOptions: null,
 };

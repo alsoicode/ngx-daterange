@@ -11,7 +11,7 @@
           <date-range-picker [options]="firstFieldOptions" [parentFormGroup]="form" [controlName]="'firstDateRange'" [fromDate]="fromDate" [toDate]="toDate"></date-range-picker>
           <p style="color: red;" *ngIf="form.controls.firstDateRange.touched && form.controls.firstDateRange.hasError('required')">This field is required</p>
         </fieldset>
-        <fieldset>
+        <!-- <fieldset>
           <date-range-picker [options]="secondFieldOptions" [parentFormGroup]="form" [controlName]="'secondDateRange'" #dateRangePicker>
             <div class="form-group">
               <label for="secondDateRange">You can also use a custom template</label>
@@ -25,7 +25,7 @@
               </div>
             </div>
           </date-range-picker>
-        </fieldset>
+        </fieldset> -->
       </form>
     </div>
   </div>

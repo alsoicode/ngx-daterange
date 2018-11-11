@@ -39,12 +39,10 @@ export class DateRangePickerComponent implements OnInit {
   private instanceId: string;
 
   defaultRanges: IDefinedDateRange[];
-  displayFormat: string;
   enableApplyButton = false;
   format: string;
   fromMonth: number;
   fromYear: number;
-  labelText: string;
   toMonth: number;
   toYear: number;
   range = '';
@@ -70,8 +68,16 @@ export class DateRangePickerComponent implements OnInit {
     this.setFromDate(this.fromDate);
     this.setToDate(this.toDate);
     this.defaultRanges = this.validatePredefinedRanges(this.options.preDefinedRanges || defaultDateRanges.ranges);
-    this.labelText = this.options.labelText || defaultDateRangePickerOptions.labelText;
-    this.displayFormat = this.options.displayFormat || defaultDateRangePickerOptions.displayFormat;
+
+    // assign values not present in options with default values
+    const optionsKeys = Object.keys(this.options);
+    const defaultValuesKeys = Object.keys(defaultDateRangePickerOptions);
+
+    defaultValuesKeys.forEach((key: string) => {
+      if (!optionsKeys.includes(key)) {
+        this.options[key] = defaultDateRangePickerOptions[key];
+      }
+    });
 
     // update calendar grid
     this.updateCalendar();
@@ -335,7 +341,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   setRange(): void {
-    const displayFormat = this.options.displayFormat || defaultDateFormat;
+    const displayFormat = this.options.displayFormat;
 
     if (this.options.singleCalendar && this.fromDate) {
       this.range = this.fromDate.format(displayFormat);

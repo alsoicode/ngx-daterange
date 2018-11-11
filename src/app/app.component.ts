@@ -15,11 +15,7 @@ export class AppComponent implements OnInit {
     format: 'MM/DD/YYYY',
     minDate: moment().subtract(2, 'years'),
     maxDate: moment(),
-    autoApply: true,
-    singleCalendar: false,
     displayFormat: 'MM/DD/YYYY',
-    position: 'left',
-    disabled: false,
     validators: [Validators.required],
     icons: 'material',
   }
@@ -28,11 +24,7 @@ export class AppComponent implements OnInit {
     format: 'MM/DD/YYYY',
     minDate: moment().subtract(10, 'years'),
     maxDate: moment(),
-    autoApply: true,
-    singleCalendar: false,
     displayFormat: 'MM/DD/YYYY',
-    position: 'left',
-    disabled: false,
     icons: 'material',
   }
 
