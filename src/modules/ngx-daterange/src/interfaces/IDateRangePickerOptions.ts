@@ -9,11 +9,9 @@ export interface IDateRangePickerOptions {
   autoApply: boolean;
   displayFormat: string;
   disabled: boolean;
-  disableBeforeStart: boolean;
   endDate: momentNs.Moment;
   format: string;
   icons: 'default' | 'material' | 'font-awesome';
-  // inactiveBeforeStart: boolean;
   labelText?: string;
   minDate: momentNs.Moment;
   maxDate: momentNs.Moment;

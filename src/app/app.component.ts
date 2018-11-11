@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
     position: 'left',
     disabled: false,
     noDefaultRangeSelected: true,
-    disableBeforeStart: true,
     timePickerOptions: null,
     validators: [Validators.required],
     icons: 'material',
@@ -43,7 +42,6 @@ export class AppComponent implements OnInit {
     position: 'left',
     disabled: false,
     noDefaultRangeSelected: true,
-    disableBeforeStart: true,
     timePickerOptions: null,
     icons: 'material',
   }
