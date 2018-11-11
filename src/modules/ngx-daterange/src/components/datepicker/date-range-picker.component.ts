@@ -39,6 +39,7 @@ export class DateRangePickerComponent implements OnInit {
   private instanceId: string;
 
   defaultRanges: IDefinedDateRange[];
+  displayFormat: string;
   enableApplyButton = false;
   format: string;
   fromMonth: number;
@@ -70,6 +71,7 @@ export class DateRangePickerComponent implements OnInit {
     this.setToDate(this.toDate);
     this.defaultRanges = this.validatePredefinedRanges(this.options.preDefinedRanges || defaultDateRanges.ranges);
     this.labelText = this.options.labelText || defaultDateRangePickerOptions.labelText;
+    this.displayFormat = this.options.displayFormat || defaultDateRangePickerOptions.displayFormat;
 
     // update calendar grid
     this.updateCalendar();
