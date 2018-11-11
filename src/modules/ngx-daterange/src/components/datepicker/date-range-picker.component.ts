@@ -55,7 +55,7 @@ export class DateRangePickerComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   handleClick(event: Event) {
     if (this.elementRef.nativeElement.contains(event.target)) {
-      this.toggleCalendarVisibility(true);
+      this.toggleCalendarVisibility(!this.showCalendars);
     }
   }
 

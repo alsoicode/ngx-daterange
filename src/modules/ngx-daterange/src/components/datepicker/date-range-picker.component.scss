@@ -1,16 +1,20 @@
-.daterangepicker-wrapper {
+.dateRangePicker-wrapper {
   position: relative;
   border: none;
 
-  .daterangepicker {
+  .dateRangePicker {
     background: #fff;
     border-radius: 9px;
     box-shadow: 0px 0px 10px 0px rgba(129, 139, 144, 0.5); // 50% #818B90
     font-family: "Roboto", Helvetica, Arial, sans-serif;
-    overflow: auto;
+    overflow: visible;
     position: absolute;
-    top: 44px;
+    top: 88px;
     z-index: 3000;
+
+    &.dateRangePicker-single {
+      min-width: 300px;
+    }
 
     @media screen and (min-width: 576px) {
       min-width: 600px;
@@ -21,10 +25,11 @@
         content: '';
         height: 0px;
         width: 0px;
-        border: 10px solid transparent;
+        border-bottom: 10px solid #6E777C;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
         position: absolute;
-        border-bottom-color: #6E777C;
-        top: -18px;
+        top: -10px;
       }
     }
 
