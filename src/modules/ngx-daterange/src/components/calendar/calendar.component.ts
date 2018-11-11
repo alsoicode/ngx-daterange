@@ -43,9 +43,6 @@ export class CalendarComponent implements OnChanges {
     maxDate: momentNs.Moment;
 
     @Input()
-    inactiveBeforeStart: boolean;
-
-    @Input()
     disableBeforeStart: boolean;
 
     @Input()

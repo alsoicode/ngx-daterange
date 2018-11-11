@@ -9,7 +9,7 @@ export const defaultDateRangePickerOptions: IDateRangePickerOptions = {
   maxDate: null,
   format: defaultDateFormat,
   displayFormat: defaultDateFormat,
-  inactiveBeforeStart: false,
+  // inactiveBeforeStart: false,
   autoApply: false,
   singleCalendar: false,
   preDefinedRanges: [],

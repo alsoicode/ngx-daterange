@@ -13,7 +13,7 @@ export interface IDateRangePickerOptions {
   endDate: momentNs.Moment;
   format: string;
   icons: 'default' | 'material' | 'font-awesome';
-  inactiveBeforeStart: boolean;
+  // inactiveBeforeStart: boolean;
   labelText?: string;
   minDate: momentNs.Moment;
   maxDate: momentNs.Moment;
