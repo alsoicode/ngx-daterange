@@ -25,7 +25,7 @@ export class DateRangePickerComponent implements OnInit {
   controlName: string = 'dateRange';
 
   @Input()
-  parentFormGroup: FormGroup = new FormGroup({});
+  parentFormGroup: FormGroup;
 
   @Input()
   fromDate: momentNs.Moment;
@@ -78,18 +78,22 @@ export class DateRangePickerComponent implements OnInit {
     // update calendar grid
     this.updateCalendar();
 
-    // add form control to parent form group
-    if (this.parentFormGroup) {
-      const control = new FormControl('', this.options.validators);
-
-      if (this.options.disabled) {
-        control.disable();
-      }
-
-      this.parentFormGroup.addControl(this.controlName, control);
-
-      this.setRange();
+    // create parent form group if it doesn't exist
+    if (!this.parentFormGroup) {
+      this.parentFormGroup = new FormGroup({});
     }
+
+    // add form control to parent form group
+    const control = new FormControl('', this.options.validators);
+
+    if (this.options.disabled) {
+      control.disable();
+    }
+
+    this.parentFormGroup.addControl(this.controlName, control);
+
+    // sets value of control
+    this.setRange();
   }
 
   checkChrome(): string {

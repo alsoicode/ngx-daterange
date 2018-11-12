@@ -6,7 +6,7 @@
   </div>
   <div class="row">
     <div class="col-2">
-      <form enctype="application/x-www-form-urlencoded" role="form" *ngIf="form" [formGroup]="form">
+      <form enctype="application/x-www-form-urlencoded" role="form" >
         <fieldset>
           <date-range-picker [options]="firstFieldOptions" [parentFormGroup]="form" [controlName]="'firstDateRange'" [fromDate]="fromDate" [toDate]="toDate"></date-range-picker>
           <p style="color: red;" *ngIf="form.controls.firstDateRange.touched && form.controls.firstDateRange.hasError('required')">This field is required</p>
