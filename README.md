@@ -18,7 +18,7 @@ Items remaining:
 
 ## DatePicker Settings
 
-Most settings are optional and an interface, [IDateRangePickerOptions](https://github.com/alsoicode/ngx-daterange/blob/master/src/modules/ngx-daterange/src/interfaces/IDateRangePickerOptions.ts) is provided.  Here are all of the settings available:
+Most settings are optional and an interface, [IDateRangePickerOptions](https://github.com/alsoicode/ngx-daterange/blob/master/src/modules/ngx-daterange/src/interfaces/IDateRangePickerOptions.ts) is provided.  Here are all of the settings currently enabled:
 
 ### autoApply
 
@@ -90,7 +90,7 @@ Accepted value: Any valid Moment instance.
 
 <hr />
 
-### postion
+### position
 
 The side on which you would like the date picker to open.
 
