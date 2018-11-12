@@ -140,16 +140,16 @@ export class DateRangePickerComponent implements OnInit {
         }
       }
 
-      if (this.options.minDate && (this.options.minDate as momentNs.Moment).format(defaultTimeFormat) === '00:00') {
-        (this.options.minDate as momentNs.Moment).set({
+      if (this.options.minDate && this.options.minDate.format(defaultTimeFormat) === '00:00') {
+        this.options.minDate.set({
           hour: 0,
           minutes: 0,
           seconds: 0
         });
       }
 
-      if (this.options.maxDate && (this.options.maxDate as momentNs.Moment).format(defaultTimeFormat) === '00:00') {
-        (this.options.maxDate as momentNs.Moment).set({
+      if (this.options.maxDate && this.options.maxDate.format(defaultTimeFormat) === '00:00') {
+        this.options.maxDate.set({
           hour: 23,
           minutes: 59,
           seconds: 59
