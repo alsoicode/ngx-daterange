@@ -66,6 +66,11 @@
       }
     }
 
+    .btn, .btn.btn-link {
+      min-width: auto;
+      width: auto;
+    }
+
     .form-inputs {
       background-color: #6E777C;
       border-top-left-radius: 8px;
