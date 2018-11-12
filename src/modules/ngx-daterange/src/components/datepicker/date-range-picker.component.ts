@@ -411,13 +411,13 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  cancel(event: Event): void {
+  close(event: Event): void {
     this.toggleCalendarVisibility(false);
 
     event.stopPropagation();
   }
 
-  clear(event: Event): void {
+  reset(event: Event): void {
     this.fromDate = null;
     this.toDate = null;
     this.enableApplyButton = false;
