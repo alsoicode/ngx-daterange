@@ -63,7 +63,7 @@
             <button type="button" class="btn btn-outline-secondary btn-sm ml-3" (click)="reset($event)" *ngIf="this.range">Reset</button>
             <button type="button" class="btn btn-primary btn-sm ml-3" [disabled]="!enableApplyButton" (click)="apply()" *ngIf="!isAutoApply()">Apply</button>
 
-            <div class="row">
+            <div class="row" *ngIf="options.preDefinedRanges && options.preDefinedRanges.length > 0">
               <div class="col">
                 <button type="button" *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange(range)">{{ range.name }}</button>
               </div>
