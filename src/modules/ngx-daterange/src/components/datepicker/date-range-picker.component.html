@@ -61,7 +61,7 @@
           <div class="col">
             <button type="button" class="btn btn-outline-secondary btn-sm" (click)="close($event)">Close</button>
             <button type="button" class="btn btn-outline-secondary btn-sm ml-3" (click)="reset($event)" *ngIf="this.range">Reset</button>
-            <button type="button" class="btn btn-primary btn-sm ml-3" [disabled]="!enableApplyButton" (click)="apply()" *ngIf="!isAutoApply()">Apply</button>
+            <button type="button" class="btn btn-primary btn-sm ml-3" [disabled]="!enableApplyButton" (click)="apply($event)" *ngIf="!isAutoApply()">Apply</button>
 
             <div class="row" *ngIf="options.preDefinedRanges && options.preDefinedRanges.length > 0">
               <div class="col">

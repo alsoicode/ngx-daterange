@@ -157,10 +157,12 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  apply(): void {
+  apply(event: Event): void {
     this.toggleCalendarVisibility(false);
     this.setRange();
     this.emitRangeSelected();
+
+    event.stopPropagation();
   }
 
   setFromDate(value: momentNs.Moment): void {
@@ -209,15 +211,8 @@ export class DateRangePickerComponent implements OnInit {
 
       this.toDate = value;
 
-      if (!this.options.timePickerOptions) {
-        if (value.isBefore(this.fromDate, 'date')) {
-          this.fromDate = this.toDate.clone();
-        }
-      }
-      else {
-        if (value.isBefore(this.fromDate)) {
-          this.fromDate = this.toDate.clone();
-        }
+      if (value.isBefore(this.fromDate, 'date')) {
+        this.fromDate = this.toDate.clone();
       }
     }
 
