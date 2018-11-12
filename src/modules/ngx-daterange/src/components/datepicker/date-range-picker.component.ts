@@ -25,6 +25,9 @@ export class DateRangePickerComponent implements OnInit {
   controlName: string = 'dateRange';
 
   @Input()
+  instanceId: string = null;
+
+  @Input()
   parentFormGroup: FormGroup;
 
   @Input()
@@ -39,7 +42,6 @@ export class DateRangePickerComponent implements OnInit {
   defaultRanges: IDefinedDateRange[];
   enableApplyButton = false;
   fromMonth: number;
-  instanceId: string;
   fromYear: number;
   toMonth: number;
   toYear: number;
@@ -58,7 +60,10 @@ export class DateRangePickerComponent implements OnInit {
   constructor(
     private elementRef: ElementRef
   ) {
-    this.instanceId = `dateRangePicker-${ instanceCount++ }`;
+    if (!this.instanceId) {
+      // assign auto-id
+      this.instanceId = `dateRangePicker-${ instanceCount++ }`;
+    }
   }
 
   ngOnInit(): void {
