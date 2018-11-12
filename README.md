@@ -20,7 +20,7 @@ Items remaining:
 
 Most settings are optional and an interface, `IDateRangePickerOptions` is provided.  Here are all of the settings available:
 
-### `autoApply`
+### autoApply
 
 Automatically sets the `range` value when both dates are selected and hide the calendars. If using a single calendar, the `range` is set and the calendar is closed when the date is selected.
 
@@ -32,7 +32,7 @@ Accepted value: `true` or `false`
 
 <hr/>
 
-### `displayFormat`
+### displayFormat
 
 The format of the `range` value as displayed in the UI.
 
@@ -44,7 +44,7 @@ Accepted value: Any format string supported by [Moment.js](https://momentjs.com/
 
 <hr/>
 
-### `icons`
+### icons
 
 Icons displayed for the next/previous month/year buttons. By default, images are used. If you're using Font Awesome 5, or Google Material Icons, you may specify one or the other. You are expected to apply the CSS independent of this module.
 
