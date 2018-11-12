@@ -13,7 +13,7 @@ export interface IDateRangePickerOptions {
   labelText?: string;
   minDate: momentNs.Moment;
   maxDate: momentNs.Moment;
-  position?: 'left' | 'right' | 'center';
+  position?: 'left' | 'right';
   preDefinedRanges?: IDefinedDateRange[];
   singleCalendar?: boolean;
   timePickerOptions?: ITimePickerOptions;

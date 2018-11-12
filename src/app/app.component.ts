@@ -13,19 +13,27 @@ import { IDateRangePickerOptions } from '../modules/ngx-daterange/src/interfaces
 export class AppComponent implements OnInit {
   firstFieldOptions: IDateRangePickerOptions = {
     format: 'MM/DD/YYYY',
+    icons: 'material',
     minDate: moment().subtract(2, 'years'),
     maxDate: moment(),
-    displayFormat: 'MM/DD/YYYY',
     validators: [Validators.required],
-    icons: 'material',
   }
 
   secondFieldOptions: IDateRangePickerOptions = {
     autoApply: false,
     format: 'MM/DD/YYYY',
+    icons: 'font-awesome',
     minDate: moment().subtract(10, 'years'),
     maxDate: moment(),
-    icons: 'font-awesome',
+  }
+
+  rightFieldOptions: IDateRangePickerOptions = {
+    format: 'MM/DD/YYYY',
+    icons: 'material',
+    minDate: moment().subtract(2, 'years'),
+    maxDate: moment(),
+    position: 'right',
+    validators: [Validators.required],
   }
 
   form: FormGroup = null;

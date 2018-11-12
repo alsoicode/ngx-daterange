@@ -20,64 +20,39 @@
       min-width: 600px;
     }
 
-    &.tooltip-chevron {
-      &::before, &::after {
-        content: '';
-        height: 0px;
-        width: 0px;
-        border-bottom: 10px solid #6E777C;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        position: absolute;
-        top: -10px;
-      }
+    &::before, &::after {
+      content: '';
+      height: 0px;
+      width: 0px;
+      border-bottom: 10px solid #6E777C;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      position: absolute;
+      top: -10px;
     }
 
     &.open-left {
       left: 0;
 
-      &.tooltip-chevron {
-        &::before {
-          left: 10px;
-        }
-
-        &::after {
-          display: none;
-        }
+      &::before {
+        left: 10px;
       }
-    }
 
-    &.open-center {
-      right: -50%;
-
-      &.tooltip-chevron {
-        &::before {
-          display: none;
-        }
-
-        &::after {
-          right: -50%;
-        }
+      &::after {
+        display: none;
       }
     }
 
     &.open-right {
       right: 0;
 
-      &.tooltip-chevron {
-        &::before {
-          display: none;
-        }
-
-        &::after {
-          right: 10px;
-        }
+      &::before {
+        display: none;
       }
-    }
 
-    &.always-open{
-      top: 0;
-      box-shadow: none;
+      &::after {
+        right: 10px;
+      }
     }
 
     &.is-chrome {
