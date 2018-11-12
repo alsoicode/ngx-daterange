@@ -14,8 +14,6 @@ Items remaining:
 
 - Re-enable "apply" button
 - Re-enable pre-supplied date ranges.
-- Styling for apply/cancel buttons.
-
 
 ## DatePicker Settings
 
