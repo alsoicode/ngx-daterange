@@ -12,8 +12,47 @@ You can however, run this sample application to see current progress.
 
 Items remaining:
 
-- Positioning support for custom templating.
-- Fix bug with "Cancel" button which causes selected date styling to be lost.
+- Re-enable "apply" button
+- Re-enable pre-supplied date ranges.
+- Styling for apply/cancel buttons.
+
+## DatePicker Settings
+
+Most settings are optional. A set of default options is provided as such:
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Purpose</th>
+      <th>Default Value</th>
+      <th>Possible Value(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top">autoApply</td>
+      <td valign="top">Automatically set the <code>range</code> value when both dates are selected and hide the calendars. If using a single calendar, the <code>range</code> is set and the calendar is closed when the date is selected.</td>
+      <td valign="top"><code>true</code></td>
+      <td valign="top"><code>true | false</code></td>
+    </tr>
+    <tr>
+      <td valign="top">displayFormat</td>
+      <td valign="top">The format of the <code>range</code> value as displayed in the UI.</td>
+      <td valign="top" style="white-space: nowrap;"><code>'YYYY-MM-DD'</code></td>
+      <td valign="top">Any format supported by <a href="https://momentjs.com/docs/#/displaying/format/" target="_blank">Moment.js</a></td>
+    </tr>
+    <tr>
+      <td valign="top">icons</td>
+      <td valign="top">Icons displayed for the next/previous month/year buttons. By default, images are used. If you're using Font Awesome 5, or Google Material Icons, you may specify one or the other. You are expected to apply the CSS independent of this module.</td>
+      <td valign="top" style="white-space: nowrap;"><code>'default'</code></td>
+      <td valign="top" style="white-space: nowrap;"><code>'default' | 'font-awesome' | 'material'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
 
 ## Development server
 
