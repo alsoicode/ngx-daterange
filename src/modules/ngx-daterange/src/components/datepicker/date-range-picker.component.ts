@@ -152,10 +152,10 @@ export class DateRangePickerComponent implements OnInit {
     this.toDate = value ? value : null;
   }
 
-  // detects which date to set from or to and validates
-  dateChanged(data: IChangedData): void {
-    const value = data.day;
-    const isLeft = data.isLeft;
+  // update from/to based on selection
+  dateChanged(changedData: IChangedData): void {
+    const value = changedData.day;
+    const isLeft = changedData.isLeft;
 
     if (isLeft) {
       if (!this.options.timePickerOptions) {
@@ -166,17 +166,10 @@ export class DateRangePickerComponent implements OnInit {
         });
       }
 
-      this.fromDate = value;
+      this.setFromDate(value);
 
-      if (!this.options.timePickerOptions) {
-        if (value.isAfter(this.toDate, 'date')) {
-          this.toDate = this.fromDate.clone();
-        }
-      }
-      else {
-        if (value.isAfter(this.toDate, 'date')) {
-          this.toDate = this.fromDate.clone();
-        }
+      if (this.fromDate.isAfter(this.toDate, 'date')) {
+        this.toDate = this.fromDate.clone();
       }
     }
     else {
@@ -188,17 +181,16 @@ export class DateRangePickerComponent implements OnInit {
         });
       }
 
-      this.toDate = value;
+      this.setToDate(value);
 
-      if (value.isBefore(this.fromDate, 'date')) {
+      if (this.toDate.isBefore(this.fromDate, 'date')) {
         this.fromDate = this.toDate.clone();
       }
     }
 
-    this.fromMonth = this.fromDate ? this.fromDate.get('month') : this.fromMonth;
-    this.toMonth = this.toDate ? this.toDate.get('month') : this.toMonth;
+    this.setFromToMonthYear(this.fromDate, this.toDate);
 
-    if (this.isAutoApply() && this.options.singleCalendar || !isLeft && this.fromDate) {
+    if (this.isAutoApply() && (this.options.singleCalendar || !isLeft) && this.fromDate) {
       this.toggleCalendarVisibility(false);
       this.setRange();
       this.emitRangeSelected();
