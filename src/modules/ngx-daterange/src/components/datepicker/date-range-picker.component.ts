@@ -70,7 +70,16 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.validateMinMaxDates();
+    // validate maxDate isn't before minDate or vice versa
+    if (this.options) {
+      if (this.options.minDate.isAfter(this.options.maxDate, 'date')) {
+        throw new RangeError('minDate specified in options is after the maxDate');
+      }
+      else if (this.options.maxDate.isBefore(this.options.minDate, 'date')) {
+        throw new RangeError('maxDate specified in options is before the minDate');
+      }
+    }
+
     this.setFromDate(this.fromDate);
     this.setToDate(this.toDate);
 
@@ -133,48 +142,6 @@ export class DateRangePickerComponent implements OnInit {
     this.setFromToMonthYear();
 
     this.setRange();
-  }
-
-  validateMinMaxDates() {
-    if (this.options) {
-      // only mindate is suppplied
-      if (this.options.minDate && !this.options.maxDate) {
-        this.options.minDate = this.getMoment(this.options.minDate);
-      }
-
-      // only maxdate is supplied
-      if (!this.options.minDate && this.options.maxDate) {
-        this.options.maxDate = this.getMoment(this.options.maxDate);
-      }
-
-      // both min and max dates are supplied
-      if (this.options.minDate && this.options.maxDate) {
-        this.options.minDate = this.getMoment(this.options.minDate);
-        this.options.maxDate = this.getMoment(this.options.maxDate);
-
-        if (this.options.maxDate.isBefore(this.options.minDate, 'date')) {
-          this.options.minDate = null;
-          this.options.maxDate = null;
-          console.warn('Supplied minDate is after maxDate. Discarding options for minDate and maxDate.');
-        }
-      }
-
-      if (this.options.minDate && this.options.minDate.format(defaultTimeFormat) === '00:00') {
-        this.options.minDate.set({
-          hour: 0,
-          minutes: 0,
-          seconds: 0
-        });
-      }
-
-      if (this.options.maxDate && this.options.maxDate.format(defaultTimeFormat) === '00:00') {
-        this.options.maxDate.set({
-          hour: 23,
-          minutes: 59,
-          seconds: 59
-        });
-      }
-    }
   }
 
   setFromDate(value: momentNs.Moment): void {
