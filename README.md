@@ -12,7 +12,6 @@ You can however, run this sample application to see current progress.
 
 Items remaining:
 
-- Re-enable "apply" button
 - Re-enable pre-supplied date ranges.
 
 ## DatePicker Settings
