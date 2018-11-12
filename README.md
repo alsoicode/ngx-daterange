@@ -28,11 +28,9 @@ Type: `boolean`
 
 Default value: `true`
 
-Accepted value: `true` or `false`
-
 <hr/>
 
-### displayFormat
+### format
 
 The format of the `range` value as displayed in the UI.
 
@@ -56,7 +54,63 @@ Accepted values: `'default'`, `'font-awesome'` or `'material'`
 
 <hr />
 
+### labelText
 
+The text of the form label when using the default templating.
+
+Type: `string`
+
+Default value: `'Date Range'`
+
+Accepted value: Any
+
+<hr />
+
+### maxDate
+
+The maximum selectable date in the future.
+
+Type: `Moment`
+
+Default value: `null`
+
+Accepted value: Any valid Moment instance.
+
+<hr />
+
+### minDate
+
+The maximum selectable date in the past.
+
+Type: `Moment`
+
+Default value: `null`
+
+Accepted value: Any valid Moment instance.
+
+<hr />
+
+### postion
+
+The side on which you would like the date picker to open.
+
+Type: `string`
+
+Default value: `'left'`
+
+Accepted values: `'left'`, `'center'` or `'right'`
+
+<hr />
+
+### singleCalendar
+
+Display a single calendar instance instead of a range. Useful when you don't want to add another dependency and need to select a single date.
+
+Type:
+
+Default value: `false`
+
+<hr />
 
 
 ## Development server
