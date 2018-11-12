@@ -16,6 +16,7 @@ Items remaining:
 - Re-enable pre-supplied date ranges.
 - Styling for apply/cancel buttons.
 
+
 ## DatePicker Settings
 
 Most settings are optional and an interface, [IDateRangePickerOptions](https://github.com/alsoicode/ngx-daterange/blob/master/src/modules/ngx-daterange/src/interfaces/IDateRangePickerOptions.ts) is provided.  Here are all of the settings currently enabled:
@@ -112,31 +113,16 @@ Default value: `false`
 
 <hr />
 
+# Building the Library
+
+Run `ng build:lib` to build the ngx-daterange module for deployment to npm. The build articfacts will be stored in the `ngx-daterange/dist` directory.
+
+# Running the Angular Project
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build Sample App
 
 Run `ng build` to build the sample app. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Build Library
-
-Run `ng build:lib` to build the ngx-daterange module for deployment to npm. The build articfacts will be stored in the `ngx-daterange/dist` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
