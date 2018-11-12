@@ -46,7 +46,7 @@ Accepted value: Any format string supported by [Moment.js](https://momentjs.com/
 
 ### icons
 
-Icons displayed for the next/previous month/year buttons. By default, images are used. If you're using Font Awesome 5, or Google Material Icons, you may specify one or the other. You are expected to apply the CSS independent of this module.
+Icons displayed for the next/previous and month/year buttons. By default, inlined base64 images are used. If you're using Font Awesome 5, or Google Material Icons, you may specify one or the other. You are expected to apply the CSS for those libraries independent of this module.
 
 Type: `string`
 
