@@ -25,7 +25,7 @@ export class DateRangePickerComponent implements OnInit {
   controlName: string = 'dateRange';
 
   @Input()
-  parentFormGroup: FormGroup = null;
+  parentFormGroup: FormGroup = new FormGroup({});
 
   @Input()
   fromDate: momentNs.Moment;
