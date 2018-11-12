@@ -38,7 +38,6 @@ export class DateRangePickerComponent implements OnInit {
 
   defaultRanges: IDefinedDateRange[];
   enableApplyButton = false;
-  format: string;
   fromMonth: number;
   instanceId: string;
   fromYear: number;
@@ -172,73 +171,6 @@ export class DateRangePickerComponent implements OnInit {
     this.toDate = value ? value : null;
   }
 
-  getActualFromDate(value) {
-    let temp;
-
-    if (temp = this.getValidateMoment(value)) {
-      return this.getValidateFromDate(temp);
-    }
-    else {
-      return this.getValidateFromDate(moment());
-    }
-  }
-
-  getValidateFromDate(value) {
-    if (!this.options.timePickerOptions) {
-      if (this.options.minDate && this.options.maxDate && value.isSameOrAfter(this.options.minDate, 'date') && value.isSameOrBefore(this.options.maxDate, 'date')) {
-        return value;
-      }
-      else if (this.options.minDate && !this.options.maxDate && value.isAfter(this.options.minDate, 'date')) {
-        return value;
-      }
-      else if (this.options.minDate) {
-        return (this.options.minDate as momentNs.Moment).clone();
-      }
-      else {
-        return moment();
-      }
-    }
-    else {
-      if (this.options.minDate && this.options.maxDate && value.isSameOrAfter(this.options.minDate, this.options.format) && value.isSameOrBefore(this.options.maxDate, this.options.format)) {
-        return value;
-      }
-      else if (this.options.minDate && !this.options.maxDate && value.isAfter(this.options.minDate, this.options.format)) {
-        return value;
-      }
-      else if (this.options.minDate) {
-        return (this.options.minDate as momentNs.Moment).clone();
-      }
-      else {
-        return moment();
-      }
-    }
-  }
-
-  getActualToDate(value: momentNs.Moment): momentNs.Moment {
-    let temp;
-
-    if (temp = this.getValidateMoment(value)) {
-      return this.getValidateToDate(temp);
-    }
-    else {
-      return this.getValidateToDate(moment());
-    }
-  }
-
-  getValidateToDate(value: momentNs.Moment): momentNs.Moment {
-    const granularity = this.options.timePickerOptions ? null : 'date';
-
-    if (this.options.maxDate && value.isSameOrAfter(this.fromDate, granularity), value.isSameOrBefore(this.options.maxDate, granularity)) {
-      return value;
-    }
-    else if (this.options.maxDate) {
-      return (this.options.maxDate as momentNs.Moment).clone();
-    }
-    else {
-      return moment();
-    }
-  }
-
   // detects which date to set from or to and validates
   dateChanged(data: IChangedData): void {
     const value = data.day;
@@ -312,13 +244,13 @@ export class DateRangePickerComponent implements OnInit {
 
     if (this.options.singleCalendar) {
       data = {
-        start: this.getMoment(this.fromDate)
+        start: this.fromDate,
       };
     }
     else {
       data = {
-        start: this.getMoment(this.fromDate),
-        end: this.getMoment(this.toDate)
+        start: this.fromDate,
+        end: this.toDate,
       };
     }
 
@@ -326,17 +258,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   getMoment(value): momentNs.Moment {
-    return moment(value, this.format);
-  }
-
-  getValidateMoment(value): momentNs.Moment | null {
-    let momentValue = null;
-
-    if (moment(value, this.format, true).isValid()) {
-      momentValue = moment(value, this.format, true);
-    }
-
-    return momentValue;
+    return moment(value, this.options.format);
   }
 
   setRange(): void {
@@ -362,9 +284,9 @@ export class DateRangePickerComponent implements OnInit {
   formatFromDate(event: Event): void {
     const target = event.target as HTMLInputElement;
 
-    if (this.fromDate && target.value !== this.fromDate.format(this.format)) {
+    if (this.fromDate && target.value && target.value !== this.fromDate.format(this.options.format)) {
       this.dateChanged({
-        day: target.value ? this.getMoment(target.value) : moment(),
+        day: this.getMoment(target.value),
         isLeft: true
       });
     }
@@ -373,9 +295,9 @@ export class DateRangePickerComponent implements OnInit {
   formatToDate(event: Event): void {
     const target = event.target as HTMLInputElement;
 
-    if (this.toDate && target.value !== this.toDate.format(this.format)) {
+    if (this.toDate && target.value && target.value !== this.toDate.format(this.options.format)) {
       this.dateChanged({
-        day: target.value ? this.getMoment(target.value) : moment(),
+        day: this.getMoment(target.value),
         isLeft: false
       });
     }
