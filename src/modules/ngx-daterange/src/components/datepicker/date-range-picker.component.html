@@ -57,15 +57,15 @@
           </div>
         </div>
 
-        <div class="row text-center mt-2 mb-2" *ngIf="!options.singleCalendar">
+        <div class="row text-center mt-3 mb-2" *ngIf="!options.singleCalendar">
           <div class="col">
             <button type="button" class="btn btn-outline-secondary btn-sm" (click)="close($event)">Close</button>
             <button type="button" class="btn btn-outline-secondary btn-sm ml-3" (click)="reset($event)" *ngIf="this.range">Reset</button>
             <button type="button" class="btn btn-primary btn-sm ml-3" [disabled]="!enableApplyButton" (click)="apply($event)" *ngIf="!isAutoApply()">Apply</button>
 
-            <div class="row" *ngIf="options.preDefinedRanges && options.preDefinedRanges.length > 0">
+            <div class="row mt-2" *ngIf="options.preDefinedRanges && options.preDefinedRanges.length > 0">
               <div class="col">
-                <button type="button" *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange(range)">{{ range.name }}</button>
+                <button type="button" *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange($event, range)">{{ range.name }}</button>
               </div>
             </div>
 

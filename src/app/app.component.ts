@@ -12,10 +12,27 @@ import { IDateRangePickerOptions } from '../modules/ngx-daterange/src/interfaces
 })
 export class AppComponent implements OnInit {
   firstFieldOptions: IDateRangePickerOptions = {
+    autoApply: false,
     format: 'MM/DD/YYYY',
     icons: 'material',
     minDate: moment().subtract(2, 'years'),
     maxDate: moment(),
+    preDefinedRanges: [
+      {
+        name: 'Last Week',
+        value: {
+          start: moment().subtract(1, 'week').startOf('week'),
+          end: moment().subtract(1, 'week').endOf('week')
+        }
+      },
+      {
+        name: 'Two Weeks Ago',
+        value: {
+          start: moment().subtract(2, 'week').startOf('week'),
+          end: moment().subtract(2, 'week').endOf('week')
+        }
+      }
+    ],
     validators: Validators.required,
   }
 
