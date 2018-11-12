@@ -21,11 +21,11 @@
                     <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
                     <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
                     <span *ngIf="fromDate">From:&nbsp;</span>
-                    <input class="form-control" [ngModel]="fromDate | formatMomentDate: format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
+                    <input class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
                   </div>
                 </div>
 
-                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
+                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
               </div>
 
               <div class="col">
@@ -34,11 +34,11 @@
                       <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
                       <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
                       <span *ngIf="toDate">To:&nbsp;</span>
-                      <input class="form-control" [ngModel]="toDate | formatMomentDate: format" (blur)="formatToDate($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
+                      <input class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="formatToDate($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
                     </div>
                   </div>
 
-                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: format" (blur)="formatToDate($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
+                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="formatToDate($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
               </div>
 
             </div>
@@ -46,12 +46,12 @@
             <div class="row row-calendars">
               <div class="col">
                 <calendar [ngClass]="{ 'calendar': true, 'calendar-single': options.singleCalendar }" [isLeft]="true" [month]="fromMonth" [year]="fromYear" (monthChanged)=monthChanged($event)
-                  (yearChanged)="yearChanged($event)" (dateChanged)="dateChanged($event)" [format]="format" [selectedFromDate]="fromDate"
+                  (yearChanged)="yearChanged($event)" (dateChanged)="dateChanged($event)" [format]="options.format" [selectedFromDate]="fromDate"
                   [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [timePickerOptions]="options.timePickerOptions" [singleCalendar]="options.singleCalendar" [icons]="options.icons"></calendar>
               </div>
 
               <div class="col" *ngIf="!options.singleCalendar">
-                <calendar class="calendar" [month]="toMonth" [year]="toYear" [format]="format" (dateChanged)="dateChanged($event)" (monthChanged)="monthChanged($event)" (yearChanged)=yearChanged($event) [selectedFromDate]="fromDate" [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [timePickerOptions]="options.timePickerOptions" [icons]="options.icons"></calendar>
+                <calendar class="calendar" [month]="toMonth" [year]="toYear" [format]="options.format" (dateChanged)="dateChanged($event)" (monthChanged)="monthChanged($event)" (yearChanged)=yearChanged($event) [selectedFromDate]="fromDate" [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [timePickerOptions]="options.timePickerOptions" [icons]="options.icons"></calendar>
               </div>
             </div>
           </div>

@@ -5,7 +5,6 @@ import { defaultDateFormat } from '../constants/default-formats';
 export const defaultDateRangePickerOptions: IDateRangePickerOptions = {
   autoApply: true,
   disabled: false,
-  displayFormat: defaultDateFormat,
   icons: 'default',
   format: defaultDateFormat,
   labelText: 'Date Range',

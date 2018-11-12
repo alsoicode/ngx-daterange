@@ -61,8 +61,6 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // get default options provided by user
-    this.setFormat();
     this.validateMinMaxDates();
     this.setFromDate(this.fromDate);
     this.setToDate(this.toDate);
@@ -116,10 +114,6 @@ export class DateRangePickerComponent implements OnInit {
     this.toYear = tempToDate.get('year');
 
     this.setRange();
-  }
-
-  setFormat() {
-    this.format = this.options.format || defaultDateFormat;
   }
 
   validateMinMaxDates() {
@@ -346,13 +340,11 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   setRange(): void {
-    const displayFormat = this.options.displayFormat;
-
     if (this.options.singleCalendar && this.fromDate) {
-      this.range = this.fromDate.format(displayFormat);
+      this.range = this.fromDate.format(this.options.format);
     }
     else if (this.fromDate && this.toDate) {
-      this.range = `${ this.fromDate.format(displayFormat) } - ${ this.toDate.format(displayFormat) }`;
+      this.range = `${ this.fromDate.format(this.options.format) } - ${ this.toDate.format(this.options.format) }`;
     }
     else {
       this.range = '';
