@@ -22,7 +22,7 @@ Most settings are optional and an interface, [IDateRangePickerOptions](https://g
 
 ### autoApply
 
-Automatically sets the `range` value when both dates are selected and hide the calendars. If using a single calendar, the `range` is set and the calendar is closed when the date is selected.
+Automatically sets the `range` value when both dates are selected and hides the calendars. If using a single calendar, the `range` is set and the calendar is closed when the date is selected.
 
 Type: `boolean`
 
