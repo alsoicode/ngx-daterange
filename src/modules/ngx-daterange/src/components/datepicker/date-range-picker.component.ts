@@ -283,6 +283,7 @@ export class DateRangePickerComponent implements OnInit {
 
       if (control) {
         control.setValue(this.range);
+        control.updateValueAndValidity();
       }
     }
   }

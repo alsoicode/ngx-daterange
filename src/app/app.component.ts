@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 
 import { IDateRangePickerOptions } from '../modules/ngx-daterange/src/interfaces';
@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
     icons: 'material',
     minDate: moment().subtract(2, 'years'),
     maxDate: moment(),
+    validators: Validators.required,
   }
 
   secondFieldOptions: IDateRangePickerOptions = {
