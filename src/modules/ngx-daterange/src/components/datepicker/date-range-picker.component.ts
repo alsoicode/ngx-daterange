@@ -1,7 +1,7 @@
-import { Component, ElementRef, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { defaultDateRangePickerOptions, defaultTimeFormat } from '../constants';
+import { defaultDateRangePickerOptions } from '../constants';
 import { IDateRange, IDateRangePickerOptions, IDefinedDateRange, IChangedData } from '../../interfaces';
 
 import * as momentNs from 'moment'; const moment = momentNs;
@@ -60,9 +60,7 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  constructor(
-    private elementRef: ElementRef
-  ) {
+  constructor() {
     if (!this.instanceId) {
       // assign auto-id
       this.instanceId = `dateRangePicker-${ instanceCount++ }`;
