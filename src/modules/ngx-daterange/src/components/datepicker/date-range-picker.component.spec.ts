@@ -55,6 +55,8 @@ describe('Testing DateRangePickerComponent', () => {
 
     component.options = options;
 
-    expect(component.options.format).toEqual('MM/DD/YYYY');
+    Object.keys(options).forEach((key: string) => {
+      expect(component.options[key]).toEqual(options[key]);
+    })
   });
 });
