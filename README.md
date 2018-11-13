@@ -72,7 +72,7 @@ Type: `Moment`
 
 Default value: `null`
 
-Accepted value: Any valid Moment instance.
+Accepted value: Any valid Moment instance that comes after `minDate`.
 
 <hr />
 
@@ -84,7 +84,7 @@ Type: `Moment`
 
 Default value: `null`
 
-Accepted value: Any valid Moment instance.
+Accepted value: Any valid Moment instance that comes before `maxDate`.
 
 <hr />
 
