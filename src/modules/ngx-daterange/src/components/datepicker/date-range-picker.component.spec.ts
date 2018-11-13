@@ -59,6 +59,6 @@ describe('Testing DateRangePickerComponent', () => {
     // Ensure options provided override defaults
     Object.keys(options).forEach((key: string) => {
       expect(component.options[key]).toEqual(options[key]);
-    })
+    });
   });
 });
