@@ -1,4 +1,4 @@
-import { IDateRangePickerOptions } from '../../interfaces';
+import { IDateRangePickerOptions } from '../interfaces';
 
 import { defaultDateFormat } from '../constants/default-formats';
 

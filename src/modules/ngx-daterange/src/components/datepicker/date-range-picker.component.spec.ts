@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
+import { NgZone } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { MockNgZone } from '../../mocks/ng-zone.mock';
 import * as moment from 'moment';
 
 import { CalendarComponent } from '../calendar/calendar.component';
 import { DateRangePickerComponent } from './date-range-picker.component';
-import { defaultDateRangePickerOptions } from '../constants';
+import { defaultDateRangePickerOptions } from '../../constants';
 import { IDateRangePickerOptions } from '../../interfaces';
 import { FormatMomentDatePipe } from '../../pipes/format-moment-date.pipe';
 
@@ -13,6 +15,8 @@ describe('Testing DateRangePickerComponent', () => {
 
   let component: DateRangePickerComponent;
   let fixture: ComponentFixture<DateRangePickerComponent>;
+  const mockNgZone = jasmine.createSpyObj('mockNgZone', [ 'run', 'runOutsideAngular' ]);
+  mockNgZone.run.and.callFake(fn => fn());
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -25,6 +29,9 @@ describe('Testing DateRangePickerComponent', () => {
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+      ],
+      providers: [
+        { provide: NgZone, useValue: mockNgZone },
       ]
     })
     .compileComponents();
@@ -61,4 +68,16 @@ describe('Testing DateRangePickerComponent', () => {
       expect(component.options[key]).toEqual(options[key]);
     });
   });
+
+  it('should throw an error if the minDate is after the maxDate', () => {
+    const options: IDateRangePickerOptions = {
+      format: 'MM/DD/YYYY',
+      minDate: moment().add(1, 'year'),
+      maxDate: moment(),
+    };
+
+    component.options = options;
+
+    expect(fixture.detectChanges).toThrow(new RangeError());
+  })
 });

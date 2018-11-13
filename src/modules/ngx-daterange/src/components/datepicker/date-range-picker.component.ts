@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { defaultDateRangePickerOptions } from '../constants';
+import { defaultDateRangePickerOptions } from '../../constants';
 import { IDateRange, IDateRangePickerOptions, IDefinedDateRange, IChangedData } from '../../interfaces';
 
 import * as momentNs from 'moment'; const moment = momentNs;
@@ -31,10 +31,10 @@ export class DateRangePickerComponent implements OnInit {
   parentFormGroup: FormGroup;
 
   @Input()
-  fromDate: momentNs.Moment;
+  fromDate: momentNs.Moment = null;
 
   @Input()
-  toDate: momentNs.Moment;
+  toDate: momentNs.Moment = null;
 
   @Output()
   rangeSelected = new EventEmitter<IDateRange>();

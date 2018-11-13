@@ -9,7 +9,7 @@ export interface IDateRangePickerOptions {
   displayFormat?: string;
   disabled?: boolean;
   format: string;
-  icons: 'default' | 'material' | 'font-awesome';
+  icons?: 'default' | 'material' | 'font-awesome';
   labelText?: string;
   minDate: momentNs.Moment;
   maxDate: momentNs.Moment;
