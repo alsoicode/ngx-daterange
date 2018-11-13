@@ -68,16 +68,6 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // validate maxDate isn't before minDate or vice versa
-    if (this.options) {
-      if (this.options.minDate.isAfter(this.options.maxDate, 'date')) {
-        throw new RangeError('minDate specified in options is after the maxDate');
-      }
-      else if (this.options.maxDate.isBefore(this.options.minDate, 'date')) {
-        throw new RangeError('maxDate specified in options is before the minDate');
-      }
-    }
-
     this.setFromDate(this.fromDate);
     this.setToDate(this.toDate);
 
@@ -94,6 +84,16 @@ export class DateRangePickerComponent implements OnInit {
         this.options[key] = defaultDateRangePickerOptions[key];
       }
     });
+
+    // validate maxDate isn't before minDate or vice versa
+    if (this.options && this.options.minDate && this.options.maxDate) {
+      if (this.options.minDate.isAfter(this.options.maxDate, 'date')) {
+        throw new RangeError('minDate specified in options is after the maxDate');
+      }
+      else if (this.options.maxDate.isBefore(this.options.minDate, 'date')) {
+        throw new RangeError('maxDate specified in options is before the minDate');
+      }
+    }
 
     // update calendar grid
     this.updateCalendar();

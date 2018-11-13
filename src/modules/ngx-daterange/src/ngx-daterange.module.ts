@@ -5,13 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DateRangePickerComponent } from './components/datepicker/date-range-picker.component';
 import { FormatMomentDatePipe } from './pipes/format-moment-date.pipe';
-import { TimePickerComponent } from './components/timepicker/timepicker.component';
 
 const declarations = [
   CalendarComponent,
   DateRangePickerComponent,
   FormatMomentDatePipe,
-  TimePickerComponent,
 ];
 
 @NgModule({
