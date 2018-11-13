@@ -36,16 +36,17 @@ describe('Testing DateRangePickerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should instantiate with default options if none are provided', () => {
+  it('The NgxDateRangePicker Component should initialize', () => {
     expect(component).toBeDefined();
-    component.options = defaultDateRangePickerOptions;
+  });
 
+  it('should use default options if options are not provided', () => {
     Object.keys(defaultDateRangePickerOptions).forEach((key: string) => {
       expect(component.options[key]).toEqual(defaultDateRangePickerOptions[key]);
     });
   });
 
-  it('should instantiate with provided option value over defaults if provided', () => {
+  it('should use options over defaults if provided', () => {
     const options: IDateRangePickerOptions = {
       format: 'MM/DD/YYYY',
       icons: 'material',
@@ -55,6 +56,7 @@ describe('Testing DateRangePickerComponent', () => {
 
     component.options = options;
 
+    // Ensure options provided override defaults
     Object.keys(options).forEach((key: string) => {
       expect(component.options[key]).toEqual(options[key]);
     })
