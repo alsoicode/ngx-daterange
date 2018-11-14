@@ -94,8 +94,9 @@ describe('Testing DateRangePickerComponent', () => {
       const now = moment();
       const toDate = now.add(7, 'days');
       const expectedValue = `${ now.format(simpleOptions.format) } - ${ toDate.format(simpleOptions.format) }`;
+      const options: IDateRangePickerOptions = Object.assign(simpleOptions, { minDate: moment().subtract(1, 'year'), maxDate: moment().add(1, 'year') });
 
-      component.options = simpleOptions;
+      component.options = options;
       component.fromDate = now;
       component.toDate = toDate;
       component.setRange();

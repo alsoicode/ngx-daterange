@@ -16,6 +16,8 @@ export interface IDateRangePickerOptions {
   position?: 'left' | 'right';
   preDefinedRanges?: IDefinedDateRange[];
   singleCalendar?: boolean;
+  startingFromDate?: momentNs.Moment;
+  startingToDate?: momentNs.Moment;
   timePickerOptions?: ITimePickerOptions;
   validators?: ValidatorFn | ValidatorFn[];
 }

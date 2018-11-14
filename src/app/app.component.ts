@@ -33,6 +33,8 @@ export class AppComponent implements OnInit {
         }
       }
     ],
+    startingFromDate: moment().subtract(1, 'month'),
+    startingToDate: moment(),
     validators: Validators.required,
   }
 
