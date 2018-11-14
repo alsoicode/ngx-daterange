@@ -51,7 +51,7 @@ export class AppModule { }
 ngx-daterange is implemented as a single text input that displays one, or two calendars depending on your options. It may be implemented with, or without options in your component as such:
 
 ```HTML
-<form enctype="application/x-www-form-urlencoded" role="form" >
+<form enctype="application/x-www-form-urlencoded" role="form">
   <fieldset>
     <date-range-picker [options]="options" [parentFormGroup]="form" [controlName]="'myDateRange'"></date-range-picker>
   </fieldset>
@@ -60,7 +60,7 @@ ngx-daterange is implemented as a single text input that displays one, or two ca
 
 By default, ngx-daterange will assign a control name of "dateRange", however you may override this with the `[controlName]` input.
 
-ngx-daterange assumes that you have a `FormGroup` instance that you are adding it to, and as such, expects you to pass in the FormGroup via the `[parentFormGroup]` input.
+ngx-daterange assumes that you have a `FormGroup` instance that you are adding it to, and as such expects you to pass in the FormGroup via the `[parentFormGroup]` input.
 
 ### Populating Existing Dates
 
@@ -71,7 +71,8 @@ You may pass in Moment instances via the `[fromDate]` and `[toDate]` inputs.
 A content slot is provided to override the default text input. Here's an example using a Bootstrap input group:
 
 ```HTML
-<date-range-picker [instanceId]="'secondDateRange'" [options]="secondFieldOptions" [parentFormGroup]="form" [controlName]="'secondDateRange'" #dateRangePicker>
+<date-range-picker [instanceId]="'secondDateRange'" [options]="secondFieldOptions" [parentFormGroup]="form"
+    [controlName]="'secondDateRange'" #dateRangePicker>
   <div class="form-group">
     <label for="secondDateRange">Your Custom Label</label>
     <div class="input-group">
@@ -80,7 +81,8 @@ A content slot is provided to override the default text input. Here's an example
           <i class="material-icons">event</i>
         </span>
       </div>
-      <input id="secondDateRange" class="form-control" type="text" name="dateRange" [value]="dateRangePicker.range" placeholder="From - To" formControlName="secondDateRange" />
+      <input id="secondDateRange" class="form-control" type="text" name="dateRange"
+          [value]="dateRangePicker.range" placeholder="From - To" formControlName="secondDateRange" />
     </div>
   </div>
 </date-range-picker>
@@ -179,7 +181,7 @@ Type: `string`
 
 Default value: `'left'`
 
-Accepted values: `'left'`, `'center'` or `'right'`
+Accepted values: `'left'` or `'right'`
 
 <hr />
 
