@@ -211,12 +211,18 @@ Type: `ValidatorFn[] | ValidatorFn`
 
 Default value: not specified
 
-# Running the Angular Sample Project
+## Running the Angular Sample Project
 
-## Development server
+### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Build Sample App
+### Build Sample App
 
 Run `ng build` to build the sample app. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Rationale
+
+This project is heavily refactored from: [angular-2-daterangepicker](https://github.com/technikhil314/angular-2-daterangepicker)
+
+I needed to be able to use custom templating and reactive forms, which were the primary features of developing this module which were missing in the original project. It is intended to allow the user to quickly pick a from and to date with reasonable default settings and just enough customization to allow you to accomplish your use case without being overly burdensome.
