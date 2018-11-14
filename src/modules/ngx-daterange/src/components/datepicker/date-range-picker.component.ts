@@ -238,25 +238,40 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  formatFromDate(event: Event): void {
+  setDateFromInput(event: Event, isLeft: boolean = false): void {
     const target = event.target as HTMLInputElement;
 
-    if (this.fromDate && target.value && target.value !== this.fromDate.format(this.options.format)) {
-      this.dateChanged({
-        day: this.getMoment(target.value),
-        isLeft: true
-      });
+    try {
+      if (target.value) {
+        const day = this.getMoment(target.value);
+
+        if (!day.isBefore(this.options.minDate) && !day.isAfter(this.options.maxDate)) {
+          if (isLeft && !this.fromDate) {
+            this.fromDate = day;
+          }
+
+          if (!isLeft && !this.toDate) {
+            this.toDate = day;
+          }
+
+          this.dateChanged({
+            day,
+            isLeft,
+          });
+
+          this.setFromToMonthYear(this.fromDate, this.toDate);
+        }
+        else {
+          // assume nothing - reset values
+          this.fromDate = null;
+          this.toDate = null;
+          target.value = '';
+          target.focus();
+        }
+      }
     }
-  }
-
-  formatToDate(event: Event): void {
-    const target = event.target as HTMLInputElement;
-
-    if (this.toDate && target.value && target.value !== this.toDate.format(this.options.format)) {
-      this.dateChanged({
-        day: this.getMoment(target.value),
-        isLeft: false
-      });
+    catch (e) {
+      console.error(e);
     }
   }
 

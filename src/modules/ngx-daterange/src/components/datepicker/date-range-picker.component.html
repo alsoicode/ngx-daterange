@@ -21,11 +21,11 @@
                     <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
                     <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
                     <span *ngIf="fromDate">From:&nbsp;</span>
-                    <input class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
+                    <input class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="setDateFromInput($event, true)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
                   </div>
                 </div>
 
-                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="formatFromDate($event)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
+                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="setDateFromInput($event, true)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
               </div>
 
               <div class="col">
@@ -34,11 +34,11 @@
                       <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
                       <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
                       <span *ngIf="toDate">To:&nbsp;</span>
-                      <input class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="formatToDate($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
+                      <input class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="setDateFromInput($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
                     </div>
                   </div>
 
-                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="formatToDate($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
+                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="setDateFromInput($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
               </div>
 
             </div>
