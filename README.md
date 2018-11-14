@@ -53,11 +53,7 @@ export class AppModule { }
 ngx-daterange is implemented as a single text input that displays one, or two calendars depending on your options. It may be implemented with, or without options in your component as such:
 
 ```HTML
-<form enctype="application/x-www-form-urlencoded" role="form">
-  <fieldset>
-    <date-range-picker [options]="options" [parentFormGroup]="form" [controlName]="'myDateRange'"></date-range-picker>
-  </fieldset>
-</form>
+<date-range-picker [options]="options" [parentFormGroup]="form" [controlName]="'myDateRange'"></date-range-picker>
 ```
 
 By default, ngx-daterange will assign a control name of "dateRange", however you may override this with the `[controlName]` input.
