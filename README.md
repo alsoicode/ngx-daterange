@@ -95,7 +95,7 @@ The value you use for the `[controlName]` must correspond to the `name` property
 
 ## Styling
 
-ngx-daterange's default templating is based on Bootstrap 4.x
+ngx-daterange's default templating and styling is based on Bootstrap 4.x
 
 ## Date Range Picker Options
 
