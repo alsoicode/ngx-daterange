@@ -30,18 +30,17 @@ describe('Testing DateRangePickerComponent', () => {
         FormsModule,
         ReactiveFormsModule,
       ],
-      providers: [
-        { provide: NgZone, useValue: mockNgZone },
-      ]
+      // providers: [
+      //   { provide: NgZone, useValue: mockNgZone },
+      // ]
     })
-    .compileComponents();
+    .compileComponents()
+    .then(() => {
+      fixture = TestBed.createComponent(DateRangePickerComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
   }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DateRangePickerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
   it('The NgxDateRangePicker Component should initialize', () => {
     expect(component).toBeDefined();
