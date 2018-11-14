@@ -1,26 +1,109 @@
 # Ngx Date Range
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
+![ngx-daterange](https://res.cloudinary.com/alsoicode/image/upload/v1542168886/ngx-daterange/ngx-daterange.png)
 
-This project began as a fork of [angular-2-daterangepicker](https://github.com/alsoicode/angular-2-daterangepicker) which works, but doesn't offer much in terms of type-safety or being able to be packaged for proper distribution as an Angular module, or for use with Angular's ReactiveForms module.
+## **This project is currently in development, and is not quite ready for production use!**
 
-This codebase is heavily refactored from angular-2-daterangepicker, and works great out-of-the-box if you're using Bootstrap 4.x.
-
-**This project is currently in development, and is not quite ready for production use.**
-
-You can however, run this sample application to see current progress.
+You can however, run this sample application to see current progress and try it out in your application.
 
 Items remaining:
 
-- Re-enable pre-supplied date ranges.
+- Testing
 
-## DatePicker Settings
+## External Dependencies
 
-Most settings are optional and an interface, [IDateRangePickerOptions](https://github.com/alsoicode/ngx-daterange/blob/master/src/modules/ngx-daterange/src/interfaces/IDateRangePickerOptions.ts) is provided.  Here are all of the settings currently enabled:
+- [Moment](https://momentjs.com)
+- [Moment-Range](https://github.com/rotaready/moment-range)
+
+## Required Angular Modules
+
+- FormsModule
+- ReactiveFormsModule
+
+## Usage
+
+Install from npm:
+
+ - `npm install ngx-daterange --save`
+
+Import and add the `NgxDateRangeModule` to your main module, or wherever applicable. Example:
+
+```TypeScript
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxDateRangeModule } from 'ngx-daterange';
+
+@NgModule({
+  declarations: [
+    ...
+  ],
+  imports: [
+    ...
+    FormsModule,
+    NgxDateRangeModule,
+    ReactiveFormsModule,
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+ngx-daterange is implemented as a single text input that displays one, or two calendars depending on your options. It may be implemented with, or without options in your component as such:
+
+```HTML
+<form enctype="application/x-www-form-urlencoded" role="form" >
+  <fieldset>
+    <date-range-picker [options]="options" [parentFormGroup]="form" [controlName]="'myDateRange'"></date-range-picker>
+  </fieldset>
+</form>
+```
+
+By default, ngx-daterange will assign a control name of "dateRange", however you may override this with the `[controlName]` input.
+
+ngx-daterange assumes that you have a `FormGroup` instance that you are adding it to, and as such, expects you to pass in the FormGroup via the `[parentFormGroup]` input.
+
+### Populating Existing Dates
+
+You may pass in Moment instances via the `[fromDate]` and `[toDate]` inputs.
+
+## Using Custom Templating
+
+A content slot is provided to override the default text input. Here's an example using a Bootstrap input group:
+
+```HTML
+<date-range-picker [instanceId]="'secondDateRange'" [options]="secondFieldOptions" [parentFormGroup]="form" [controlName]="'secondDateRange'" #dateRangePicker>
+  <div class="form-group">
+    <label for="secondDateRange">Your Custom Label</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="date-range-icon">
+          <i class="material-icons">event</i>
+        </span>
+      </div>
+      <input id="secondDateRange" class="form-control" type="text" name="dateRange" [value]="dateRangePicker.range" placeholder="From - To" formControlName="secondDateRange" />
+    </div>
+  </div>
+</date-range-picker>
+```
+
+You must supply one additional input: `[instanceId]`, which must correspond to the `id` of the input. Otherwise, the calendar(s) won't be displayed when the input is clicked.
+
+To access the ngx-daterange instance, assign a template variable (`#dateRangePicker` in the sample code) so that you may access the `range` value to bind to your input's `[value]`.
+
+The value you use for the `[controlName]` must correspond to the `name` property of the input, or use "dateRange" as the name of the input to match the default value in the component. Otherwise, the control won't be able to be added to your FormGroup instance.
+
+
+## Styling
+
+ngx-daterange's default templating is based on Bootstrap 4.x
+
+## Date Range Picker Options
+
+Most settings are optional and an interface, [IDateRangePickerOptions](https://github.com/alsoicode/ngx-daterange/blob/master/src/modules/ngx-daterange/src/interfaces/IDateRangePickerOptions.ts) is provided for your convenience.  Here are all of the settings currently enabled:
 
 ### autoApply
 
-Automatically sets the `range` value when both dates are selected and hides the calendars. If using a single calendar, the `range` is set and the calendar is closed when the date is selected.
+Automatically sets the `range` value when both dates are selected and hides the calendars. If using a single calendar, the `range` is set and the calendar is closed when the date is selected. If `false`, the Apply button will be displayed.
 
 Type: `boolean`
 
@@ -100,6 +183,16 @@ Accepted values: `'left'`, `'center'` or `'right'`
 
 <hr />
 
+### preDefinedRanges
+
+An array of pre-defined date ranges can be displayed to the user using a friendly "name". The array will appear below the Cancel / Reset / Apply buttons.
+
+Type: `IDefinedDateRange[]`
+
+Default value: not specified
+
+<hr />
+
 ### singleCalendar
 
 Display a single calendar instance instead of a range. Useful when you don't want to add another dependency and need to select a single date.
@@ -110,11 +203,15 @@ Default value: `false`
 
 <hr />
 
-# Building the Library
+### validators
 
-Run `ng build:lib` to build the ngx-daterange module for deployment to npm. The build articfacts will be stored in the `ngx-daterange/dist` directory.
+One or more ValidatorFn instances may be supplied to suit your needs.
 
-# Running the Angular Project
+Type: `ValidatorFn[] | ValidatorFn`
+
+Default value: not specified
+
+# Running the Angular Sample Project
 
 ## Development server
 
