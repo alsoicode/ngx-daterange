@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 
-import { IDateRangePickerOptions } from '../modules/ngx-daterange/src/interfaces';
+import { IDateRange, IDateRangePickerOptions } from '../modules/ngx-daterange/src/interfaces';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -11,6 +11,7 @@ import { IDateRangePickerOptions } from '../modules/ngx-daterange/src/interfaces
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  firstFieldEmittedValue: IDateRange;
   firstFieldOptions: IDateRangePickerOptions = {
     autoApply: false,
     format: 'MM/DD/YYYY',
@@ -66,5 +67,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // setup "parent" form group for the date piker instance to add itself to.
     this.form = this.formBuilder.group({});
+  }
+
+  onRangeSelected(value: IDateRange): void {
+    this.firstFieldEmittedValue = value;
+    console.log(this.firstFieldEmittedValue);
   }
 }

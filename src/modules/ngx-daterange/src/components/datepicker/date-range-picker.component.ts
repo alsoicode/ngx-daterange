@@ -261,6 +261,8 @@ export class DateRangePickerComponent implements OnInit {
           target.focus();
         }
       }
+
+      this.emitRangeSelected();
     }
     catch (e) {
       console.error(e);

@@ -231,6 +231,10 @@ Type: `ValidatorFn[] | ValidatorFn`
 
 Default value: not specified
 
+## Event Emitter
+
+When a date is specified, an [IDateRange](https://github.com/alsoicode/ngx-daterange/blob/master/src/modules/ngx-daterange/src/interfaces/IDateRange.ts) object is emitted via the `rangeSelected` function.
+
 ## Running the Angular Sample Project
 
 ### Development server
