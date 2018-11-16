@@ -47,11 +47,11 @@
               <div class="col">
                 <calendar [ngClass]="{ 'calendar': true, 'calendar-single': options.singleCalendar }" [isLeft]="true" [month]="fromMonth" [year]="fromYear" (monthChanged)=monthChanged($event)
                   (yearChanged)="yearChanged($event)" (dateChanged)="dateChanged($event)" [format]="options.format" [selectedFromDate]="fromDate"
-                  [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [timePickerOptions]="options.timePickerOptions" [singleCalendar]="options.singleCalendar" [icons]="options.icons"></calendar>
+                  [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [singleCalendar]="options.singleCalendar" [icons]="options.icons"></calendar>
               </div>
 
               <div class="col" *ngIf="!options.singleCalendar">
-                <calendar class="calendar" [month]="toMonth" [year]="toYear" [format]="options.format" (dateChanged)="dateChanged($event)" (monthChanged)="monthChanged($event)" (yearChanged)=yearChanged($event) [selectedFromDate]="fromDate" [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [timePickerOptions]="options.timePickerOptions" [icons]="options.icons"></calendar>
+                <calendar class="calendar" [month]="toMonth" [year]="toYear" [format]="options.format" (dateChanged)="dateChanged($event)" (monthChanged)="monthChanged($event)" (yearChanged)=yearChanged($event) [selectedFromDate]="fromDate" [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [icons]="options.icons"></calendar>
               </div>
             </div>
           </div>

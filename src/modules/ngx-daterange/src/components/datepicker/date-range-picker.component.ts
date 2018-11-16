@@ -68,8 +68,8 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setFromDate(this.fromDate);
-    this.setToDate(this.toDate);
+    // ensure input dates are within the min/max dates in options
+    this.validateInputDates();
 
     if (this.options.preDefinedRanges && this.options.preDefinedRanges.length > 0) {
       this.defaultRanges = this.validateAndAssignPredefinedRanges(this.options.preDefinedRanges);
@@ -104,8 +104,18 @@ export class DateRangePickerComponent implements OnInit {
 
     this.parentFormGroup.addControl(this.controlName, control);
 
-    // sets value of control
+    // set value of control
     this.setRange();
+  }
+
+  validateInputDates(): void {
+    if (this.fromDate && this.options.minDate && this.fromDate.isBefore(this.options.minDate, 'date')) {
+      throw new RangeError('@Input fromDate is before the specified minDate in options');
+    }
+
+    if (this.toDate && this.options.maxDate && this.toDate.isAfter(this.options.maxDate, 'date')) {
+      throw new RangeError('@Input toDate is after the specified maxDate in options');
+    }
   }
 
   validateOptionDates(): void {
@@ -122,12 +132,13 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
+  // assists CSS to fix small positioning bug with From:/To: date text
   checkChrome(): string {
     return window['chrome'] ? 'is-chrome' : '';
   }
 
   toggleCalendarVisibility(value?: boolean): void {
-    this.showCalendars = value;
+    this.showCalendars = value ? value : !this.showCalendars;
   }
 
   setFromToMonthYear(fromDate?: momentNs.Moment, toDate?: momentNs.Moment): void {
@@ -144,16 +155,7 @@ export class DateRangePickerComponent implements OnInit {
   updateCalendar(): void {
     // get month and year to show calendar
     this.setFromToMonthYear();
-
     this.setRange();
-  }
-
-  setFromDate(value: momentNs.Moment): void {
-    this.fromDate = value ? value : null;
-  }
-
-  setToDate(value: momentNs.Moment): void {
-    this.toDate = value ? value : null;
   }
 
   // update from/to based on selection
@@ -162,30 +164,14 @@ export class DateRangePickerComponent implements OnInit {
     const isLeft = changedData.isLeft;
 
     if (isLeft) {
-      if (!this.options.timePickerOptions) {
-        value.set({
-          hour: 0,
-          minute: 0,
-          second: 0
-        });
-      }
-
-      this.setFromDate(value);
+      this.fromDate = value;
 
       if (this.fromDate.isAfter(this.toDate, 'date')) {
         this.toDate = this.fromDate.clone();
       }
     }
     else {
-      if (!this.options.timePickerOptions) {
-        value.set({
-          hour: 23,
-          minute: 59,
-          second: 59
-        });
-      }
-
-      this.setToDate(value);
+      this.toDate = value;
 
       if (this.toDate.isBefore(this.fromDate, 'date')) {
         this.fromDate = this.toDate.clone();
@@ -339,8 +325,8 @@ export class DateRangePickerComponent implements OnInit {
     // adjust to/from month/year so calendar months and years match range
     this.setFromToMonthYear(definedDateRange.value.start, definedDateRange.value.end);
 
-    this.setFromDate(definedDateRange.value.start);
-    this.setToDate(definedDateRange.value.end);
+    this.fromDate = definedDateRange.value.start;
+    this.toDate = definedDateRange.value.end;
 
     if (this.options.autoApply) {
       this.apply(event);

@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter, OnChanges, ViewEncapsulation, C
 import * as momentNs from 'moment'; const moment = momentNs;
 
 import { extendMoment, DateRange } from 'moment-range';
-import { IChangedData, IDateRange, ITimePickerOptions } from '../../interfaces';
+import { IChangedData, IDateRange } from '../../interfaces';
 
 const { range } = extendMoment(moment);
 
@@ -41,12 +41,6 @@ export class CalendarComponent implements OnChanges {
 
     @Input()
     maxDate: momentNs.Moment;
-
-    // @Input()
-    // disableBeforeStart: boolean;
-
-    @Input()
-    timePickerOptions: ITimePickerOptions = null;
 
     @Input()
     singleCalendar = false;
@@ -96,28 +90,23 @@ export class CalendarComponent implements OnChanges {
 
       for (let i = 0; i < weeks.length; i++) {
         const week = weeks[i];
-        let firstWeekDay;
-        let lastWeekDay;
+        let firstWeekDay = moment([this.year, this.month]).week(week).day(0);;
+        let lastWeekDay = moment([this.year, this.month]).week(week).day(6);;
 
         if (i > 0 && week < weeks[i - 1]) {
-          firstWeekDay = moment([this.year, this.month]).add(1, 'year').week(week).day(0);
-          lastWeekDay = moment([this.year, this.month]).add(1, 'year').week(week).day(6);
-        }
-        else {
-          firstWeekDay = moment([this.year, this.month]).week(week).day(0);
-          lastWeekDay = moment([this.year, this.month]).week(week).day(6);
+          firstWeekDay .add(1, 'year');
+          lastWeekDay.add(1, 'year');
         }
 
-        weeksRange.push(range(firstWeekDay, lastWeekDay));
+        weeksRange.push(range(firstWeekDay.week(week).day(0), lastWeekDay.week(week).day(6)));
       }
 
       return weeksRange;
     }
 
     createCalendarGridData(): void {
-      const startDate = moment([this.year, this.month]);
-      const firstDay = moment(startDate).startOf('month');
-      const endDay = moment(startDate).add(1, 'month').endOf('month');
+      const firstDay = moment([this.year, this.month]).startOf('month');
+      const endDay = moment([this.year, this.month]).add(1, 'month').endOf('month');
       const monthRange = range(firstDay, endDay);
       const weeksRange = this.getWeeksRange(this.getWeekNumbers(monthRange));
       const weekList = [];
@@ -157,18 +146,18 @@ export class CalendarComponent implements OnChanges {
   isSelectedDate(day: momentNs.Moment): boolean {
     const date = this.isLeft ? this.selectedFromDate : this.selectedToDate;
 
-    return day.get('month') === this.month && day.isSame(date, 'date');
+    return date && day.get('month') === this.month && day.isSame(date, 'date');
   }
 
   isDateInRange(day: momentNs.Moment): boolean {
     if (this.isLeft) {
       if (!this.selectedToDate) {
-        return day.get('month') === this.month && day.isSameOrAfter(this.selectedFromDate, 'date');
+        return this.selectedFromDate && day.get('month') === this.month && day.isSameOrAfter(this.selectedFromDate, 'date');
       }
     }
 
     if (this.selectedFromDate) {
-      return day.get('month') === this.month && day.isSameOrBefore(this.selectedToDate, 'date') && day.isSameOrAfter(this.selectedFromDate, 'date');
+      return this.selectedToDate && day.get('month') === this.month && day.isSameOrBefore(this.selectedToDate, 'date') && day.isSameOrAfter(this.selectedFromDate, 'date');
     }
   }
 
