@@ -356,10 +356,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   isAutoApply(): boolean {
-    if (this.options.timePickerOptions) {
-      return false;
-    }
-    else if (this.options.singleCalendar) {
+    if (this.options.singleCalendar) {
       return true;
     }
     else {

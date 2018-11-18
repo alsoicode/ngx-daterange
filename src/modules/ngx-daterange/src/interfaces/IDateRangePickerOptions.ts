@@ -2,7 +2,6 @@ import { ValidatorFn } from '@angular/forms';
 import * as momentNs from 'moment';
 
 import { IDefinedDateRange } from './IDefinedDateRange';
-import { ITimePickerOptions } from './ITimePickerOptions';
 
 export interface IDateRangePickerOptions {
   autoApply?: boolean;
@@ -18,6 +17,5 @@ export interface IDateRangePickerOptions {
   singleCalendar?: boolean;
   startingFromDate?: momentNs.Moment;
   startingToDate?: momentNs.Moment;
-  timePickerOptions?: ITimePickerOptions;
   validators?: ValidatorFn | ValidatorFn[];
 }

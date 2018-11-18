@@ -14,6 +14,7 @@ const simpleOptions: IDateRangePickerOptions = {
   minDate: moment().subtract(1, 'year'),
   maxDate: moment().add(1, 'year'),
   singleCalendar: false,
+  preDefinedRanges: null,
 }
 
 describe('Testing DateRangePickerComponent', () => {
@@ -81,6 +82,7 @@ describe('Testing DateRangePickerComponent', () => {
         minDate: moment().subtract(1, 'month'),
         maxDate: moment(),
         singleCalendar: false,
+        preDefinedRanges: null,
       });
 
       component.options = options;
@@ -93,12 +95,35 @@ describe('Testing DateRangePickerComponent', () => {
         minDate: moment().subtract(1, 'month'),
         maxDate: moment(),
         singleCalendar: false,
+        preDefinedRanges: null,
       });
 
       component.options = options;
       component.toDate = moment().add(2, 'months');
       expect(() => fixture.detectChanges()).toThrow();
     }));
+
+    describe('Pre-Defined Range Tests', () => {
+      it('should throw an error if the range start value is after the range value end', async(() => {
+        const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
+          minDate: moment().subtract(1, 'month'),
+          maxDate: moment(),
+          singleCalendar: false,
+          preDefinedRanges: [
+            {
+              name: 'Test Defined Range',
+              value: {
+                start: moment().add(1, 'month'),
+                end: moment()
+              }
+            }
+          ]
+        });
+
+        component.options = options;
+        expect(() => fixture.detectChanges()).toThrow();
+      }));
+    });
   });
 
   describe('Testing setRange()', () => {
@@ -122,6 +147,7 @@ describe('Testing DateRangePickerComponent', () => {
         minDate: moment().subtract(1, 'year'),
         maxDate: moment().add(1, 'year'),
         singleCalendar: false,
+        preDefinedRanges: null,
       });
 
       component.options = options;
