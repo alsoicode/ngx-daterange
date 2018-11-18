@@ -94,7 +94,7 @@ export class CalendarComponent implements OnChanges {
         let lastWeekDay = moment([this.year, this.month]).week(week).day(6);;
 
         if (i > 0 && week < weeks[i - 1]) {
-          firstWeekDay .add(1, 'year');
+          firstWeekDay.add(1, 'year');
           lastWeekDay.add(1, 'year');
         }
 

@@ -66,5 +66,19 @@ describe('Testing CalendarComponent', () => {
 
       expect(weekNumbers).toEqual(expectedWeeks);
     }));
+
+    it('should return an array of DateRange objects when calling getWeeksRange() for the specified week numbers', async(() => {
+      const weeksRange: DateRange[] = component.getWeeksRange([1, 2, 3, 4, 5]);
+
+      expect(weeksRange.length).not.toEqual(0);
+    }));
+
+    it('should crete a list of weeks when calling createCalendarGridData()', async(() => {
+      component.year = moment().year();
+      component.month = moment().month();
+      component.createCalendarGridData();
+
+      expect(component.weekList.length).toEqual(5);
+    }));
   });
 });
