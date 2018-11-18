@@ -104,7 +104,7 @@ describe('Testing DateRangePickerComponent', () => {
     }));
 
     describe('Pre-Defined Range Tests', () => {
-      it('should throw an error if the range start value is after the range value end', async(() => {
+      it('should throw an error if the range start value is after the range end value', async(() => {
         const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
           minDate: moment().subtract(1, 'month'),
           maxDate: moment(),
