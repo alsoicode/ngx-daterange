@@ -75,6 +75,30 @@ describe('Testing DateRangePickerComponent', () => {
     expect(() => fixture.detectChanges()).toThrow();
   }));
 
+  it('should throw an error if the @Input fromDate is before the options.minDate', async(() => {
+    const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
+      minDate: moment().subtract(1, 'month'),
+      maxDate: moment(),
+      singleCalendar: false,
+    });
+
+    component.options = options;
+    component.fromDate = moment().subtract(2, 'months');
+    expect(() => fixture.detectChanges()).toThrow();
+  }));
+
+  it('should throw an error if the @Input toDate is after the options.maxDate', async(() => {
+    const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
+      minDate: moment().subtract(1, 'month'),
+      maxDate: moment(),
+      singleCalendar: false,
+    });
+
+    component.options = options;
+    component.toDate = moment().add(2, 'months');
+    expect(() => fixture.detectChanges()).toThrow();
+  }));
+
   describe('Testing setRange()', () => {
     it('should return the formatted fromDate when using a single calendar', async(() => {
       const options: IDateRangePickerOptions = Object.assign(simpleOptions, { singleCalendar: true });
@@ -92,7 +116,11 @@ describe('Testing DateRangePickerComponent', () => {
       const now = moment();
       const toDate = moment().add(7, 'days');
       const expectedValue = `${ now.format(simpleOptions.format) } - ${ toDate.format(simpleOptions.format) }`;
-      const options: IDateRangePickerOptions = Object.assign(simpleOptions, { minDate: moment().subtract(1, 'year'), maxDate: moment().add(1, 'year') });
+      const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
+        minDate: moment().subtract(1, 'year'),
+        maxDate: moment().add(1, 'year'),
+        singleCalendar: false,
+      });
 
       component.options = options;
       component.fromDate = now;
