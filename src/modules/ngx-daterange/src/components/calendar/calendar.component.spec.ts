@@ -47,7 +47,7 @@ describe('Testing CalendarComponent', () => {
   }));
 
   describe('Test range generation utility functions', () => {
-    it('calling getWeekNumbers() should return an array of the weeks of the year for the given range of months', async(() => {
+    it('should return an array of the weeks of the year for the given range of months when calling getWeekNumbers()', async(() => {
       let firstDay = moment([2018, 0]).startOf('month');
       let endDay = moment([2018, 1]).add(1, 'month').endOf('month');
       let monthRange = range(firstDay, endDay);
