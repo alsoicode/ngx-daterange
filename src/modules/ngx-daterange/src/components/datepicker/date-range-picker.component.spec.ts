@@ -42,6 +42,11 @@ describe('Testing DateRangePickerComponent', () => {
     });
   }));
 
+  afterEach(() => {
+    fixture.destroy();
+    component = null;
+  });
+
   it('The NgxDateRangePicker Component should initialize', async(() => {
     fixture.detectChanges();
 
@@ -58,7 +63,7 @@ describe('Testing DateRangePickerComponent', () => {
     }));
 
     it('should use options over defaults if provided', async(() => {
-      const options: IDateRangePickerOptions = Object.assign(simpleOptions, { icons: 'material' })
+      const options: IDateRangePickerOptions = Object.assign(simpleOptions, { icons: 'material', minDate: moment().subtract(1, 'month'), maxDate: moment() });
       component.options = options;
 
       fixture.detectChanges();
@@ -115,6 +120,46 @@ describe('Testing DateRangePickerComponent', () => {
               value: {
                 start: moment().add(1, 'month'),
                 end: moment()
+              }
+            }
+          ]
+        });
+
+        component.options = options;
+        expect(() => fixture.detectChanges()).toThrow();
+      }));
+
+      it('should throw an error if the range start value is before the options minDate', async(() => {
+        const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
+          minDate: moment().subtract(1, 'month'),
+          maxDate: moment(),
+          singleCalendar: false,
+          preDefinedRanges: [
+            {
+              name: 'Test Defined Range',
+              value: {
+                start: moment().subtract(2, 'months'),
+                end: moment()
+              }
+            }
+          ]
+        });
+
+        component.options = options;
+        expect(() => fixture.detectChanges()).toThrow();
+      }));
+
+      it('should throw an error if the range end value is after the options maxDate', async(() => {
+        const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
+          minDate: moment().subtract(1, 'month'),
+          maxDate: moment(),
+          singleCalendar: false,
+          preDefinedRanges: [
+            {
+              name: 'Test Defined Range',
+              value: {
+                start: moment().subtract(1, 'week'),
+                end: moment().add(1, 'month')
               }
             }
           ]
