@@ -20,8 +20,6 @@ describe('Testing DateRangePickerComponent', () => {
 
   let component: DateRangePickerComponent;
   let fixture: ComponentFixture<DateRangePickerComponent>;
-  const mockNgZone = jasmine.createSpyObj('mockNgZone', [ 'run', 'runOutsideAngular' ]);
-  mockNgZone.run.and.callFake(fn => fn());
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -58,11 +56,10 @@ describe('Testing DateRangePickerComponent', () => {
   }));
 
   it('should use options over defaults if provided', async(() => {
-    fixture.detectChanges();
-
-    const options: IDateRangePickerOptions = Object.assign(simpleOptions, { icons: 'material' });
-
+    const options: IDateRangePickerOptions = Object.assign(simpleOptions, { icons: 'material' })
     component.options = options;
+
+    fixture.detectChanges();
 
     // Ensure options provided override defaults
     Object.keys(options).forEach((key: string) => {
@@ -80,13 +77,11 @@ describe('Testing DateRangePickerComponent', () => {
 
   describe('Testing setRange()', () => {
     it('should return the formatted fromDate when using a single calendar', async(() => {
-
       const options: IDateRangePickerOptions = Object.assign(simpleOptions, { singleCalendar: true });
       const now = moment();
 
       component.options = options;
       component.fromDate = now;
-      component.setRange();
 
       fixture.detectChanges();
 
@@ -94,7 +89,6 @@ describe('Testing DateRangePickerComponent', () => {
     }));
 
     it('should return `fromDate - toDate` when using both calendars', async(() => {
-
       const now = moment();
       const toDate = moment().add(7, 'days');
       const expectedValue = `${ now.format(simpleOptions.format) } - ${ toDate.format(simpleOptions.format) }`;
@@ -103,7 +97,6 @@ describe('Testing DateRangePickerComponent', () => {
       component.options = options;
       component.fromDate = now;
       component.toDate = toDate;
-      component.setRange();
 
       fixture.detectChanges();
 
@@ -111,11 +104,9 @@ describe('Testing DateRangePickerComponent', () => {
     }));
 
     it('should return an empty string if no fromDate or toDate exists', async(() => {
-
       component.options = simpleOptions;
       component.fromDate = null;
       component.toDate = null;
-      component.setRange();
 
       fixture.detectChanges();
 

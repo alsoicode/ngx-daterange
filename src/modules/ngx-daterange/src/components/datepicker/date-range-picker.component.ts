@@ -214,7 +214,7 @@ export class DateRangePickerComponent implements OnInit {
     if (this.options.singleCalendar && this.fromDate) {
       this.range = this.fromDate.format(this.options.format);
     }
-    else if (this.fromDate && this.toDate) {
+    else if (!this.options.singleCalendar && this.fromDate && this.toDate) {
       this.range = `${ this.fromDate.format(this.options.format) } - ${ this.toDate.format(this.options.format) }`;
     }
     else {
