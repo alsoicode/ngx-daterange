@@ -47,57 +47,59 @@ describe('Testing DateRangePickerComponent', () => {
     expect(component).toBeDefined();
   }));
 
-  it('should use default options if options are not provided', async(() => {
-    fixture.detectChanges();
+  describe('Testing options', () => {
+    it('should use default options if options are not provided', async(() => {
+      fixture.detectChanges();
 
-    Object.keys(defaultDateRangePickerOptions).forEach((key: string) => {
-      expect(component.options[key]).toEqual(defaultDateRangePickerOptions[key]);
-    });
-  }));
+      Object.keys(defaultDateRangePickerOptions).forEach((key: string) => {
+        expect(component.options[key]).toEqual(defaultDateRangePickerOptions[key]);
+      });
+    }));
 
-  it('should use options over defaults if provided', async(() => {
-    const options: IDateRangePickerOptions = Object.assign(simpleOptions, { icons: 'material' })
-    component.options = options;
+    it('should use options over defaults if provided', async(() => {
+      const options: IDateRangePickerOptions = Object.assign(simpleOptions, { icons: 'material' })
+      component.options = options;
 
-    fixture.detectChanges();
+      fixture.detectChanges();
 
-    // Ensure options provided override defaults
-    Object.keys(options).forEach((key: string) => {
-      expect(component.options[key]).toEqual(options[key]);
-    });
-  }));
+      // Ensure options provided override defaults
+      Object.keys(options).forEach((key: string) => {
+        expect(component.options[key]).toEqual(options[key]);
+      });
+    }));
 
-  it('should throw an error if the minDate is after the maxDate', async(() => {
-    const options: IDateRangePickerOptions = Object.assign(simpleOptions, { minDate: moment().add(1, 'year'), maxDate: moment() });
+    it('should throw an error if the minDate is after the maxDate', async(() => {
+      const options: IDateRangePickerOptions = Object.assign(simpleOptions, { minDate: moment().add(1, 'year'), maxDate: moment() });
 
-    component.options = options;
+      component.options = options;
 
-    expect(() => fixture.detectChanges()).toThrow();
-  }));
+      expect(() => fixture.detectChanges()).toThrow();
+    }));
 
-  it('should throw an error if the @Input fromDate is before the options.minDate', async(() => {
-    const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
-      minDate: moment().subtract(1, 'month'),
-      maxDate: moment(),
-      singleCalendar: false,
-    });
+    it('should throw an error if the @Input fromDate is before the options.minDate', async(() => {
+      const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
+        minDate: moment().subtract(1, 'month'),
+        maxDate: moment(),
+        singleCalendar: false,
+      });
 
-    component.options = options;
-    component.fromDate = moment().subtract(2, 'months');
-    expect(() => fixture.detectChanges()).toThrow();
-  }));
+      component.options = options;
+      component.fromDate = moment().subtract(2, 'months');
+      expect(() => fixture.detectChanges()).toThrow();
+    }));
 
-  it('should throw an error if the @Input toDate is after the options.maxDate', async(() => {
-    const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
-      minDate: moment().subtract(1, 'month'),
-      maxDate: moment(),
-      singleCalendar: false,
-    });
+    it('should throw an error if the @Input toDate is after the options.maxDate', async(() => {
+      const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
+        minDate: moment().subtract(1, 'month'),
+        maxDate: moment(),
+        singleCalendar: false,
+      });
 
-    component.options = options;
-    component.toDate = moment().add(2, 'months');
-    expect(() => fixture.detectChanges()).toThrow();
-  }));
+      component.options = options;
+      component.toDate = moment().add(2, 'months');
+      expect(() => fixture.detectChanges()).toThrow();
+    }));
+  });
 
   describe('Testing setRange()', () => {
     it('should return the formatted fromDate when using a single calendar', async(() => {
