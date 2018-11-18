@@ -81,4 +81,33 @@ describe('Testing CalendarComponent', () => {
       expect(component.weekList.length).toEqual(5);
     }));
   });
+
+  describe('Test day comparison methods that return CSS classes', () => {
+    describe('isDisabled()', () => {
+      it('should be true if the day is before the minDate', async(() => {
+        component.minDate = moment();
+
+        const day = moment().subtract(1, 'day');
+
+        expect(component.isDisabled(day)).toBe(true);
+      }));
+
+      it('should be true if the day is after the maxDate', async(() => {
+        component.maxDate = moment().add(1, 'day');
+
+        const day = moment().add(2, 'day');
+
+        expect(component.isDisabled(day)).toBe(true);
+      }));
+
+      it('should be true if the day is before the selectedFromDate and the calendar is not the left/from calendar', async(() => {
+        component.isLeft = false;
+        component.selectedFromDate = moment().subtract(1, 'day');
+
+        const day = moment().subtract(2, 'days');
+
+        expect(component.isDisabled(day)).toBe(true);
+      }));
+    });
+  });
 });
