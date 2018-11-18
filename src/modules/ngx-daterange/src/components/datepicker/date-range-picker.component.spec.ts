@@ -70,18 +70,16 @@ describe('Testing DateRangePickerComponent', () => {
     });
   }));
 
-  // it('should throw an error if the minDate is after the maxDate', async(() => {
-  //   const options: IDateRangePickerOptions = Object.assign(simpleOptions, { minDate: moment().add(1, 'year'), maxDate: moment() });
+  it('should throw an error if the minDate is after the maxDate', async(() => {
+    const options: IDateRangePickerOptions = Object.assign(simpleOptions, { minDate: moment().add(1, 'year'), maxDate: moment() });
 
-  //   component.options = options;
-  //   fixture.detectChanges();
+    component.options = options;
 
-  //   expect(component.validateOptionDates).toThrow(new RangeError());
-  // }));
+    expect(() => fixture.detectChanges()).toThrow();
+  }));
 
   describe('Testing setRange()', () => {
     it('should return the formatted fromDate when using a single calendar', async(() => {
-      fixture.detectChanges();
 
       const options: IDateRangePickerOptions = Object.assign(simpleOptions, { singleCalendar: true });
       const now = moment();
@@ -90,14 +88,15 @@ describe('Testing DateRangePickerComponent', () => {
       component.fromDate = now;
       component.setRange();
 
+      fixture.detectChanges();
+
       expect(component.range).toEqual(now.format(options.format));
     }));
 
     it('should return `fromDate - toDate` when using both calendars', async(() => {
-      fixture.detectChanges();
 
       const now = moment();
-      const toDate = now.add(7, 'days');
+      const toDate = moment().add(7, 'days');
       const expectedValue = `${ now.format(simpleOptions.format) } - ${ toDate.format(simpleOptions.format) }`;
       const options: IDateRangePickerOptions = Object.assign(simpleOptions, { minDate: moment().subtract(1, 'year'), maxDate: moment().add(1, 'year') });
 
@@ -106,16 +105,19 @@ describe('Testing DateRangePickerComponent', () => {
       component.toDate = toDate;
       component.setRange();
 
+      fixture.detectChanges();
+
       expect(component.range).toEqual(expectedValue);
     }));
 
     it('should return an empty string if no fromDate or toDate exists', async(() => {
-      fixture.detectChanges();
 
       component.options = simpleOptions;
       component.fromDate = null;
       component.toDate = null;
       component.setRange();
+
+      fixture.detectChanges();
 
       expect(component.range).toEqual('');
     }));
