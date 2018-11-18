@@ -68,6 +68,8 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.validateOptionDates();
+
     // ensure input dates are within the min/max dates in options
     this.validateInputDates();
 
@@ -84,8 +86,6 @@ export class DateRangePickerComponent implements OnInit {
         this.options[key] = defaultDateRangePickerOptions[key];
       }
     });
-
-    this.validateOptionDates();
 
     // update calendar grid
     this.updateCalendar();

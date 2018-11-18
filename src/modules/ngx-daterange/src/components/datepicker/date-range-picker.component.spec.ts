@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { NgZone } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-import { MockNgZone } from '../../mocks/ng-zone.mock';
 import * as moment from 'moment';
 
 import { CalendarComponent } from '../calendar/calendar.component';
@@ -37,29 +35,31 @@ describe('Testing DateRangePickerComponent', () => {
         FormsModule,
         ReactiveFormsModule,
       ],
-      // providers: [
-      //   { provide: NgZone, useValue: mockNgZone },
-      // ]
     })
     .compileComponents()
     .then(() => {
       fixture = TestBed.createComponent(DateRangePickerComponent);
       component = fixture.componentInstance;
-      fixture.detectChanges();
     });
   }));
 
-  it('The NgxDateRangePicker Component should initialize', () => {
-    expect(component).toBeDefined();
-  });
+  it('The NgxDateRangePicker Component should initialize', async(() => {
+    fixture.detectChanges();
 
-  it('should use default options if options are not provided', () => {
+    expect(component).toBeDefined();
+  }));
+
+  it('should use default options if options are not provided', async(() => {
+    fixture.detectChanges();
+
     Object.keys(defaultDateRangePickerOptions).forEach((key: string) => {
       expect(component.options[key]).toEqual(defaultDateRangePickerOptions[key]);
     });
-  });
+  }));
 
-  it('should use options over defaults if provided', () => {
+  it('should use options over defaults if provided', async(() => {
+    fixture.detectChanges();
+
     const options: IDateRangePickerOptions = Object.assign(simpleOptions, { icons: 'material' });
 
     component.options = options;
@@ -68,18 +68,21 @@ describe('Testing DateRangePickerComponent', () => {
     Object.keys(options).forEach((key: string) => {
       expect(component.options[key]).toEqual(options[key]);
     });
-  });
+  }));
 
-  it('should throw an error if the minDate is after the maxDate', () => {
-    const options: IDateRangePickerOptions = Object.assign(simpleOptions, { minDate: moment().add(1, 'year'), maxDate: moment() });
+  // it('should throw an error if the minDate is after the maxDate', async(() => {
+  //   const options: IDateRangePickerOptions = Object.assign(simpleOptions, { minDate: moment().add(1, 'year'), maxDate: moment() });
 
-    component.options = options;
+  //   component.options = options;
+  //   fixture.detectChanges();
 
-    // expect(fixture.detectChanges).toThrow(new RangeError());
-  });
+  //   expect(component.validateOptionDates).toThrow(new RangeError());
+  // }));
 
   describe('Testing setRange()', () => {
-    it('should return the formatted fromDate when using a single calendar', () => {
+    it('should return the formatted fromDate when using a single calendar', async(() => {
+      fixture.detectChanges();
+
       const options: IDateRangePickerOptions = Object.assign(simpleOptions, { singleCalendar: true });
       const now = moment();
 
@@ -88,9 +91,11 @@ describe('Testing DateRangePickerComponent', () => {
       component.setRange();
 
       expect(component.range).toEqual(now.format(options.format));
-    });
+    }));
 
-    it('should return `fromDate - toDate` when using both calendars', () => {
+    it('should return `fromDate - toDate` when using both calendars', async(() => {
+      fixture.detectChanges();
+
       const now = moment();
       const toDate = now.add(7, 'days');
       const expectedValue = `${ now.format(simpleOptions.format) } - ${ toDate.format(simpleOptions.format) }`;
@@ -102,15 +107,17 @@ describe('Testing DateRangePickerComponent', () => {
       component.setRange();
 
       expect(component.range).toEqual(expectedValue);
-    });
+    }));
 
-    it('should return an empty string if no fromDate or toDate exists', () => {
+    it('should return an empty string if no fromDate or toDate exists', async(() => {
+      fixture.detectChanges();
+
       component.options = simpleOptions;
       component.fromDate = null;
       component.toDate = null;
       component.setRange();
 
       expect(component.range).toEqual('');
-    });
+    }));
   });
 });
