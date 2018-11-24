@@ -20,6 +20,8 @@
     "date",
     "daterange",
     "date range",
+    "date range picker",
+    "datepicker",
     "date picker"
   ],
   "author": "Brandon Taylor",
@@ -30,7 +32,7 @@
   "homepage": "https://github.com/alsoicode/ngx-daterange#readme",
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "peerDependencies": {
-    "@angular/core": "~2.0.0"
+    "@angular/core": "~4.0.0"
   },
   "ngPackage": {
     "lib": {
