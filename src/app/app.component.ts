@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
 
+import { DateRangePickerComponent } from '../modules/ngx-daterange/src/components/datepicker/date-range-picker.component';
 import { IDateRange, IDateRangePickerOptions } from '../modules/ngx-daterange/src/interfaces';
 
 @Component({
@@ -11,6 +12,10 @@ import { IDateRange, IDateRangePickerOptions } from '../modules/ngx-daterange/sr
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  @ViewChild('dateRangePicker')
+  dateRangePicker: DateRangePickerComponent;
+
   firstFieldEmittedValue: IDateRange;
   firstFieldOptions: IDateRangePickerOptions = {
     autoApply: false,
@@ -72,5 +77,9 @@ export class AppComponent implements OnInit {
   onRangeSelected(value: IDateRange): void {
     this.firstFieldEmittedValue = value;
     console.log(this.firstFieldEmittedValue);
+  }
+
+  onReset(event: Event): void {
+    this.dateRangePicker.reset(event);
   }
 }
