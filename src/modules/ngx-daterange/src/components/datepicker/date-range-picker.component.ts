@@ -139,7 +139,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   toggleCalendarVisibility(value?: boolean): void {
-    this.showCalendars = value ? value : !this.showCalendars;
+    this.showCalendars = value !== null ? value : !this.showCalendars;
   }
 
   setFromToMonthYear(fromDate?: momentNs.Moment, toDate?: momentNs.Moment): void {
