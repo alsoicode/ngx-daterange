@@ -2,7 +2,7 @@
 
 ![ngx-daterange](https://res.cloudinary.com/alsoicode/image/upload/v1542168886/ngx-daterange/ngx-daterange.png)
 
-Current version: 1.0.3
+Current version: 1.0.5
 
 Here's a minimal example of ngx-daterange in action, showing positioning on the left, right and using custom templating: https://ngx-daterange.netlify.com/
 
