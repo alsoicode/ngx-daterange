@@ -310,7 +310,6 @@ export class DateRangePickerComponent implements OnInit {
     this.fromDate = null;
     this.toDate = null;
     this.setRange();
-    this.emitRangeSelected();
 
     event.stopPropagation();
   }
