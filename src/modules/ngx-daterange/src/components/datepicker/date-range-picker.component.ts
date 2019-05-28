@@ -188,19 +188,9 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  emitRangeSelected(): void {
-    let data: IDateRange;
-
-    if (this.options.singleCalendar) {
-      data = {
-        start: this.fromDate,
-      };
-    }
-    else {
-      data = {
-        start: this.fromDate,
-        end: this.toDate,
-      };
+  emitRangeSelected(data?: IDateRange): void {
+    if (!data) {
+      data = this.options.singleCalendar ? { start: this.fromDate } : { start: this.fromDate, end: this.toDate };
     }
 
     this.rangeSelected.emit(data);
@@ -310,6 +300,9 @@ export class DateRangePickerComponent implements OnInit {
     this.fromDate = null;
     this.toDate = null;
     this.setRange();
+
+    const data: IDateRange = this.options.singleCalendar ? { start: null } : { start: null, end: null };
+    this.emitRangeSelected(data);
 
     event.stopPropagation();
   }
