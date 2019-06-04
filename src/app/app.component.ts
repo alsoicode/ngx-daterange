@@ -62,9 +62,6 @@ export class AppComponent implements OnInit {
 
   form: FormGroup = null;
 
-  // fromDate = moment().startOf('week');
-  // toDate = moment().endOf('week');
-
   constructor (
     private formBuilder: FormBuilder,
   ) {}
