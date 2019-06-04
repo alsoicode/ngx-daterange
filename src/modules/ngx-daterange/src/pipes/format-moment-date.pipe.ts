@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as momentNs from 'moment'; const moment = momentNs;
+import * as momentNs from 'moment';
 
 @Pipe({
   name: 'formatMomentDate'
