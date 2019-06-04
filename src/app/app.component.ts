@@ -13,7 +13,7 @@ import { IDateRange, IDateRangePickerOptions } from '../modules/ngx-daterange/sr
 })
 export class AppComponent implements OnInit {
 
-  @ViewChild('dateRangePicker')
+  @ViewChild('dateRangePicker', { static: true })
   dateRangePicker: DateRangePickerComponent;
 
   firstFieldEmittedValue: IDateRange;
