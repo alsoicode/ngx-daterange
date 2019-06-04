@@ -12,11 +12,6 @@
   },
   "keywords": [
     "angular",
-    "angular 2",
-    "angular 4",
-    "angular 5",
-    "angular 6",
-    "angular 7",
     "angular 8",
     "date",
     "daterange",
@@ -34,7 +29,7 @@
   "homepage": "https://github.com/alsoicode/ngx-daterange#readme",
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "peerDependencies": {
-    "@angular/core": "^4.0.0"
+    "@angular/core": "^8.0.0"
   },
   "ngPackage": {
     "lib": {
