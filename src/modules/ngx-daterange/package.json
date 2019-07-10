@@ -1,6 +1,6 @@
 {
   "name": "ngx-daterange",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Date-Range Selector for Angular",
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,6 @@
   },
   "keywords": [
     "angular",
-    "angular 2",
-    "angular 3",
     "angular 4",
     "angular 5",
     "angular 6",
@@ -35,7 +33,7 @@
   "homepage": "https://github.com/alsoicode/ngx-daterange#readme",
   "$schema": "./node_modules/ng-packagr/package.schema.json",
   "peerDependencies": {
-    "@angular/core": "^8.0.0"
+    "@angular/core": "^4.0.0"
   },
   "ngPackage": {
     "lib": {
