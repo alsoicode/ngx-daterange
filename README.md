@@ -2,7 +2,7 @@
 
 ![ngx-daterange](https://res.cloudinary.com/alsoicode/image/upload/v1542168886/ngx-daterange/ngx-daterange.png)
 
-Current version: 1.0.10
+Current version: 1.0.11
 
 Here's a minimal example of ngx-daterange in action, showing positioning on the left, right and using custom templating: https://ngx-daterange.netlify.com/
 
@@ -16,6 +16,10 @@ Here's a minimal example of ngx-daterange in action, showing positioning on the 
 
 - FormsModule
 - ReactiveFormsModule
+
+## Polyfills
+
+If you are targeting older browsers, you may need to polyfill es7 arrays, specifically [.some()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
 
 ## Usage
 
@@ -99,6 +103,16 @@ Most settings are optional and an interface, [IDateRangePickerOptions](https://g
 ### autoApply
 
 Automatically sets the `range` value when both dates are selected and hides the calendars. If using a single calendar, the `range` is set and the calendar is closed when the date is selected. If `false`, the Apply button will be displayed.
+
+Type: `boolean`
+
+Default value: `true`
+
+<hr/>
+
+### clickOutsideAllowed
+
+Set this to `false` if you want a click outside the boundary of the DatePicker component to automatically close it.
 
 Type: `boolean`
 

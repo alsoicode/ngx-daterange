@@ -5,6 +5,7 @@ import { IDefinedDateRange } from './IDefinedDateRange';
 
 export interface IDateRangePickerOptions {
   autoApply?: boolean;
+  clickOutsideAllowed?: boolean;
   displayFormat?: string;
   disabled?: boolean;
   format: string;

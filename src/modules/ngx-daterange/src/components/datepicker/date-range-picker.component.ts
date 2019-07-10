@@ -52,9 +52,21 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-  handleClick(event: Event) {
+  handleClick(event: MouseEvent) {
     const target = event.target as HTMLInputElement;
 
+    // close the DatePicker if clicking outside is not allowed
+    if (!this.options.clickOutsideAllowed) {
+      const containerElementClassRoot = 'dateRangePicker';
+      const targetPathClassNames: string[] = event['path'].map(obj => obj.className);
+      const targetExistsInPath = targetPathClassNames.some(className => className && className.includes(containerElementClassRoot));
+
+      if (!targetExistsInPath) {
+        this.toggleCalendarVisibility(false);
+      }
+    }
+
+    // Close the DatePicker if the target input was clicked
     if (target.id === this.instanceId) {
       this.toggleCalendarVisibility(!this.showCalendars);
     }
