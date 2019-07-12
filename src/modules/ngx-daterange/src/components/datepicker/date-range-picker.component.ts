@@ -52,7 +52,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-  handleClick(event: MouseEvent) {
+  handleClick(event: Event) {
     const target = event.target as HTMLInputElement;
 
     // close the DatePicker if clicking outside is not allowed
