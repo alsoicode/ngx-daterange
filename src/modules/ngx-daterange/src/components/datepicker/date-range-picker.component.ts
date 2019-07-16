@@ -227,16 +227,6 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   setRange(): void {
-    // if (this.options.singleCalendar && this.fromDate) {
-    //   this.range = this.fromDate.format(this.options.format);
-    // }
-    // else if (!this.options.singleCalendar && this.fromDate && this.toDate) {
-    //   this.range = `${ this.fromDate.format(this.options.format) } - ${ this.toDate.format(this.options.format) }`;
-    // }
-    // else {
-    //   this.range = '';
-    // }
-
     this.range = this.formatRangeAsString();
 
     if (this.parentFormGroup) {
