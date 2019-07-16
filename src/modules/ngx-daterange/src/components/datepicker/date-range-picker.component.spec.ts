@@ -152,7 +152,7 @@ describe('Testing DateRangePickerComponent', () => {
       it('should throw an error if the range end value is after the options maxDate', async(() => {
         const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
           minDate: moment().subtract(1, 'month'),
-          maxDate: moment(),
+          maxDate: moment().add(1, 'day'),
           singleCalendar: false,
           preDefinedRanges: [
             {

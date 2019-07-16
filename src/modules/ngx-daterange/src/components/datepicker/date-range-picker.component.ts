@@ -109,7 +109,8 @@ export class DateRangePickerComponent implements OnInit {
     }
 
     // add form control to parent form group
-    const control = new FormControl('', this.options.validators);
+    const value = this.formatRangeAsString();
+    const control = new FormControl(value, this.options.validators);
 
     if (this.options.disabled) {
       control.disable();
@@ -212,16 +213,21 @@ export class DateRangePickerComponent implements OnInit {
     return moment(value, this.options.format);
   }
 
-  setRange(): void {
+  formatRangeAsString(): string {
+    let range = '';
+
     if (this.options.singleCalendar && this.fromDate) {
-      this.range = this.fromDate.format(this.options.format);
+      range = this.fromDate.format(this.options.format);
     }
     else if (!this.options.singleCalendar && this.fromDate && this.toDate) {
-      this.range = `${ this.fromDate.format(this.options.format) } - ${ this.toDate.format(this.options.format) }`;
+      range = `${ this.fromDate.format(this.options.format) } - ${ this.toDate.format(this.options.format) }`;
     }
-    else {
-      this.range = '';
-    }
+
+    return range;
+  }
+
+  setRange(): void {
+    this.range = this.formatRangeAsString();
 
     if (this.parentFormGroup) {
       const control = this.parentFormGroup.get(this.controlName);
