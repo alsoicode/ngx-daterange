@@ -1,6 +1,6 @@
 {
   "name": "ngx-daterange",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Date-Range Selector for Angular",
   "main": "index.js",
   "scripts": {

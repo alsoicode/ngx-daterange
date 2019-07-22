@@ -319,9 +319,6 @@ export class DateRangePickerComponent implements OnInit {
     this.toDate = null;
     this.setRange();
 
-    const data: IDateRange = this.options.singleCalendar ? { start: null } : { start: null, end: null };
-    this.emitRangeSelected(data);
-
     event.stopPropagation();
   }
 
