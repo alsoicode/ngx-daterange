@@ -58,8 +58,14 @@ export class DateRangePickerComponent implements OnInit {
     // close the DatePicker if clicking outside is not allowed
     if (!this.options.clickOutsideAllowed) {
       const containerElementClassRoot = 'dateRangePicker';
-      const targetPathClassNames: string[] = event['path'].map(obj => obj.className);
-      const targetExistsInPath = targetPathClassNames.some(className => className && className.includes(containerElementClassRoot));
+      const targetPathClassNames: string[] = event['path'].map(obj => obj.className) || [''];
+      const targetExistsInPath = targetPathClassNames.some(className => {
+        if (typeof className === 'string') {
+          return className && className.includes(containerElementClassRoot);
+        }
+
+        return false;
+      });
 
       if (!targetExistsInPath) {
         this.toggleCalendarVisibility(false);
