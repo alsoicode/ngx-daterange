@@ -1,6 +1,6 @@
 {
   "name": "ngx-daterange",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Date-Range Selector for Angular",
   "main": "index.js",
   "scripts": {
@@ -40,7 +40,6 @@
       "entryFile": "src/public_api.ts"
     },
     "dest": "../../../ngx-daterange/dist",
-    "src": "./src",
     "whitelistedNonPeerDependencies": [
       "moment",
       "moment-range"
