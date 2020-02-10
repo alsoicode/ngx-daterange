@@ -144,5 +144,8 @@
       }
     }
   },
-  "defaultProject": "ngx-daterange"
+  "defaultProject": "ngx-daterange",
+  "cli": {
+    "analytics": false
+  }
 }
