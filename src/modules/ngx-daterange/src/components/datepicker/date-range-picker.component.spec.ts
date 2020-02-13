@@ -214,4 +214,24 @@ describe('Testing DateRangePickerComponent', () => {
       expect(component.range).toEqual('');
     }));
   });
+
+  describe('Testing reset', () => {
+    it('should clear the inputs as well as the calendar instances when .reset() is called', async(() => {
+      const now = moment();
+      const fromDate = now.subtract(1, 'month');
+
+      component.fromDate = fromDate;
+      component.toDate = now;
+
+      fixture.detectChanges();
+
+      const event = new Event('click');
+      component.reset(event);
+
+      expect(component.fromDate).toEqual(null);
+      expect(component.toDate).toEqual(null);
+      expect(component.range).toEqual('');
+
+    }));
+  });
 });
