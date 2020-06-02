@@ -53,7 +53,7 @@ describe('Testing CalendarComponent', () => {
       let monthRange = range(firstDay, endDay);
 
       let weekNumbers = component.getWeekNumbers(monthRange);
-      let expectedWeeks: number[] = [1, 2, 3, 4, 5];
+      let expectedWeeks: number[] = [1, 2, 3, 4, 5, 6];
 
       expect(weekNumbers).toEqual(expectedWeeks);
 
@@ -62,13 +62,13 @@ describe('Testing CalendarComponent', () => {
       endDay = moment([2018, 2]).add(1, 'month').endOf('month');
       monthRange = range(firstDay, endDay);
       weekNumbers = component.getWeekNumbers(monthRange);
-      expectedWeeks = [5, 6, 7, 8, 9];
+      expectedWeeks = [5, 6, 7, 8, 9, 10];
 
       expect(weekNumbers).toEqual(expectedWeeks);
     }));
 
     it('should return an array of DateRange objects when calling getWeeksRange() for the specified week numbers', async(() => {
-      const weeksRange: DateRange[] = component.getWeeksRange([1, 2, 3, 4, 5]);
+      const weeksRange: DateRange[] = component.getWeeksRange([1, 2, 3, 4, 5, 6]);
 
       expect(weeksRange.length).not.toEqual(0);
     }));
@@ -78,7 +78,7 @@ describe('Testing CalendarComponent', () => {
       component.month = moment().month();
       component.createCalendarGridData();
 
-      expect(component.weekList.length).toEqual(5);
+      expect(component.weekList.length).toEqual(6);
     }));
   });
 
