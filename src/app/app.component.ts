@@ -73,7 +73,6 @@ export class AppComponent implements OnInit {
 
   onRangeSelected(value: IDateRange): void {
     this.firstFieldEmittedValue = value;
-    console.log(this.firstFieldEmittedValue);
   }
 
   onReset(event: Event): void {
