@@ -74,7 +74,7 @@ export class CalendarComponent implements OnChanges {
       for (let i = 0; i < weeks.length; i++) {
         const week = weeks[i];
 
-        if (i < 5) {
+        if (i < 6) {
           weekNumbers.push(week.week());
         }
         else {
