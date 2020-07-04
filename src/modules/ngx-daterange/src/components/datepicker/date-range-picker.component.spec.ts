@@ -136,7 +136,7 @@ describe('Testing DateRangePickerComponent', () => {
           singleCalendar: false,
           preDefinedRanges: [
             {
-              name: 'Test Defined Range',
+              name: 'Test Defined Range 1',
               value: {
                 start: moment().subtract(2, 'months'),
                 end: moment()
@@ -156,7 +156,7 @@ describe('Testing DateRangePickerComponent', () => {
           singleCalendar: false,
           preDefinedRanges: [
             {
-              name: 'Test Defined Range',
+              name: 'Test Defined Range 2',
               value: {
                 start: moment().subtract(1, 'week'),
                 end: moment().add(1, 'month')
