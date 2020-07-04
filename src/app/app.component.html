@@ -12,7 +12,7 @@
           <p style="color: red;" *ngIf="form.controls.firstDateRange.touched && form.controls.firstDateRange.hasError('required')">This field is required</p>
         </fieldset>
       </form>
-      <button class="btn btn-default" (click)="onReset($event)">Call Reset on this Date Picker to clear it</button>
+      <button class="btn btn-light" (click)="onReset($event)">Call Reset on this Date Picker to clear it</button>
     </div>
   </div>
   <div class="row justify-content-end">
@@ -41,6 +41,7 @@
               </div>
             </div>
           </date-range-picker>
+          <p>This datepicker has the &#8220;clickOutsideAllowed&#8221; feature set to false. It will close on a click outside of the component.</p>
         </fieldset>
       </form>
     </div>
