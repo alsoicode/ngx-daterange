@@ -61,6 +61,17 @@ export class AppComponent implements OnInit {
     position: 'right',
   }
 
+  singleFieldOptions: IDateRangePickerOptions = {
+    autoApply: false,
+    clickOutsideAllowed: false,
+    format: 'MM/DD/YYYY',
+    icons: 'material',
+    labelText: 'Single Picker',
+    minDate: moment().subtract(2, 'years'),
+    maxDate: moment(),
+    singleCalendar: true,
+  }
+
   form: FormGroup = null;
 
   constructor (
