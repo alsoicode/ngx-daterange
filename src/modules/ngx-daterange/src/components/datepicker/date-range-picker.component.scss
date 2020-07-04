@@ -12,12 +12,16 @@
     top: 88px;
     z-index: 3000;
 
-    &.dateRangePicker-single {
-      min-width: 300px;
-    }
-
     @media screen and (min-width: 576px) {
       min-width: 600px;
+    }
+
+    &.dateRangePicker-single {
+      min-width: 300px;
+
+      &::before, &::after {
+        border-bottom-color: #fff;
+      }
     }
 
     &::before, &::after {

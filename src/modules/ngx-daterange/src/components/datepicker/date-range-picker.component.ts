@@ -48,7 +48,13 @@ export class DateRangePickerComponent implements OnInit {
   showCalendars = false;
 
   get enableApplyButton(): boolean {
-    return !this.options.autoApply && !this.options.singleCalendar && this.fromDate !== null && this.toDate !== null;
+    let enabled = !this.options.autoApply && this.fromDate !== null;
+
+    if (this.options.singleCalendar) {
+      return enabled;
+    }
+
+    return enabled && this.toDate !== null;
   }
 
   @HostListener('document:click', ['$event'])
@@ -209,7 +215,7 @@ export class DateRangePickerComponent implements OnInit {
 
     this.setFromToMonthYear(this.fromDate, this.toDate);
 
-    if (this.isAutoApply() && (this.options.singleCalendar || !isLeft) && this.fromDate) {
+    if (this.options.autoApply && (this.options.singleCalendar || !isLeft) && this.fromDate) {
       this.toggleCalendarVisibility(false);
       this.setRange();
       this.emitRangeSelected();
@@ -374,14 +380,5 @@ export class DateRangePickerComponent implements OnInit {
       // add range to ranges
       return true;
     });
-  }
-
-  isAutoApply(): boolean {
-    if (this.options.singleCalendar) {
-      return true;
-    }
-    else {
-      return this.options.autoApply;
-    }
   }
 }
