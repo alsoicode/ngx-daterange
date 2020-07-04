@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
 
   secondFieldOptions: IDateRangePickerOptions = {
     autoApply: false,
+    clickOutsideAllowed: false,
     format: 'MM/DD/YYYY',
     icons: 'font-awesome',
     minDate: moment().subtract(10, 'years'),
