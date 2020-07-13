@@ -2,9 +2,9 @@
 
 ![ngx-daterange](https://res.cloudinary.com/alsoicode/image/upload/v1542168886/ngx-daterange/ngx-daterange.png)
 
-Current version: 1.0.24
+Current version: 1.0.25
 
-Here's a minimal example of ngx-daterange in action, showing positioning on the left, right and using custom templating: https://ngx-daterange.netlify.com/
+Here's a minimal example of ngx-daterange in action, showing positioning on the left, right and using custom templating: https://ngx-daterange.netlify.app/
 
 
 ## External Dependencies
@@ -94,7 +94,11 @@ The value you use for the `[controlName]` must correspond to the `name` property
 
 ## Styling
 
-ngx-daterange's default templating and styling is based on Bootstrap 4.x
+ngx-daterange's default templating and styling is *dependent* on Bootstrap 4.x
+
+- Manual date inputs are hidden for mobile devices. Specifically, these are User Agents matching: Android, webOS, iPhone, iPod, Blackberry and Windows Phone.
+
+- Mobile styling is applied via JavaScript, not media queries.
 
 ## Date Range Picker Options
 
