@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DateRangePickerComponent } from './components/datepicker/date-range-picker.component';
 import { FormatMomentDatePipe } from './pipes/format-moment-date.pipe';
+import { WINDOW_PROVIDERS } from './services/window.service';
 
 const declarations = [
   CalendarComponent,
@@ -19,6 +20,9 @@ const declarations = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-  ]
+  ],
+  providers: [
+    WINDOW_PROVIDERS,
+  ],
 })
 export class NgxDateRangeModule {}

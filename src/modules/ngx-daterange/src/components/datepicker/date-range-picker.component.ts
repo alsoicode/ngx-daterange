@@ -1,8 +1,9 @@
-import { Component, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { defaultDateRangePickerOptions } from '../../constants';
 import { IDateRange, IDateRangePickerOptions, IDefinedDateRange, IChangedData } from '../../interfaces';
+import { WINDOW } from '../../services/window.service';
 
 import * as momentNs from 'moment'; const moment = momentNs;
 
@@ -40,6 +41,7 @@ export class DateRangePickerComponent implements OnInit {
   rangeSelected = new EventEmitter<IDateRange>();
 
   defaultRanges: IDefinedDateRange[];
+  isMobile: boolean;
   fromMonth: number;
   fromYear: number;
   toMonth: number;
@@ -93,7 +95,10 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  constructor() {
+  constructor(
+    @Inject(WINDOW)
+    private readonly window: Window,
+  ) {
     if (!this.instanceId) {
       // assign auto-id
       this.instanceId = `dateRangePicker-${ instanceCount++ }`;
@@ -101,6 +106,16 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPad/i)
+      || navigator.userAgent.match(/iPod/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/Windows Phone/i)) {
+      this.isMobile = true;
+    }
+
     // ensure dates in options are valid
     this.validateOptionDates();
 
