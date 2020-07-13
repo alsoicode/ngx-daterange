@@ -16,7 +16,7 @@
       min-width: 600px;
     }
 
-    &.dateRangePicker-single {
+    &.dateRangePicker-single, &.mobile {
       min-width: 300px;
 
       &::before, &::after {
@@ -121,9 +121,18 @@
       }
     }
 
-    .form-inputs, .row-calendars {
-      > div:nth-child(2) {
-        border-left: solid 2px #C6D1D6;
+    .row-calendars {
+      .col__mobile {
+        border-top: dotted 1px #ccc;
+        margin-top: 1rem;
+      }
+    }
+
+    &:not(.mobile) {
+      .form-inputs, .row-calendars {
+        > div:nth-child(2) {
+          border-left: solid 2px #C6D1D6;
+        }
       }
     }
   }
@@ -135,25 +144,3 @@
     }
   }
 }
-
-// @media (max-width: 550px) {
-//   .ranges > div {
-//     display: none;
-//   }
-// }
-
-// .daterangepicker .time-picker span {
-//   padding-left: 4px;
-//   padding-right: 4px;
-// }
-
-// .daterangepicker .time-picker .time-breadcrumb {
-//   position: relative;
-//   top: 22px;
-//   font-weight: bolder;
-//   font-size: 0.8em;
-// }
-
-// .daterangepicker .table > thead > tr > th {
-//   vertical-align: middle;
-// }

@@ -19,6 +19,6 @@ const declarations = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-  ]
+  ],
 })
 export class NgxDateRangeModule {}

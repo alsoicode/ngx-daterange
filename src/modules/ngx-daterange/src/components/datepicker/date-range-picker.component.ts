@@ -40,6 +40,7 @@ export class DateRangePickerComponent implements OnInit {
   rangeSelected = new EventEmitter<IDateRange>();
 
   defaultRanges: IDefinedDateRange[];
+  isMobile = false;
   fromMonth: number;
   fromYear: number;
   toMonth: number;
@@ -101,6 +102,17 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (navigator) {
+      if (navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)) {
+        this.isMobile = true;
+      }
+    }
+
     // ensure dates in options are valid
     this.validateOptionDates();
 
@@ -177,8 +189,8 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   setFromToMonthYear(fromDate?: momentNs.Moment, toDate?: momentNs.Moment): void {
-    const tempFromDate = fromDate || this.fromDate || this.options.startingFromDate || moment();
-    const tempToDate = toDate || this.toDate || this.options.startingToDate || moment();
+    const tempFromDate = fromDate || this.fromDate || moment();
+    const tempToDate = toDate || this.toDate || moment();
 
     this.fromMonth = tempFromDate.get('month');
     this.fromYear = tempFromDate.get('year');
