@@ -1,9 +1,8 @@
-import { Component, Inject, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { defaultDateRangePickerOptions } from '../../constants';
 import { IDateRange, IDateRangePickerOptions, IDefinedDateRange, IChangedData } from '../../interfaces';
-import { WINDOW } from '../../services/window.service';
 
 import * as momentNs from 'moment'; const moment = momentNs;
 
@@ -41,7 +40,7 @@ export class DateRangePickerComponent implements OnInit {
   rangeSelected = new EventEmitter<IDateRange>();
 
   defaultRanges: IDefinedDateRange[];
-  isMobile: boolean;
+  isMobile = false;
   fromMonth: number;
   fromYear: number;
   toMonth: number;
@@ -95,10 +94,7 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  constructor(
-    @Inject(WINDOW)
-    private readonly window: Window,
-  ) {
+  constructor() {
     if (!this.instanceId) {
       // assign auto-id
       this.instanceId = `dateRangePicker-${ instanceCount++ }`;
@@ -106,13 +102,15 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.window.navigator.userAgent.match(/Android/i)
-      || this.window.navigator.userAgent.match(/webOS/i)
-      || this.window.navigator.userAgent.match(/iPhone/i)
-      || this.window.navigator.userAgent.match(/iPod/i)
-      || this.window.navigator.userAgent.match(/BlackBerry/i)
-      || this.window.navigator.userAgent.match(/Windows Phone/i)) {
-      this.isMobile = true;
+    if (navigator) {
+      if (navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)) {
+        this.isMobile = true;
+      }
     }
 
     // ensure dates in options are valid
