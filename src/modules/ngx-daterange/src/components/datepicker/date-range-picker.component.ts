@@ -177,8 +177,8 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   setFromToMonthYear(fromDate?: momentNs.Moment, toDate?: momentNs.Moment): void {
-    const tempFromDate = fromDate || this.fromDate || this.options.startingFromDate || moment();
-    const tempToDate = toDate || this.toDate || this.options.startingToDate || moment();
+    const tempFromDate = fromDate || this.fromDate || moment();
+    const tempToDate = toDate || this.toDate || moment();
 
     this.fromMonth = tempFromDate.get('month');
     this.fromYear = tempFromDate.get('year');

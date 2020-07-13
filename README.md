@@ -212,26 +212,6 @@ Default value: `false`
 
 <hr />
 
-### startingFromDate
-
-Sets the starting date of the "from" calendar.
-
-Type: `Moment`
-
-Default value: the `minDate` if supplied, otherwise `moment()`
-
-<hr />
-
-### startingToDate
-
-Sets the starting date of the "to" calendar.
-
-Type: `Moment`
-
-Default value: the `maxDate` if supplied, otherwise `moment()`
-
-<hr />
-
 ### validators
 
 One or more ValidatorFn instances may be supplied to suit your needs.
