@@ -8,55 +8,57 @@
       <input [attr.id]="instanceId" class="form-control" type="text" [formControlName]="controlName">
     </ng-container>
 
-    <div [ngClass]="{'dateRangePicker': true, 'invisible': !showCalendars, 'dateRangePicker-single': options.singleCalendar, 'is-chrome': checkChrome(), 'open-left': options.position === 'left', 'open-right': options.position === 'right' }">
+    <!-- Desktop Browsers -->
+    <div [ngClass]="{'dateRangePicker': true, 'invisible': !showCalendars, 'dateRangePicker-single': options.singleCalendar, 'is-chrome': checkChrome(), 'open-left': options.position === 'left', 'open-right': options.position === 'right', 'mobile': isMobile }">
       <div class="container-fluid">
         <div class="row">
           <div class="col">
 
-            <div class="row form-inputs mb-0" *ngIf="!options.singleCalendar">
-
-              <div class="col">
-                <div *ngIf="options.icons !== 'default'">
-                  <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material' }">
-                    <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
-                    <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
-                    <span *ngIf="fromDate">From:&nbsp;</span>
-                    <input class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="setDateFromInput($event, true)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
-                  </div>
-                </div>
-
-                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="setDateFromInput($event, true)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
-              </div>
-
-              <div class="col">
-                <div *ngIf="options.icons !== 'default'">
+            <!-- Manual Inputs -->
+            <ng-container *ngIf="!isMobile">
+              <div class="row form-inputs mb-0" *ngIf="!options.singleCalendar">
+                <div class="col">
+                  <div *ngIf="options.icons !== 'default'">
                     <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material' }">
                       <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
                       <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
-                      <span *ngIf="toDate">To:&nbsp;</span>
-                      <input class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="setDateFromInput($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
+                      <span *ngIf="fromDate">From:&nbsp;</span>
+                      <input class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="setDateFromInput($event, true)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
                     </div>
                   </div>
 
-                <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="setDateFromInput($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
+                  <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="setDateFromInput($event, true)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
+                </div>
+
+                <div class="col">
+                  <div *ngIf="options.icons !== 'default'">
+                      <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material' }">
+                        <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
+                        <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
+                        <span *ngIf="toDate">To:&nbsp;</span>
+                        <input class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="setDateFromInput($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
+                      </div>
+                    </div>
+
+                  <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="setDateFromInput($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
+                </div>
               </div>
+            </ng-container>
 
-            </div>
-
+            <!-- Calendars -->
             <div class="row row-calendars">
-              <div class="col">
-                <calendar [ngClass]="{ 'calendar': true, 'calendar-single': options.singleCalendar }" [isLeft]="true" [month]="fromMonth" [year]="fromYear" (monthChanged)=monthChanged($event)
-                  (yearChanged)="yearChanged($event)" (dateChanged)="dateChanged($event)" [format]="options.format" [selectedFromDate]="fromDate"
-                  [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [singleCalendar]="options.singleCalendar" [icons]="options.icons"></calendar>
+              <div [ngClass]="{ 'col-12': true, 'col-sm-6': !isMobile }">
+                <calendar [ngClass]="{ 'calendar': true, 'calendar-single': options.singleCalendar }" [isLeft]="true" [month]="fromMonth" [year]="fromYear" (monthChanged)=monthChanged($event) (yearChanged)="yearChanged($event)" (dateChanged)="dateChanged($event)" [format]="options.format" [selectedFromDate]="fromDate" [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [singleCalendar]="options.singleCalendar" [icons]="options.icons"></calendar>
               </div>
 
-              <div class="col" *ngIf="!options.singleCalendar">
+              <div [ngClass]="{ 'col-12': true, 'col-sm-6': !isMobile, 'col__mobile': isMobile }" *ngIf="!options.singleCalendar">
                 <calendar class="calendar" [month]="toMonth" [year]="toYear" [format]="options.format" (dateChanged)="dateChanged($event)" (monthChanged)="monthChanged($event)" (yearChanged)=yearChanged($event) [selectedFromDate]="fromDate" [selectedToDate]="toDate" [minDate]="options.minDate" [maxDate]="options.maxDate" [icons]="options.icons"></calendar>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- Pre-Defined Date Ranges -->
         <div class="row text-center my-3">
           <div class="col">
             <div class="row mb-2" *ngIf="!options.singleCalendar && options.preDefinedRanges && options.preDefinedRanges.length > 0">
