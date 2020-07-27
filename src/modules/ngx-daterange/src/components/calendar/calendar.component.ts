@@ -1,5 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnChanges, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
-
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import * as momentNs from 'moment'; const moment = momentNs;
 
 import { extendMoment, DateRange } from 'moment-range';
@@ -18,117 +17,133 @@ const { range } = extendMoment(moment);
 })
 export class CalendarComponent implements OnChanges {
 
-    @Input()
-    month: number;
+  @Input()
+  month: number;
 
-    @Input()
-    year: number;
+  @Input()
+  year: number;
 
-    @Input()
-    selectedFromDate: momentNs.Moment;
+  @Input()
+  selectedFromDate: momentNs.Moment;
 
-    @Input()
-    selectedToDate: momentNs.Moment;
+  @Input()
+  selectedToDate: momentNs.Moment;
 
-    @Input()
-    isLeft: boolean;
+  @Input()
+  isLeft: boolean;
 
-    @Input()
-    format: string;
+  @Input()
+  format: string;
 
-    @Input()
-    minDate: momentNs.Moment;
+  @Input()
+  minDate: momentNs.Moment;
 
-    @Input()
-    maxDate: momentNs.Moment;
+  @Input()
+  maxDate: momentNs.Moment;
 
-    @Input()
-    singleCalendar = false;
+  @Input()
+  singleCalendar = false;
 
-    @Input()
-    icons: string;
+  @Input()
+  icons: string;
 
-    @Output()
-    dateChanged = new EventEmitter<IChangedData>();
+  @Output()
+  dateChanged = new EventEmitter<IChangedData>();
 
-    @Output()
-    monthChanged = new EventEmitter<IChangedData>();
+  @Output()
+  monthChanged = new EventEmitter<IChangedData>();
 
-    @Output()
-    yearChanged = new EventEmitter<IChangedData>();
+  @Output()
+  yearChanged = new EventEmitter<IChangedData>();
 
-    weekList: IDateRange[];
+  weekList: IDateRange[];
 
-    get monthText() {
-      return moment.monthsShort()[this.month];
-    }
+  get monthText() {
+    return moment.monthsShort()[this.month];
+  }
 
-    ngOnChanges(): void {
-      this.createCalendarGridData();
-    }
+  ngOnChanges(changes: SimpleChanges): void {
+    // Set the right calendar month and year equal to the left calendar
+    // if the left calendar's date if after the right
+    if (!this.isLeft) {
+      const currentValue = changes?.selectedFromDate?.currentValue as unknown as momentNs.Moment;
 
-    getWeekNumbers(monthRange: DateRange): number[] {
-      const weekNumbers = [];
-      const weeks = Array.from(monthRange.by('weeks'));
+      if (currentValue) {
+        const month: number = currentValue.month();
+        const year: number = currentValue.year();
 
-      for (let i = 0; i < weeks.length; i++) {
-        const week = weeks[i];
-
-        if (i < 6) {
-          weekNumbers.push(week.week());
-        }
-        else {
-          break;
+        if (year > this.year) {
+          this.month = month;
+          this.year = year;
         }
       }
-
-      return weekNumbers;
     }
 
-    getWeeksRange(weeks: number[]): DateRange[] {
-      const weeksRange = [];
+    this.createCalendarGridData();
+  }
 
-      for (let i = 0; i < weeks.length; i++) {
-        const week = weeks[i];
-        let firstWeekDay = moment([this.year, this.month]).week(week).day(0);;
-        let lastWeekDay = moment([this.year, this.month]).week(week).day(6);;
+  getWeekNumbers(monthRange: DateRange): number[] {
+    const weekNumbers = [];
+    const weeks = Array.from(monthRange.by('weeks'));
 
-        if (i > 0 && week < weeks[i - 1]) {
-          firstWeekDay.add(1, 'year');
-          lastWeekDay.add(1, 'year');
-        }
+    for (let i = 0; i < weeks.length; i++) {
+      const week = weeks[i];
 
-        weeksRange.push(range(firstWeekDay.week(week).day(0), lastWeekDay.week(week).day(6)));
+      if (i < 6) {
+        weekNumbers.push(week.week());
+      }
+      else {
+        break;
+      }
+    }
+
+    return weekNumbers;
+  }
+
+  getWeeksRange(weeks: number[]): DateRange[] {
+    const weeksRange = [];
+
+    for (let i = 0; i < weeks.length; i++) {
+      const week = weeks[i];
+      let firstWeekDay = moment([this.year, this.month]).week(week).day(0);;
+      let lastWeekDay = moment([this.year, this.month]).week(week).day(6);;
+
+      if (i > 0 && week < weeks[i - 1]) {
+        firstWeekDay.add(1, 'year');
+        lastWeekDay.add(1, 'year');
       }
 
-      return weeksRange;
+      weeksRange.push(range(firstWeekDay.week(week).day(0), lastWeekDay.week(week).day(6)));
     }
 
-    createCalendarGridData(): void {
-      const firstDay = moment([this.year, this.month]).startOf('month');
-      const endDay = moment([this.year, this.month]).add(1, 'month').endOf('month');
-      const monthRange = range(firstDay, endDay);
-      const weeksRange = this.getWeeksRange(this.getWeekNumbers(monthRange));
-      const weekList = [];
+    return weeksRange;
+  }
 
-      weeksRange.map(week => {
-        const daysList = [];
+  createCalendarGridData(): void {
+    const firstDay = moment([this.year, this.month]).startOf('month');
+    const endDay = moment([this.year, this.month]).add(1, 'month').endOf('month');
+    const monthRange = range(firstDay, endDay);
+    const weeksRange = this.getWeeksRange(this.getWeekNumbers(monthRange));
+    const weekList = [];
 
-        Array.from(week.by('days')).forEach((day: momentNs.Moment) => {
-          if (day.isSame(this.minDate, 'date')) {
-            day = this.minDate;
-          }
-          else if (day.isSame(this.maxDate, 'date')) {
-            day = this.maxDate;
-          };
+    weeksRange.map(week => {
+      const daysList = [];
 
-          daysList.push(day);
-        });
+      Array.from(week.by('days')).forEach((day: momentNs.Moment) => {
+        if (day.isSame(this.minDate, 'date')) {
+          day = this.minDate;
+        }
+        else if (day.isSame(this.maxDate, 'date')) {
+          day = this.maxDate;
+        };
 
-        weekList.push(daysList);
+        daysList.push(day);
       });
 
-      this.weekList = weekList;
+      weekList.push(daysList);
+    });
+
+    this.weekList = weekList;
   }
 
   isDisabled(day: momentNs.Moment): boolean {
