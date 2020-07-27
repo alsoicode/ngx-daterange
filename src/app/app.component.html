@@ -4,8 +4,8 @@
       <h1>Ngx Date Range Picker</h1>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-2-sm">
+  <div class="row mb-4">
+    <div class="col-12 col-sm-2">
       <form enctype="application/x-www-form-urlencoded" role="form" >
         <fieldset>
           <date-range-picker #dateRangePicker [options]="firstFieldOptions" [parentFormGroup]="form" [controlName]="'firstDateRange'" (rangeSelected)="onRangeSelected($event)"></date-range-picker>
@@ -15,8 +15,9 @@
       <button class="btn btn-light" (click)="onReset($event)">Call Reset on this Date Picker to clear it</button>
     </div>
   </div>
-  <div class="row justify-content-end">
-    <div class="col col-2-sm">
+  <div class="row justify-content-end mb-4">
+    <div class="col-12 col-sm-2">
+      <p>Datepicker will open from the right</p>
       <form enctype="application/x-www-form-urlencoded" role="form" >
         <fieldset>
           <date-range-picker [options]="rightFieldOptions" [parentFormGroup]="form" [controlName]="'rightDateRange'"></date-range-picker>
@@ -24,8 +25,8 @@
       </form>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-2-sm">
+  <div class="row mb-4">
+    <div class="col-12 col-sm-2">
       <form enctype="application/x-www-form-urlencoded" role="form" [formGroup]="form" *ngIf="form">
         <fieldset>
           <date-range-picker [instanceId]="'secondDateRange'" [options]="secondFieldOptions" [parentFormGroup]="form" [controlName]="'secondDateRange'" #dateRangePicker>
@@ -46,8 +47,8 @@
       </form>
     </div>
   </div>
-  <div class="row mt-5">
-    <div class="col col-2-sm">
+  <div class="row">
+    <div class="col col-sm-2">
       <form enctype="application/x-www-form-urlencoded" role="form" >
         <fieldset>
           <date-range-picker [options]="singleFieldOptions" [parentFormGroup]="form" controlName="'singleField'" (rangeSelected)="onRangeSelected($event)"></date-range-picker>

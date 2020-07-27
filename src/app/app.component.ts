@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
     format: 'MM/DD/YYYY',
     icons: 'material',
     minDate: moment().subtract(2, 'years'),
-    maxDate: moment(),
+    maxDate: moment().add(3, 'years'),
     preDefinedRanges: [
       {
         name: 'Last Week',
