@@ -72,7 +72,7 @@ export class CalendarComponent implements OnChanges {
         const month: number = currentValue.month();
         const year: number = currentValue.year();
 
-        if (year > this.year) {
+        if (year > this.year || (year === this.year && month > this.month)) {
           this.month = month;
           this.year = year;
         }
