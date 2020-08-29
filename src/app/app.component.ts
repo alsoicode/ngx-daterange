@@ -48,14 +48,14 @@ export class AppComponent implements OnInit {
     format: 'MM/DD/YYYY',
     icons: 'font-awesome',
     minDate: moment().subtract(10, 'years'),
-    maxDate: moment(),
+    maxDate: moment().add(1, 'year'),
   }
 
   rightFieldOptions: IDateRangePickerOptions = {
     format: 'MM/DD/YYYY',
     icons: 'material',
     minDate: moment().subtract(2, 'years'),
-    maxDate: moment(),
+    maxDate: moment().add(1, 'year'),
     position: 'right',
   }
 
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
     icons: 'material',
     labelText: 'Single Picker',
     minDate: moment().subtract(2, 'years'),
-    maxDate: moment(),
+    maxDate: moment().add(1, 'year'),
     singleCalendar: true,
   }
 
