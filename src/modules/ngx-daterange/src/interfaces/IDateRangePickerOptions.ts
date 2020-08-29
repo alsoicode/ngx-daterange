@@ -11,8 +11,8 @@ export interface IDateRangePickerOptions {
   format: string;
   icons?: 'default' | 'material' | 'font-awesome';
   labelText?: string;
-  minDate: momentNs.Moment;
-  maxDate: momentNs.Moment;
+  minDate?: momentNs.Moment;
+  maxDate?: momentNs.Moment;
   position?: 'left' | 'right';
   preDefinedRanges?: IDefinedDateRange[];
   singleCalendar?: boolean;
