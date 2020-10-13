@@ -105,13 +105,8 @@ export class CalendarComponent implements OnChanges {
 
     for (let i = 0; i < weeks.length; i++) {
       const week = weeks[i];
-      let firstWeekDay = moment([this.year, this.month]).week(week).day(0);;
-      let lastWeekDay = moment([this.year, this.month]).week(week).day(6);;
-
-      if (i > 0 && week < weeks[i - 1]) {
-        firstWeekDay.add(1, 'year');
-        lastWeekDay.add(1, 'year');
-      }
+      const firstWeekDay = moment([this.year, this.month]).week(week).day(0);
+      const lastWeekDay = moment([this.year, this.month]).week(week).day(6);
 
       weeksRange.push(range(firstWeekDay.week(week).day(0), lastWeekDay.week(week).day(6)));
     }
@@ -121,7 +116,7 @@ export class CalendarComponent implements OnChanges {
 
   createCalendarGridData(): void {
     const firstDay = moment([this.year, this.month]).startOf('month');
-    const endDay = moment([this.year, this.month]).add(1, 'month').endOf('month');
+    const endDay = moment([this.year, this.month]).endOf('month').add(1, 'week');
     const monthRange = range(firstDay, endDay);
     const weeksRange = this.getWeeksRange(this.getWeekNumbers(monthRange));
     const weekList = [];
