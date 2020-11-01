@@ -176,10 +176,14 @@ export class CalendarComponent implements OnChanges {
   }
 
   dateSelected(event: Event, data: IChangedData): void {
-    this.dateChanged.emit({
-      day: data.day,
-      isLeft: this.isLeft
-    });
+    const target = event.target as HTMLTableCellElement;
+
+    if (!target.classList.contains('disabled')) {
+      this.dateChanged.emit({
+        day: data.day,
+        isLeft: this.isLeft
+      });
+    }
 
     event.stopPropagation();
   }
