@@ -105,12 +105,17 @@ export class CalendarComponent implements OnChanges {
 
     for (let i = 0; i < weeks.length; i++) {
       const week = weeks[i];
-      let firstWeekDay = moment([this.year, this.month]).week(week).day(0);
-      let lastWeekDay = moment([this.year, this.month]).week(week).day(6);
+
+      let firstWeekDay: momentNs.Moment;
+      let lastWeekDay: momentNs.Moment;
 
       if (i > 0 && week < weeks[i - 1]) {
-        firstWeekDay.add(1, 'day');
-        lastWeekDay.add(1, 'day');
+        firstWeekDay = moment([this.year, this.month]).add(1, 'year').week(week).day(0);
+        lastWeekDay = moment([this.year, this.month]).add(1, 'year').week(week).day(6);
+      }
+      else {
+        firstWeekDay = moment([this.year, this.month]).week(week).day(0);
+        lastWeekDay = moment([this.year, this.month]).week(week).day(6);
       }
 
       weeksRange.push(range(firstWeekDay.week(week).day(0), lastWeekDay.week(week).day(6)));
