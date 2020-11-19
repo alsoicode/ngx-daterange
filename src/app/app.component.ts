@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     autoApply: false,
     format: 'MM/DD/YYYY',
     icons: 'material',
-    minDate: moment().subtract(2, 'years'),
+    minDate: moment().subtract(10, 'years'),
     maxDate: moment().add(3, 'years'),
     preDefinedRanges: [
       {
