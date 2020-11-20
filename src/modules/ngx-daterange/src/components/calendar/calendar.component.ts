@@ -100,7 +100,7 @@ export class CalendarComponent implements OnChanges {
     return weekNumbers;
   }
 
-  getWeeksRange(weeks: number[]): DateRange[] {
+  getWeeksRange(weeks: number[], endDay: momentNs.Moment): DateRange[] {
     const weeksRange = [];
 
     for (let i = 0; i < weeks.length; i++) {
@@ -118,6 +118,10 @@ export class CalendarComponent implements OnChanges {
         lastWeekDay = moment([this.year, this.month]).week(week).day(6);
       }
 
+      if (endDay.month() === 11 && lastWeekDay.day() < firstWeekDay.day()) {
+        lastWeekDay.year(endDay.year());
+      }
+
       weeksRange.push(range(firstWeekDay.week(week).day(0), lastWeekDay.week(week).day(6)));
     }
 
@@ -128,7 +132,7 @@ export class CalendarComponent implements OnChanges {
     const firstDay = moment([this.year, this.month]).startOf('month');
     const endDay = moment([this.year, this.month]).endOf('month').add(1, 'week');
     const monthRange = range(firstDay, endDay);
-    const weeksRange = this.getWeeksRange(this.getWeekNumbers(monthRange));
+    const weeksRange = this.getWeeksRange(this.getWeekNumbers(monthRange), endDay);
     const weekList = [];
 
     weeksRange.map(week => {
