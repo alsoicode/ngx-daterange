@@ -52,7 +52,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let week of weekList; let i = index">
-          <td *ngFor="let day of weekList[i]" (click)="dateSelected($event, { day: day })" [ngClass]="{ 'selected': isSelectedDate(day), 'in-selected-range': isDateInRange(day), 'disabled': isDisabled(day), 'different-month': isDifferentMonth(day) }">
+          <td *ngFor="let day of weekList[i]" (click)="dateSelected($event, { day: day })" [attr.data-day]="day | date:'MM-dd-yyyy'" [ngClass]="{ 'selected': isSelectedDate(day), 'in-selected-range': isDateInRange(day), 'disabled': isDisabled(day), 'different-month': isDifferentMonth(day) }">
             {{ day.format('D') }}
           </td>
         </tr>
