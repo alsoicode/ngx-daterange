@@ -100,29 +100,23 @@ export class CalendarComponent implements OnChanges {
     return weekNumbers;
   }
 
-  getWeeksRange(weeks: number[], endDay: momentNs.Moment): DateRange[] {
+  getWeeksRange(weeks: number[]): DateRange[] {
     const weeksRange = [];
 
     for (let i = 0; i < weeks.length; i++) {
-      const week = weeks[i];
+      const weekNumber = weeks[i];
 
-      let firstWeekDay: momentNs.Moment;
-      let lastWeekDay: momentNs.Moment;
+      let firstWeekDay: momentNs.Moment = moment([this.year, this.month]).week(weekNumber).day(0);
+      let lastWeekDay: momentNs.Moment = moment([this.year, this.month]).week(weekNumber).day(6);
 
-      if (i > 0 && week < weeks[i - 1]) {
-        firstWeekDay = moment([this.year, this.month]).add(1, 'year').week(week).day(0);
-        lastWeekDay = moment([this.year, this.month]).add(1, 'year').week(week).day(6);
-      }
-      else {
-        firstWeekDay = moment([this.year, this.month]).week(week).day(0);
-        lastWeekDay = moment([this.year, this.month]).week(week).day(6);
+      // Set year to the next year if the week number is lower than the starting week
+      // this indicates that the week is in January of the next year
+      if (weekNumber < weeks[0]) {
+        firstWeekDay = moment([this.year + 1, 0]).week(weekNumber).day(0);
+        lastWeekDay = moment([this.year + 1, 0]).week(weekNumber).day(6);
       }
 
-      if (endDay.month() === 11 && lastWeekDay.day() < firstWeekDay.day()) {
-        lastWeekDay.year(endDay.year());
-      }
-
-      weeksRange.push(range(firstWeekDay.week(week).day(0), lastWeekDay.week(week).day(6)));
+      weeksRange.push(range(firstWeekDay, lastWeekDay));
     }
 
     return weeksRange;
@@ -132,7 +126,7 @@ export class CalendarComponent implements OnChanges {
     const firstDay = moment([this.year, this.month]).startOf('month');
     const endDay = moment([this.year, this.month]).endOf('month').add(1, 'week');
     const monthRange = range(firstDay, endDay);
-    const weeksRange = this.getWeeksRange(this.getWeekNumbers(monthRange), endDay);
+    const weeksRange = this.getWeeksRange(this.getWeekNumbers(monthRange));
     const weekList = [];
 
     weeksRange.map(week => {
