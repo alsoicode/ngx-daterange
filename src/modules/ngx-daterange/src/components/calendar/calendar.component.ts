@@ -66,9 +66,13 @@ export class CalendarComponent implements OnChanges {
     // Set the right calendar month and year equal to the left calendar
     // if the left calendar's date if after the right
     if (!this.isLeft) {
-      const currentValue = changes?.selectedFromDate?.currentValue as unknown as momentNs.Moment;
+      let currentValue = changes?.selectedFromDate?.currentValue as unknown as momentNs.Moment;
 
       if (currentValue) {
+        if (!moment.isMoment(currentValue)) {
+          currentValue = moment(currentValue);
+        }
+
         const month: number = currentValue.month();
         const year: number = currentValue.year();
 

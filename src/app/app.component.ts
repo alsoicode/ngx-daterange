@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   singleFieldOptions: IDateRangePickerOptions = {
-    autoApply: false,
+    autoApply: true,
     clickOutsideAllowed: false,
     format: 'MM/DD/YYYY',
     icons: 'material',
