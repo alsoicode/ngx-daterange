@@ -161,7 +161,7 @@ export class DateRangePickerComponent implements OnInit {
     }
 
     if (typeof this.toDate === 'string') {
-      this.toDate = moment(this.fromDate);
+      this.toDate = moment(this.toDate);
     }
 
     if (this.fromDate && this.options.minDate && this.fromDate.isBefore(this.options.minDate, 'date')) {
