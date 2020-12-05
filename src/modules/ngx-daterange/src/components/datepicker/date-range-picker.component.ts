@@ -156,6 +156,14 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   validateInputDates(): void {
+    if (typeof this.fromDate === 'string') {
+      this.fromDate = moment(this.fromDate);
+    }
+
+    if (typeof this.toDate === 'string') {
+      this.toDate = moment(this.fromDate);
+    }
+
     if (this.fromDate && this.options.minDate && this.fromDate.isBefore(this.options.minDate, 'date')) {
       throw new RangeError('@Input fromDate is before the specified minDate in options');
     }
