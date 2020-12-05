@@ -258,9 +258,21 @@ export class DateRangePickerComponent implements OnInit {
     let range = '';
 
     if (this.options.singleCalendar && this.fromDate) {
+      if (typeof this.fromDate === 'string') {
+        this.fromDate = moment(this.fromDate);
+      }
+
       range = this.fromDate.format(this.options.format);
     }
     else if (!this.options.singleCalendar && this.fromDate && this.toDate) {
+      if (typeof this.fromDate === 'string') {
+        this.fromDate = moment(this.fromDate);
+      }
+
+      if (typeof this.toDate === 'string') {
+        this.toDate = moment(this.toDate);
+      }
+
       range = `${ this.fromDate.format(this.options.format) } - ${ this.toDate.format(this.options.format) }`;
     }
 
