@@ -227,7 +227,7 @@ export class DateRangePickerComponent implements OnInit {
 
     this.setFromToMonthYear(this.fromDate, this.toDate);
 
-    if (this.options.autoApply && (this.options.singleCalendar || !isLeft) && this.fromDate) {
+    if (this.options.autoApply && (this.toDate || this.options.singleCalendar)) {
       this.toggleCalendarVisibility(false);
       this.setRange();
       this.emitRangeSelected();
