@@ -2,7 +2,7 @@
 
 ![ngx-daterange](https://res.cloudinary.com/alsoicode/image/upload/v1542168886/ngx-daterange/ngx-daterange.png)
 
-Current version: 1.0.36
+Current version: 1.0.41
 
 Here's a minimal example of ngx-daterange in action, showing positioning on the left, right and using custom templating: https://ngx-daterange.netlify.app/
 
@@ -224,9 +224,11 @@ Type: `ValidatorFn[] | ValidatorFn`
 
 Default value: not specified
 
-## Event Emitter
+## Event Emitters
 
 When a date is specified, an [IDateRange](https://github.com/alsoicode/ngx-daterange/blob/master/src/modules/ngx-daterange/src/interfaces/IDateRange.ts) object is emitted via the `rangeSelected` function.
+
+When the datepicker is reset, a `datepickerReset` event is emitted.
 
 ## Running the Angular Sample Project
 

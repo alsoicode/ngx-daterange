@@ -37,6 +37,9 @@ export class DateRangePickerComponent implements OnInit {
   toDate: momentNs.Moment = null;
 
   @Output()
+  datepickerReset = new EventEmitter<any>();
+
+  @Output()
   rangeSelected = new EventEmitter<IDateRange>();
 
   defaultRanges: IDefinedDateRange[];
@@ -371,6 +374,7 @@ export class DateRangePickerComponent implements OnInit {
     this.fromDate = null;
     this.toDate = null;
     this.setRange();
+    this.datepickerReset.emit();
 
     event.stopPropagation();
   }
