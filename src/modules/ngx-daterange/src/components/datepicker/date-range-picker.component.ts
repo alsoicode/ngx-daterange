@@ -296,7 +296,13 @@ export class DateRangePickerComponent implements OnInit {
             isLeft,
           });
 
-          this.setFromToMonthYear(this.fromDate, this.toDate);
+          if (this.fromDate && this.toDate) {
+            this.setFromToMonthYear(this.fromDate, this.toDate);
+
+            if (!this.options.autoApply) {
+              this.emitRangeSelected();
+            }
+          }
         }
         else {
           // assume nothing - reset values
@@ -306,8 +312,6 @@ export class DateRangePickerComponent implements OnInit {
           target.focus();
         }
       }
-
-      this.emitRangeSelected();
     }
     catch (e) {
       console.error(e);
