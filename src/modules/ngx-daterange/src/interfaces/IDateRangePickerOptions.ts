@@ -15,6 +15,7 @@ export interface IDateRangePickerOptions {
   maxDate?: momentNs.Moment;
   position?: 'left' | 'right';
   preDefinedRanges?: IDefinedDateRange[];
+  showResetButton?: boolean;
   singleCalendar?: boolean;
   validators?: ValidatorFn | ValidatorFn[];
 }

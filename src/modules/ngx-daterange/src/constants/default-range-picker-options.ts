@@ -13,5 +13,6 @@ export const defaultDateRangePickerOptions: IDateRangePickerOptions = {
   minDate: null,
   position: 'left',
   preDefinedRanges: [],
+  showResetButton: true,
   singleCalendar: false,
 };

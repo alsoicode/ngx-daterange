@@ -2,7 +2,7 @@
 
 ![ngx-daterange](https://res.cloudinary.com/alsoicode/image/upload/v1542168886/ngx-daterange/ngx-daterange.png)
 
-Current version: 1.0.42
+Current version: 1.0.43
 
 Here's a minimal example of ngx-daterange in action, showing positioning on the left, right and using custom templating: https://ngx-daterange.netlify.app/
 
@@ -203,6 +203,16 @@ An array of pre-defined date ranges can be displayed to the user using a friendl
 Type: `IDefinedDateRange[]`
 
 Default value: not specified
+
+<hr />
+
+### showResetButton
+
+Show or hide the reset button.
+
+Type: `boolean`
+
+Default value: `true`
 
 <hr />
 
