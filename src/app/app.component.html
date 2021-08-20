@@ -47,11 +47,21 @@
       </form>
     </div>
   </div>
-  <div class="row">
+  <div class="row mb-4">
     <div class="col col-sm-2">
       <form enctype="application/x-www-form-urlencoded" role="form" >
         <fieldset>
           <date-range-picker [options]="singleFieldOptions" [parentFormGroup]="form" controlName="'singleField'" (rangeSelected)="onRangeSelected($event)"></date-range-picker>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-sm-2">
+      <form enctype="application/x-www-form-urlencoded" role="form">
+        <fieldset>
+          <date-range-picker [options]="disableInputDisplayOptions" [parentFormGroup]="form" controlName="'disableInputDisplayField'" (rangeSelected)="onRangeSelected($event)"></date-range-picker>
+          <p>This datepicker has the &#8220;disableInputDisplay&#8221; feature set to true. The input field shown here is disabled, preventing manual editing, but still allowing the DatePicker to be used and displaying the selected range.</p>
         </fieldset>
       </form>
     </div>

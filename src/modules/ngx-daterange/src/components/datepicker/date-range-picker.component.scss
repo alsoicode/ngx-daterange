@@ -2,6 +2,10 @@
   position: relative;
   border: none;
 
+  input.form-control[disabled] {
+    background-color: #fff;
+  }
+
   .dateRangePicker {
     background: #fff;
     border-radius: 9px;

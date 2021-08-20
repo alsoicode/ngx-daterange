@@ -6,6 +6,7 @@ export const defaultDateRangePickerOptions: IDateRangePickerOptions = {
   autoApply: true,
   clickOutsideAllowed: true,
   disabled: false,
+  disableInputDisplay: false,
   icons: 'default',
   format: defaultDateFormat,
   labelText: 'Date Range',
