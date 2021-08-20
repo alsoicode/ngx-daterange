@@ -70,6 +70,15 @@ export class AppComponent implements OnInit {
     singleCalendar: true,
   }
 
+  disableInputDisplayOptions: IDateRangePickerOptions = {
+    disableInputDisplay: true,
+    format: 'MM/DD/YYYY',
+    icons: 'material',
+    labelText: 'Input Display Disabled',
+    minDate: moment().subtract(2, 'years'),
+    maxDate: moment().add(1, 'year')
+  };
+
   form: FormGroup = null;
 
   constructor (

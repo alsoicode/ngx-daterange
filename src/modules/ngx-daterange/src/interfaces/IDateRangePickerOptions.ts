@@ -8,6 +8,7 @@ export interface IDateRangePickerOptions {
   clickOutsideAllowed?: boolean;
   displayFormat?: string;
   disabled?: boolean;
+  disableInputDisplay?: boolean;
   format: string;
   icons?: 'default' | 'material' | 'font-awesome';
   labelText?: string;

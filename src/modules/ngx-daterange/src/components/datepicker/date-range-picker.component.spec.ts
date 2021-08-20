@@ -108,6 +108,22 @@ describe('Testing DateRangePickerComponent', () => {
       expect(() => fixture.detectChanges()).toThrow();
     }));
 
+    it('should disable the input element if options.disableInputDisplay is true', waitForAsync(() => {
+      const options: IDateRangePickerOptions = Object.assign(simpleOptions, {
+        disableInputDisplay: true,
+        minDate: moment().subtract(1, 'month'),
+        maxDate: moment(),
+        singleCalendar: false,
+        preDefinedRanges: null,
+      });
+
+      component.options = options;
+      fixture.detectChanges();
+
+      const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+      expect(input.disabled).toBeTrue();
+    }));
+
     describe('Pre-Defined Range Tests', () => {
       it('should throw an error if the range start value is after the range end value', waitForAsync(() => {
         const options: IDateRangePickerOptions = Object.assign(simpleOptions, {

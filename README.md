@@ -124,6 +124,16 @@ Default value: `true`
 
 <hr/>
 
+### disableInputDisplay
+
+Set this to `true` if you want to apply the `disabled` attribute to the `input` element that renders the selected range (or single date value) of the DatePicker component. Unlike the `fromDate` or `toDate` `input` elements displayed above the calendars, which are _not_ affect by this option, enabling this option prevents the user from editing the displayed range/value, which can cause confusion as the edited value will not reflect the actual range/value of the component.
+
+Type: `boolean`
+
+Default value: `false`
+
+<hr/>
+
 ### format
 
 The format of the `range` value as displayed in the UI.
