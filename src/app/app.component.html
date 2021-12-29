@@ -66,5 +66,17 @@
       </form>
     </div>
   </div>
+  <div class="row mb-4">
+    <div class="col-12 col-sm-2">
+      <p>Datepicker will open in a modal</p>
+      <form enctype="application/x-www-form-urlencoded" role="form" >
+        <fieldset>
+          <date-range-picker #dateRangePicker [options]="openInAModalOptions" [parentFormGroup]="form" [controlName]="'firstDateRange'" (rangeSelected)="onRangeSelected($event)"></date-range-picker>
+          <p style="color: red;" *ngIf="form.controls.firstDateRange.touched && form.controls.firstDateRange.hasError('required')">This field is required</p>
+          <p>If the &#8220;modal&#8221; optional field is set to true, the &#8220;position&#8221; setting will be ignored.</p>
+        </fieldset>
+      </form>
+    </div>
+  </div>
 </div>
 

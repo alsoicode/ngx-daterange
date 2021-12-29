@@ -6,6 +6,112 @@
     background-color: #fff;
   }
 
+  .modal-body {
+    padding: 0;
+  }
+
+  .modal-content {
+    width: 602px;
+    box-shadow: 0px 0px 10px 0px rgba(129, 139, 144, 0.5); // 50% #818B90
+    border-radius: 8px;
+  }
+
+  .dateRangePickerModal {
+    background: #fff;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    overflow: visible;
+    z-index: 3000;
+
+    @media screen and (min-width: 576px) {
+      min-width: 600px;
+    }
+
+    &.dateRangePicker-single, &.mobile {
+      min-width: 300px;
+
+      &::before, &::after {
+        border-bottom-color: #fff;
+      }
+    }
+
+    &.is-chrome {
+      .form-inputs {
+        .input-with-icon {
+          span {
+            position: relative;
+            top: 1px;
+          }
+        }
+      }
+    }
+
+    .btn, .btn.btn-link {
+      min-width: auto;
+      width: auto;
+    }
+
+    .form-inputs {
+      background-color: #6E777C;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+
+      > .col {
+        padding: 0.5rem 15px;
+        min-width: 270px; // allows for "From:" and "To:" text. Prevents shift in table cell widths when date is selected
+      }
+
+      .input-with-icon {
+        display: flex;
+        align-content: flex-start;
+        align-items: center !important;
+
+        i {
+          &.material-icons {
+            top: 0;
+          }
+
+          color: #fff;
+          margin-right: 0.5rem;
+        }
+
+        span {
+          line-height: 1;
+        }
+
+      }
+
+      .form-control {
+        background: none;
+        border: 0 none;
+        color: #fff;
+        display: inline-block;
+        padding: 0;
+        width: 150px; // allows for "From:" and "To:" text. Prevents shift in table cell widths when date is selected
+
+        &::placeholder  {
+          color: #fff;
+        }
+      }
+    }
+
+    .row-calendars {
+      .col__mobile {
+        border-top: dotted 1px #ccc;
+        margin-top: 1rem;
+      }
+    }
+
+    &:not(.mobile) {
+      .form-inputs, .row-calendars {
+        > div:nth-child(2) {
+          border-left: solid 2px #C6D1D6;
+        }
+      }
+    }
+  }
+
   .dateRangePicker {
     background: #fff;
     border-radius: 9px;

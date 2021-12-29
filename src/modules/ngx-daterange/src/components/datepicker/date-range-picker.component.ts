@@ -50,6 +50,7 @@ export class DateRangePickerComponent implements OnInit {
   toYear: number;
   range = '';
   showCalendars = false;
+  displayStyle: 'block' | 'none' = 'none';
 
   get enableApplyButton(): boolean {
     let enabled = !this.options.autoApply && this.fromDate !== null;
@@ -77,7 +78,12 @@ export class DateRangePickerComponent implements OnInit {
         targetPathClassNames = event['path'].map(obj => obj.className);
       }
 
-      const containerElementClassRoot = 'dateRangePicker';
+      let containerElementClassRoot = '';
+      if(this.options.modal === true) {
+        containerElementClassRoot = 'dateRangePickerModal';
+      } else {
+        containerElementClassRoot = 'dateRangePicker';
+      }
       const targetExistsInPath = targetPathClassNames.some(className => {
         if (typeof className === 'string') {
           return className && className.includes(containerElementClassRoot);
@@ -196,8 +202,12 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   toggleCalendarVisibility(value?: boolean): void {
-    this.showCalendars = value !== null ? value : !this.showCalendars;
-  }
+    if(this.options.modal === true) {
+      this.displayStyle = value !== null ? value === false ? 'none' : 'block' : this.showCalendars === false ? 'none' : 'block';
+    } else {
+      this.showCalendars = value !== null ? value : !this.showCalendars;
+    }
+  }1
 
   setFromToMonthYear(fromDate?: momentNs.Moment, toDate?: momentNs.Moment): void {
     const tempFromDate = fromDate || this.fromDate || moment();
