@@ -78,12 +78,8 @@ export class DateRangePickerComponent implements OnInit {
         targetPathClassNames = event['path'].map(obj => obj.className);
       }
 
-      let containerElementClassRoot = '';
-      if(this.options.modal === true) {
-        containerElementClassRoot = 'dateRangePickerModal';
-      } else {
-        containerElementClassRoot = 'dateRangePicker';
-      }
+      let containerElementClassRoot = this.options.modal === true ? 'dateRangePickerModal' : 'dateRangePicker';
+      
       const targetExistsInPath = targetPathClassNames.some(className => {
         if (typeof className === 'string') {
           return className && className.includes(containerElementClassRoot);
@@ -204,7 +200,8 @@ export class DateRangePickerComponent implements OnInit {
   toggleCalendarVisibility(value?: boolean): void {
     if(this.options.modal === true) {
       this.displayStyle = value !== null ? value === false ? 'none' : 'block' : this.showCalendars === false ? 'none' : 'block';
-    } else {
+    }
+    else {
       this.showCalendars = value !== null ? value : !this.showCalendars;
     }
   }1
