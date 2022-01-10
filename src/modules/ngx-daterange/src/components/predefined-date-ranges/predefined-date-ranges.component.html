@@ -1,0 +1,14 @@
+<div class="row text-center my-3">
+	<div class="col">
+		<div class="row mb-2" *ngIf="!options.singleCalendar && options.preDefinedRanges && options.preDefinedRanges.length > 0">
+			<div class="col">
+				<button type="button" *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange($event, range)">{{ range.name }}</button>
+			</div>
+		</div>
+		<ng-container *ngIf="!options.modal">
+			<button type="button" class="btn btn-outline-secondary btn-sm" (click)="close($event)">Close</button>
+			<button type="button" class="btn btn-outline-secondary btn-sm ml-3" (click)="reset($event)" *ngIf="range && options.showResetButton">Reset</button>
+			<button type="button" class="btn btn-primary btn-sm ml-3" [disabled]="!enableApplyButton" (click)="apply($event)" *ngIf="!options.autoApply">Apply</button>
+		</ng-container>
+	</div>
+</div>

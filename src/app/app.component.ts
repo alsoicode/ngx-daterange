@@ -87,7 +87,23 @@ export class AppComponent implements OnInit {
     minDate: moment().subtract(10, 'years'),
     maxDate: moment().add(1, 'year'),
     modal: true,
-    position: 'left' //ignored due to 'modal' setting being true
+    position: 'left', //ignored due to 'modal' setting being true
+    preDefinedRanges: [
+      {
+        name: 'range1',
+        value: {
+          start: moment().add(1, 'days'),
+          end: moment().add(10, 'days')
+        }
+      },
+      {
+        name: 'range2',
+        value: {
+          start: moment().subtract(10, 'days'),
+          end: moment().add(30, 'days')
+        }
+      }
+    ]
   }
 
   form: FormGroup = null;

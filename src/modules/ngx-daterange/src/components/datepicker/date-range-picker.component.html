@@ -18,35 +18,7 @@
                   <div class="col">
         
                     <!-- Manual Inputs -->
-                    <ng-container *ngIf="!isMobile">
-                      <div class="row form-inputs mb-0" *ngIf="!options.singleCalendar">
-                        <div class="col">
-                          <div *ngIf="options.icons !== 'default'">
-                            <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material' }">
-                              <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
-                              <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
-                              <span *ngIf="fromDate">From:&nbsp;</span>
-                              <input class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="setDateFromInput($event, true)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
-                            </div>
-                          </div>
-        
-                          <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="setDateFromInput($event, true)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
-                        </div>
-        
-                        <div class="col">
-                          <div *ngIf="options.icons !== 'default'">
-                              <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material' }">
-                                <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
-                                <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
-                                <span *ngIf="toDate">To:&nbsp;</span>
-                                <input class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="setDateFromInput($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
-                              </div>
-                            </div>
-        
-                          <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="setDateFromInput($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
-                        </div>
-                      </div>
-                    </ng-container>
+                    <manual-inputs [options]="options" [fromDate]="fromDate" [toDate]="toDate" [isMobile]="isMobile" (dateFromInput)="setDateFromInput($event)"></manual-inputs>
         
                     <!-- Calendars -->
                     <div class="row row-calendars">
@@ -62,18 +34,7 @@
                 </div>
         
                 <!-- Pre-Defined Date Ranges -->
-                <div class="row text-center my-3">
-                  <div class="col">
-                    <div class="row mb-2" *ngIf="!options.singleCalendar && options.preDefinedRanges && options.preDefinedRanges.length > 0">
-                      <div class="col">
-                        <button type="button" *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange($event, range)">{{ range.name }}</button>
-                      </div>
-                    </div>
-                    <!-- <button type="button" class="btn btn-outline-secondary btn-sm" (click)="close($event)">Close</button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm ml-3" (click)="reset($event)" *ngIf="range && options.showResetButton">Reset</button>
-                    <button type="button" class="btn btn-primary btn-sm ml-3" [disabled]="!enableApplyButton" (click)="apply($event)" *ngIf="!options.autoApply">Apply</button> -->
-                  </div>
-                </div>
+                <predefined-date-ranges [options]="options" [range]="range" [enableApplyButton]="enableApplyButton" (closeEvent)="close($event)" (resetEvent)="reset($event)" (applyEvent)="apply($event)" (predefinedRange)="applyPredefinedRange($event)"></predefined-date-ranges>
         
               </div>
             </div>
@@ -94,35 +55,7 @@
           <div class="col">
 
             <!-- Manual Inputs -->
-            <ng-container *ngIf="!isMobile">
-              <div class="row form-inputs mb-0" *ngIf="!options.singleCalendar">
-                <div class="col">
-                  <div *ngIf="options.icons !== 'default'">
-                    <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material' }">
-                      <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
-                      <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
-                      <span *ngIf="fromDate">From:&nbsp;</span>
-                      <input class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="setDateFromInput($event, true)" type="text" name="daterangepicker_start" [ngModelOptions]="{ standalone: true }" placeholder="Select From Date" />
-                    </div>
-                  </div>
-
-                  <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="fromDate | formatMomentDate: options.format" (blur)="setDateFromInput($event, true)" type="text" name="daterangepicker_start" [ngModelOptions]="{standalone: true}" placeholder="Select From Date" />
-                </div>
-
-                <div class="col">
-                  <div *ngIf="options.icons !== 'default'">
-                      <div [ngClass]="{ 'd-flex align-items-center input-with-icon': true, 'material': options.icons === 'material' }">
-                        <i *ngIf="options.icons === 'material'" class="material-icons">event</i>
-                        <i *ngIf="options.icons === 'font-awesome'" class="far fa-calendar-alt"></i>
-                        <span *ngIf="toDate">To:&nbsp;</span>
-                        <input class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="setDateFromInput($event)" type="text" name="daterangepicker_end" [ngModelOptions]="{ standalone: true }" placeholder="Select To Date" />
-                      </div>
-                    </div>
-
-                  <input *ngIf="options.icons === 'default'" class="form-control" [ngModel]="toDate | formatMomentDate: options.format" (blur)="setDateFromInput($event)" name="daterangepicker_end" [ngModelOptions]="{standalone: true}" />
-                </div>
-              </div>
-            </ng-container>
+            <manual-inputs [options]="options" [fromDate]="fromDate" [toDate]="toDate" [isMobile]="isMobile" (dateFromInput)="setDateFromInput($event)"></manual-inputs>
 
             <!-- Calendars -->
             <div class="row row-calendars">
@@ -138,18 +71,7 @@
         </div>
 
         <!-- Pre-Defined Date Ranges -->
-        <div class="row text-center my-3">
-          <div class="col">
-            <div class="row mb-2" *ngIf="!options.singleCalendar && options.preDefinedRanges && options.preDefinedRanges.length > 0">
-              <div class="col">
-                <button type="button" *ngFor="let range of options.preDefinedRanges" class="btn btn-link" (click)="applyPredefinedRange($event, range)">{{ range.name }}</button>
-              </div>
-            </div>
-            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="close($event)">Close</button>
-            <button type="button" class="btn btn-outline-secondary btn-sm ml-3" (click)="reset($event)" *ngIf="range && options.showResetButton">Reset</button>
-            <button type="button" class="btn btn-primary btn-sm ml-3" [disabled]="!enableApplyButton" (click)="apply($event)" *ngIf="!options.autoApply">Apply</button>
-          </div>
-        </div>
+        <predefined-date-ranges [options]="options" [range]="range" [enableApplyButton]="enableApplyButton" (closeEvent)="close($event)" (resetEvent)="reset($event)" (applyEvent)="apply($event)"></predefined-date-ranges>
 
       </div>
     </div>

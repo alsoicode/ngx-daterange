@@ -10,6 +10,10 @@
     padding: 0;
   }
 
+  .modal {
+    backdrop-filter: brightness(50%);
+  }
+
   .modal-content {
     width: 602px;
     box-shadow: 0px 0px 10px 0px rgba(129, 139, 144, 0.5); // 50% #818B90
