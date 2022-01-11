@@ -21,7 +21,8 @@
   }
 
   .dateRangePickerModal {
-    background: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     font-family: "Roboto", Helvetica, Arial, sans-serif;
     overflow: visible;
     z-index: 3000;

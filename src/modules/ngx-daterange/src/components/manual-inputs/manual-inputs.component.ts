@@ -31,7 +31,7 @@ export class ManualInputsComponent implements OnInit {
   }
 
   setDateFromInput(event: Event, isLeft: boolean = false): void {
-    this.dateFromInput.emit({event, isLeft});
+    this.dateFromInput.emit({ event, isLeft });
   }
 
 }

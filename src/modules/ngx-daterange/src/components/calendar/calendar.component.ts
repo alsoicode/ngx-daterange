@@ -189,29 +189,20 @@ export class CalendarComponent implements OnChanges {
     const target = event.target as HTMLTableCellElement;
 
     if (!target.classList.contains('disabled')) {
-      this.dateChanged.emit({
-        day: data.day,
-        isLeft: this.isLeft
-      });
+      this.dateChanged.emit({ day: data.day, isLeft: this.isLeft });
     }
 
     event.stopPropagation();
   }
 
   monthSelected(event: Event, data: IChangedData): void {
-    this.monthChanged.emit({
-      value: data.value,
-      isLeft: this.isLeft
-    });
+    this.monthChanged.emit({ value: data.value, isLeft: this.isLeft });
 
     event.stopPropagation();
   }
 
   yearSelected(event: Event, data: IChangedData): void {
-    this.yearChanged.emit({
-      value: data.value,
-      isLeft: this.isLeft
-    });
+    this.yearChanged.emit({ value: data.value, isLeft: this.isLeft });
 
     event.stopPropagation();
   }

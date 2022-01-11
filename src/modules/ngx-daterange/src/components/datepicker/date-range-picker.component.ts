@@ -148,7 +148,7 @@ export class DateRangePickerComponent implements OnInit {
 
     // add form control to parent form group
     const value = this.formatRangeAsString();
-    const control = new FormControl({value, disabled: this.options.disableInputDisplay}, this.options.validators);
+    const control = new FormControl({ value, disabled: this.options.disableInputDisplay }, this.options.validators);
 
     if (this.options.disabled) {
       control.disable();

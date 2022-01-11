@@ -27,7 +27,7 @@ export class PredefinedDateRangesComponent implements OnInit {
   applyEvent = new EventEmitter<Event>();
 
   @Output()
-  predefinedRange = new EventEmitter<{event: Event, definedDateRange: IDefinedDateRange}>();
+  predefinedRange = new EventEmitter<{ event: Event, definedDateRange: IDefinedDateRange }>();
 
   constructor() { }
 
@@ -36,7 +36,7 @@ export class PredefinedDateRangesComponent implements OnInit {
 
 
   applyPredefinedRange(event: Event, definedDateRange: IDefinedDateRange): void {
-    this.predefinedRange.emit({event: event, definedDateRange: definedDateRange});
+    this.predefinedRange.emit({ event: event, definedDateRange: definedDateRange });
   }
 
   close(event: Event): void {
