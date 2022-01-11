@@ -50,6 +50,7 @@ export class DateRangePickerComponent implements OnInit {
   toYear: number;
   range = '';
   showCalendars = false;
+  displayStyle: 'block' | 'none' = 'none';
 
   get enableApplyButton(): boolean {
     let enabled = !this.options.autoApply && this.fromDate !== null;
@@ -77,7 +78,8 @@ export class DateRangePickerComponent implements OnInit {
         targetPathClassNames = event['path'].map(obj => obj.className);
       }
 
-      const containerElementClassRoot = 'dateRangePicker';
+      let containerElementClassRoot = this.options.modal === true ? 'dateRangePickerModal' : 'dateRangePicker';
+      
       const targetExistsInPath = targetPathClassNames.some(className => {
         if (typeof className === 'string') {
           return className && className.includes(containerElementClassRoot);
@@ -146,7 +148,7 @@ export class DateRangePickerComponent implements OnInit {
 
     // add form control to parent form group
     const value = this.formatRangeAsString();
-    const control = new FormControl({value, disabled: this.options.disableInputDisplay}, this.options.validators);
+    const control = new FormControl({ value, disabled: this.options.disableInputDisplay }, this.options.validators);
 
     if (this.options.disabled) {
       control.disable();
@@ -196,8 +198,13 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   toggleCalendarVisibility(value?: boolean): void {
-    this.showCalendars = value !== null ? value : !this.showCalendars;
-  }
+    if(this.options.modal === true) {
+      this.displayStyle = value !== null ? value === false ? 'none' : 'block' : this.showCalendars === false ? 'none' : 'block';
+    }
+    else {
+      this.showCalendars = value !== null ? value : !this.showCalendars;
+    }
+  }1
 
   setFromToMonthYear(fromDate?: momentNs.Moment, toDate?: momentNs.Moment): void {
     const tempFromDate = fromDate || this.fromDate || moment();
@@ -295,8 +302,9 @@ export class DateRangePickerComponent implements OnInit {
     }
   }
 
-  setDateFromInput(event: Event, isLeft: boolean = false): void {
-    const target = event.target as HTMLInputElement;
+  setDateFromInput(event: {event: Event, isLeft: boolean}): void {
+    const isLeft = event.isLeft;
+    const target = event.event.target as HTMLInputElement;
 
     try {
       if (target.value) {
@@ -391,15 +399,15 @@ export class DateRangePickerComponent implements OnInit {
     event.stopPropagation();
   }
 
-  applyPredefinedRange(event: Event, definedDateRange: IDefinedDateRange): void {
+  applyPredefinedRange(event: {event: Event, definedDateRange: IDefinedDateRange}): void {
     // adjust to/from month/year so calendar months and years match range
-    this.setFromToMonthYear(definedDateRange.value.start, definedDateRange.value.end);
+    this.setFromToMonthYear(event.definedDateRange.value.start, event.definedDateRange.value.end);
 
-    this.fromDate = definedDateRange.value.start;
-    this.toDate = definedDateRange.value.end;
+    this.fromDate = event.definedDateRange.value.start;
+    this.toDate = event.definedDateRange.value.end;
 
     if (this.options.autoApply) {
-      this.apply(event);
+      this.apply(event.event);
     }
   }
 

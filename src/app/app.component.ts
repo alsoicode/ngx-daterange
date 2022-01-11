@@ -79,6 +79,33 @@ export class AppComponent implements OnInit {
     maxDate: moment().add(1, 'year')
   };
 
+  openInAModalOptions: IDateRangePickerOptions = {
+    autoApply: false,
+    clickOutsideAllowed: false,
+    format: 'MM/DD/YYYY',
+    icons: 'font-awesome',
+    minDate: moment().subtract(10, 'years'),
+    maxDate: moment().add(1, 'year'),
+    modal: true,
+    position: 'left', //ignored due to 'modal' setting being true
+    preDefinedRanges: [
+      {
+        name: 'range1',
+        value: {
+          start: moment().add(1, 'days'),
+          end: moment().add(10, 'days')
+        }
+      },
+      {
+        name: 'range2',
+        value: {
+          start: moment().subtract(10, 'days'),
+          end: moment().add(30, 'days')
+        }
+      }
+    ]
+  }
+
   form: FormGroup = null;
 
   constructor (

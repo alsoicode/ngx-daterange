@@ -19,4 +19,5 @@ export interface IDateRangePickerOptions {
   showResetButton?: boolean;
   singleCalendar?: boolean;
   validators?: ValidatorFn | ValidatorFn[];
+  modal?: boolean;
 }
