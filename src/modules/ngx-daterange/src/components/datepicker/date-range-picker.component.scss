@@ -7,18 +7,36 @@
   }
 
   .modal-body {
-    padding: 0;
+    padding: 0!important;
   }
 
   .modal {
     backdrop-filter: brightness(50%);
   }
 
+  .modal-display {
+    display: flex;
+
+    .modal-dialog {
+      display: flex;
+      box-shadow: none;
+    }
+  }
+
   .modal-content {
     width: 602px;
     box-shadow: 0px 0px 10px 0px rgba(129, 139, 144, 0.5); // 50% #818B90
     border-radius: 8px;
+    border: 0 none;
+    display: flex;
+
+    .modal-footer {
+      .btn {
+        width: auto;
+      }
+    }
   }
+
 
   .dateRangePickerModal {
     border-top-left-radius: 5px;
@@ -50,9 +68,9 @@
       }
     }
 
-    .btn, .btn.btn-link {
-      min-width: auto;
-      width: auto;
+    .btn, .btn.btn-link{
+      min-width: 60px;
+      width: 60px;
     }
 
     .form-inputs {
@@ -101,7 +119,7 @@
       }
     }
 
-    .row-calendars {
+    .row-1s {
       .col__mobile {
         border-top: dotted 1px #ccc;
         margin-top: 1rem;

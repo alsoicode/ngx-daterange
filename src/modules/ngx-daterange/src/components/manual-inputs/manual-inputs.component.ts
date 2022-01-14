@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { IDateRangePickerOptions } from '../../interfaces';
 
 import * as momentNs from 'moment'; const moment = momentNs;
 
 @Component({
+  encapsulation: ViewEncapsulation.Emulated,
   selector: 'manual-inputs',
   templateUrl: './manual-inputs.component.html',
   styleUrls: ['./manual-inputs.component.scss']

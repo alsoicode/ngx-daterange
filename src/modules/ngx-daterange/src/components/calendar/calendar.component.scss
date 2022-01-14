@@ -13,6 +13,13 @@
     font-size: 16px;
     margin: 0.5rem -15px 0 -15px;
 
+    //apply width values so they don't get overriden from the outside
+    .btn, .btn-link {
+      min-width: auto;
+      width: auto;
+      background-color: transparent;
+    }
+
     &.material {
       .btn {
         &.btn-previous-year {
