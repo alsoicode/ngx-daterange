@@ -29,7 +29,14 @@
     border-radius: 8px;
     border: 0 none;
     display: flex;
+
+    .modal-footer {
+      .btn {
+        width: auto;
+      }
+    }
   }
+
 
   .dateRangePickerModal {
     border-top-left-radius: 5px;
