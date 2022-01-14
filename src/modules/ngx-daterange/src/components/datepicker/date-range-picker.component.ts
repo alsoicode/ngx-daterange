@@ -9,7 +9,7 @@ import * as momentNs from 'moment'; const moment = momentNs;
 let instanceCount = 0;
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.Emulated,
   selector: 'date-range-picker',
   styleUrls: [
     './date-range-picker.component.scss',
@@ -50,7 +50,7 @@ export class DateRangePickerComponent implements OnInit {
   toYear: number;
   range = '';
   showCalendars = false;
-  displayStyle: 'block' | 'none' = 'none';
+  displayStyle: boolean = false;
 
   get enableApplyButton(): boolean {
     let enabled = !this.options.autoApply && this.fromDate !== null;
@@ -199,7 +199,7 @@ export class DateRangePickerComponent implements OnInit {
 
   toggleCalendarVisibility(value?: boolean): void {
     if(this.options.modal === true) {
-      this.displayStyle = value !== null ? value === false ? 'none' : 'block' : this.showCalendars === false ? 'none' : 'block';
+      this.displayStyle = value !== null ? value === false ? false : true : this.showCalendars === false ? false : true;
     }
     else {
       this.showCalendars = value !== null ? value : !this.showCalendars;

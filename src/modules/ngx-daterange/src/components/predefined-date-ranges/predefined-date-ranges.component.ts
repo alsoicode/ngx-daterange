@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { IDateRangePickerOptions, IDefinedDateRange } from '../../interfaces';
 
 @Component({
+  encapsulation: ViewEncapsulation.Emulated,
   selector: 'predefined-date-ranges',
   templateUrl: './predefined-date-ranges.component.html',
   styleUrls: ['./predefined-date-ranges.component.scss']

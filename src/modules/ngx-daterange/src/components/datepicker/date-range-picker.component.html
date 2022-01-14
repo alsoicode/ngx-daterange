@@ -8,7 +8,7 @@
       <input [attr.id]="instanceId" class="form-control" type="text" [formControlName]="controlName">
     </ng-container>
 
-    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal" tabindex="-1" role="dialog" [ngClass]="{ 'modal-display': displayStyle}">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-body">
