@@ -133,7 +133,7 @@ export class CalendarComponent implements OnChanges {
     const weeksRange = this.getWeeksRange(this.getWeekNumbers(monthRange));
     const weekList = [];
 
-    weeksRange.map(week => {
+    weeksRange?.map(week => {
       const daysList = [];
 
       Array.from(week.by('days')).forEach((day: momentNs.Moment) => {
