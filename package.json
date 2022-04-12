@@ -1,6 +1,6 @@
 {
   "name": "ngx-daterange-sample-application",
-  "version": "1.0.46",
+  "version": "1.0.47",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -26,7 +26,7 @@
     "bootstrap": "4.5.3",
     "core-js": "3.8.0",
     "jquery": "3.5.1",
-    "moment": "2.29.1",
+    "moment": "2.29.2",
     "moment-range": "4.0.2",
     "rxjs": "6.6.3",
     "tslib": "2.0.3",
