@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { defaultDateRangePickerOptions } from '../../constants';
+import { defaultDateFormat, defaultDateRangePickerOptions } from '../../constants';
 import { IDateRange, IDateRangePickerOptions, IDefinedDateRange, IChangedData } from '../../interfaces';
 
 import * as momentNs from 'moment'; const moment = momentNs;
@@ -207,14 +207,22 @@ export class DateRangePickerComponent implements OnInit {
   }1
 
   setFromToMonthYear(fromDate?: momentNs.Moment, toDate?: momentNs.Moment): void {
-    const tempFromDate = fromDate || this.fromDate || moment();
-    const tempToDate = toDate || this.toDate || moment();
+    let tempFromDate = fromDate || this.fromDate || moment();
+    let tempToDate = toDate || this.toDate || moment();
 
-    this.fromMonth = tempFromDate?.get('month');
-    this.fromYear = tempFromDate?.get('year');
+    if (!(tempFromDate instanceof moment)) {
+      tempFromDate = moment(tempFromDate, defaultDateFormat);
+    }
 
-    this.toMonth = tempToDate?.get('month');
-    this.toYear = tempToDate?.get('year');
+    if (!(tempToDate instanceof moment)) {
+      tempToDate = moment(tempToDate, defaultDateFormat);
+    }
+
+    this.fromMonth = tempFromDate.get('month');
+    this.fromYear = tempFromDate.get('year');
+
+    this.toMonth = tempToDate.get('month');
+    this.toYear = tempToDate.get('year');
   }
 
   updateCalendar(): void {
