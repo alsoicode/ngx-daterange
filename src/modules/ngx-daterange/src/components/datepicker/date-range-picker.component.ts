@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { defaultDateRangePickerOptions } from '../../constants';
+import { defaultDateFormat, defaultDateRangePickerOptions } from '../../constants';
 import { IDateRange, IDateRangePickerOptions, IDefinedDateRange, IChangedData } from '../../interfaces';
 
 import * as momentNs from 'moment'; const moment = momentNs;
@@ -75,12 +75,12 @@ export class DateRangePickerComponent implements OnInit {
       }
       catch (error) {
         // IE / Edge
-        targetPathClassNames = event['path'].map(obj => obj.className);
+        targetPathClassNames = event['path']?.map(obj => obj.className);
       }
 
       let containerElementClassRoot = this.options.modal === true ? 'dateRangePickerModal' : 'dateRangePicker';
-      
-      const targetExistsInPath = targetPathClassNames.some(className => {
+
+      const targetExistsInPath = targetPathClassNames?.some(className => {
         if (typeof className === 'string') {
           return className && className.includes(containerElementClassRoot);
         }
@@ -207,8 +207,16 @@ export class DateRangePickerComponent implements OnInit {
   }1
 
   setFromToMonthYear(fromDate?: momentNs.Moment, toDate?: momentNs.Moment): void {
-    const tempFromDate = fromDate || this.fromDate || moment();
-    const tempToDate = toDate || this.toDate || moment();
+    let tempFromDate = fromDate || this.fromDate || moment();
+    let tempToDate = toDate || this.toDate || moment();
+
+    if (!(tempFromDate instanceof moment)) {
+      tempFromDate = moment(tempFromDate, defaultDateFormat);
+    }
+
+    if (!(tempToDate instanceof moment)) {
+      tempToDate = moment(tempToDate, defaultDateFormat);
+    }
 
     this.fromMonth = tempFromDate.get('month');
     this.fromYear = tempFromDate.get('year');
@@ -293,7 +301,7 @@ export class DateRangePickerComponent implements OnInit {
     this.range = this.formatRangeAsString();
 
     if (this.parentFormGroup) {
-      const control = this.parentFormGroup.get(this.controlName);
+      const control = this.parentFormGroup?.get(this.controlName);
 
       if (control) {
         control.setValue(this.range);
@@ -351,13 +359,13 @@ export class DateRangePickerComponent implements OnInit {
 
     if (data.isLeft) {
       temp = moment([this.fromYear, this.fromMonth]).add(data.value, 'month');
-      this.fromMonth = temp.get('month');
-      this.fromYear = temp.get('year');
+      this.fromMonth = temp?.get('month');
+      this.fromYear = temp?.get('year');
     }
     else {
       temp = moment([this.toYear, this.toMonth]).add(data.value, 'month');
-      this.toMonth = temp.get('month');
-      this.toYear = temp.get('year');
+      this.toMonth = temp?.get('month');
+      this.toYear = temp?.get('year');
     }
   }
 
@@ -366,13 +374,13 @@ export class DateRangePickerComponent implements OnInit {
 
     if (data.isLeft) {
       temp = moment([this.fromYear, this.fromMonth]).add(data.value, 'year');
-      this.fromMonth = temp.get('month');
-      this.fromYear = temp.get('year');
+      this.fromMonth = temp?.get('month');
+      this.fromYear = temp?.get('year');
     }
     else {
       temp = moment([this.toYear, this.toMonth]).add(data.value, 'year');
-      this.toMonth = temp.get('month');
-      this.toYear = temp.get('year');
+      this.toMonth = temp?.get('month');
+      this.toYear = temp?.get('year');
     }
   }
 
